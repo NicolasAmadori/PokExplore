@@ -109,6 +109,12 @@ data class EvolutionChainUrl(
 )
 
 @Serializable
+data class Generation(
+    @SerialName("name")
+    val name: String
+)
+
+@Serializable
 data class PokemonSpecies(
     @SerialName("color")
     val color: Color,
@@ -117,7 +123,9 @@ data class PokemonSpecies(
     @SerialName("capture_rate")
     val captureRate: Int,
     @SerialName("evolution_chain")
-    val evolutionChain: EvolutionChainUrl
+    val evolutionChain: EvolutionChainUrl,
+    @SerialName("generation")
+    val generation: Generation
 )
 
 /*Evolution chain classes*/

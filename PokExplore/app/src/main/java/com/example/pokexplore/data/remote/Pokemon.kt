@@ -18,6 +18,13 @@ data class Pokemon(
     val color = species.color.name
     val description = species.flavorTextEntries.first { it.language.name == "en" }.flavorText
     val captureRate = species.captureRate
+    val generation = species.generation.name
+
+    val countryCode = when (generation) {
+                            "generation-i" -> 392 //Japan
+                            "generation-ii" -> 380 //Italy
+                            else -> null //World
+                        }
 
     val evolutions = mutableListOf<String>()
 
@@ -31,26 +38,22 @@ data class Pokemon(
     }
 
     fun getAllInfoAsString(): String {
-
-        val typesString = types.joinToString(", ")
-        val abilitiesString = abilities.joinToString(", ")
-        val statsString = stats.entries.joinToString(", ") { (key, value) -> "$key: $value" }
-        val evolutionsString = evolutions.joinToString(", ")
-
         return """
         |ID: $id
         |Name: $name
         |Sprite: $sprite
-        |Types: $typesString
-        |Abilities: $abilitiesString
+        |Types: ${types.joinToString(", ")}
+        |Abilities: ${abilities.joinToString(", ")}
         |Weight: $weight
         |Height: $height
-        |Stats: $statsString
+        |Stats: ${stats.entries.joinToString(", ") { (key, value) -> "$key: $value" }}
         |Cry: $cry
         |Color: $color
         |Description: $description
         |Capture Rate: $captureRate
-        |Evolutions: $evolutionsString
+        |Generation: $generation
+        |Evolutions: ${evolutions.joinToString(", ")}
+        |Country Code: $countryCode
         """.trimMargin()
     }
 }
