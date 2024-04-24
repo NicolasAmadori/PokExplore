@@ -83,4 +83,7 @@ dependencies {
     ksp("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
     implementation ("com.google.code.gson:gson:2.8.8") //Array Converter
+
+    /* Navigation */
+    implementation("androidx.navigation:navigation-compose:2.7.7")
 }

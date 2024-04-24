@@ -36,7 +36,7 @@ data class User(
 )
 
 @Entity(primaryKeys = ["email", "pokemonId"])
-data class UserPokemonRef(
+data class UserPokemon(
     val email: String,
     val pokemonId: Int,
     val isCaptured: Boolean = false,
