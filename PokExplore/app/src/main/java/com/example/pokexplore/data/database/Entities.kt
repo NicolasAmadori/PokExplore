@@ -1,44 +1,44 @@
 package com.example.pokexplore.data.database
 
-import android.provider.ContactsContract.CommonDataKinds.Email
-import android.provider.ContactsContract.CommonDataKinds.Phone
-import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
+import androidx.room.Junction
 import androidx.room.PrimaryKey
+import androidx.room.Relation
 
 @Entity
 data class Pokemon(
     @PrimaryKey val pokemonId: Int,
-    @ColumnInfo val name: String,
-    @ColumnInfo val sprite: String,
-    @ColumnInfo val types: ArrayList<String>,
-    @ColumnInfo val abilities: ArrayList<String>,
-    @ColumnInfo val weight: Int,
-    @ColumnInfo val height: Int,
-    @ColumnInfo val stats: Map<String, Int>,
-    @ColumnInfo val cry: String,
-    @ColumnInfo val color: String,
-    @ColumnInfo val description: String,
-    @ColumnInfo val captureRate: Int,
-    @ColumnInfo val evolutions: ArrayList<String>,
-    @ColumnInfo val generation: String,
-    @ColumnInfo val countryCode: Int
+    val name: String,
+    val sprite: String,
+    val types: ArrayList<String>,
+    val abilities: ArrayList<String>,
+    val weight: Int,
+    val height: Int,
+    val stats: Map<String, Int>,
+    val cry: String,
+    val color: String,
+    val description: String,
+    val captureRate: Int,
+    val evolutions: ArrayList<String>,
+    val generation: String,
+    val countryCode: Int
 )
 
 @Entity
 data class User(
     @PrimaryKey val email: String,
-    @ColumnInfo val password: String,
-    @ColumnInfo val firstName: String,
-    @ColumnInfo val lastName: String,
-    @ColumnInfo val phone: Int,
-    @ColumnInfo val profilePicUrl: String
+    val password: String,
+    val firstName: String,
+    val lastName: String,
+    val phone: Int,
+    val profilePicUrl: String
 )
 
 @Entity(primaryKeys = ["email", "pokemonId"])
-data class UserPokemon(
+data class UserPokemonRef(
     val email: String,
     val pokemonId: Int,
-    @ColumnInfo val isCaptured: Boolean = false,
-    @ColumnInfo val isFavourite: Boolean = false
+    val isCaptured: Boolean = false,
+    val isFavourite: Boolean = false
 )
