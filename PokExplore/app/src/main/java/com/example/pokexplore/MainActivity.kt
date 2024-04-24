@@ -72,7 +72,7 @@ class MainActivity : ComponentActivity() {
                         derivedStateOf {
                             PokemonRoute.routes.find {
                                 it.route == backStackEntry?.destination?.route
-                            } ?: PokemonRoute.Home
+                            } ?: PokemonRoute.AllPokemonList
                         }
                     }
 

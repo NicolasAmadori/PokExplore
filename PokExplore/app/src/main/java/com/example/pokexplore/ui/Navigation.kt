@@ -8,17 +8,22 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.pokexplore.ui.screens.AddPokemonScreen
+import com.example.pokexplore.ui.screens.CatchPokemonScreen
 import com.example.pokexplore.ui.screens.PokemonDetailsScreen
-import com.example.pokexplore.ui.screens.PokemonListScreen
+import com.example.pokexplore.ui.screens.AllPokemonListScreen
+import com.example.pokexplore.ui.screens.FavouritesPokemonListScreen
+import com.example.pokexplore.ui.screens.LocalPokemonListScreen
+import com.example.pokexplore.ui.screens.ProfileScreen
 import com.example.pokexplore.ui.screens.SettingsScreen
+import com.example.pokexplore.ui.screens.SignInScreen
+import com.example.pokexplore.ui.screens.SignUpScreen
 
 sealed class PokemonRoute(
     val route: String,
     val title: String,
     val arguments: List<NamedNavArgument> = emptyList()
 ) {
-    data object Home : PokemonRoute("pokemonList", "Pokemon List")
+    data object AllPokemonList : PokemonRoute("allPokemonList", "Pokemon List")
     data object PokemonDetails : PokemonRoute(
         "pokemon/{pokemonId}",
         "Pokemon Details",
@@ -26,11 +31,15 @@ sealed class PokemonRoute(
     ) {
         fun buildRoute(pokemonId: String) = "pokemon/$pokemonId"
     }
-    data object AddPokemon : PokemonRoute("addPokemon", "Add Pokemon")
+    data object CatchPokemon : PokemonRoute("catchPokemon", "Catch Pokemon")
     data object Settings : PokemonRoute("settings", "Settings")
-
+    data object  Profile : PokemonRoute("profile", "Profile")//TODO: passare id della persona
+    data object LocalPokemonList : PokemonRoute("localPokemonList", "Local Pokemon List")
+    data object FavouritesPokemonList : PokemonRoute("favouritesPokemonList", "Favourites Pokemon List")
+    data object SignIn : PokemonRoute("signIn", "Sign In")
+    data object SignUp: PokemonRoute("signUp", "Sign Up")
     companion object {
-        val routes = setOf(Home, PokemonDetails, AddPokemon, Settings)
+        val routes = setOf(AllPokemonList, PokemonDetails, CatchPokemon, Settings, Profile, LocalPokemonList, FavouritesPokemonList, SignIn, SignUp)
     }
 }
 
@@ -41,12 +50,12 @@ fun PokemonNavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = PokemonRoute.Home.route,
+        startDestination = PokemonRoute.AllPokemonList.route,
         modifier = modifier
     ) {
-        with(PokemonRoute.Home) {
+        with(PokemonRoute.AllPokemonList) {
             composable(route) {
-                PokemonListScreen(navController)
+                AllPokemonListScreen(navController)
             }
         }
         with(PokemonRoute.PokemonDetails) {
@@ -54,9 +63,9 @@ fun PokemonNavGraph(
                 PokemonDetailsScreen(backStackEntry.arguments?.getString("pokemonId") ?: "")
             }
         }
-        with(PokemonRoute.AddPokemon) {
+        with(PokemonRoute.CatchPokemon) {
             composable(route) {
-                AddPokemonScreen(navController)
+                CatchPokemonScreen(navController)
             }
         }
         with(PokemonRoute.Settings) {
@@ -64,5 +73,31 @@ fun PokemonNavGraph(
                 SettingsScreen()
             }
         }
+        with(PokemonRoute.Profile) {
+            composable(route) {
+                ProfileScreen()//TODO: passare id profilo
+            }
+        }
+        with(PokemonRoute.LocalPokemonList) {
+            composable(route) {
+                LocalPokemonListScreen()
+            }
+        }
+        with(PokemonRoute.FavouritesPokemonList) {
+            composable(route) {
+                FavouritesPokemonListScreen()
+            }
+        }
+        with(PokemonRoute.SignIn) {
+            composable(route) {
+                SignInScreen()
+            }
+        }
+        with(PokemonRoute.SignUp) {
+            composable(route) {
+                SignUpScreen()
+            }
+        }
+
     }
 }
