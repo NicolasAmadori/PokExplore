@@ -1,5 +1,8 @@
 package com.example.pokexplore.ui.screens
 
-class SettingsScreen {
+import androidx.compose.runtime.Composable
+
+@Composable
+fun SettingsScreen() {
 
 }
