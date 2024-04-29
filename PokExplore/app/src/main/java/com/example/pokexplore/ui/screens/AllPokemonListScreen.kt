@@ -24,6 +24,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -31,11 +32,16 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.pokexplore.data.database.Pokemon
+import com.example.pokexplore.ui.PokExploreViewModel
 import com.example.pokexplore.ui.PokemonRoute
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun AllPokemonListScreen(navController: NavHostController) {
-    val items = (1..20).map { "Item n°$it" }
+    val vm = koinViewModel<PokExploreViewModel>()
+    val state by vm.state.collectAsStateWithLifecycle()
 
     Scaffold()
     { contentPadding ->
@@ -46,11 +52,11 @@ fun AllPokemonListScreen(navController: NavHostController) {
             contentPadding = PaddingValues(8.dp, 8.dp, 8.dp, 80.dp),
             modifier = Modifier.padding(contentPadding)
         ) {
-            items(items) { item ->
-                TravelItem(
-                    item,
+            items(state.pokemons) { pokemon ->
+                PokemonCard(
+                    pokemon,
                     onClick = {
-                        navController.navigate(PokemonRoute.PokemonDetails.buildRoute(item))
+                        navController.navigate(PokemonRoute.PokemonDetails.buildRoute(pokemon.pokemonId))
                     }
                 )
             }
@@ -60,7 +66,7 @@ fun AllPokemonListScreen(navController: NavHostController) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TravelItem(item: String, onClick: () -> Unit) {
+fun PokemonCard(pokemon: Pokemon, onClick: () -> Unit) {
     Card(
         onClick = onClick,
         modifier = Modifier
@@ -90,7 +96,7 @@ fun TravelItem(item: String, onClick: () -> Unit) {
             )
             Spacer(Modifier.size(8.dp))
             Text(
-                item,
+                pokemon.name,
                 color = MaterialTheme.colorScheme.onSecondaryContainer,
                 style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Center

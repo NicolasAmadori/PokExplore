@@ -29,7 +29,7 @@ class PokExploreViewModel(
         initialValue = PokemonsState(emptyList())
     )
 
-//    val actions = object : TodosActions {
+//    val actions = object : PokExploreActions {
 //        override fun addTodo(pokemon: Pokemon) = viewModelScope.launch {
 //            repository.upsert(pokemon)
 //        }

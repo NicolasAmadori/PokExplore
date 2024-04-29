@@ -18,8 +18,8 @@ interface PokemonDAO {
     //@Query("SELECT Pokemon.* FROM Pokemon INNER JOIN UserPokemon ON Pokemon.pokemonId = UserPokemon.pokemonId WHERE UserPokemon.isFavourite = 1 AND UserPokemon.user = :user")
     //fun getFavouritePokemons(user: User): Flow<List<Pokemon>>
 
-    @Query("SELECT * FROM Pokemon  WHERE Pokemon.countryCode = :countryCode")
-    fun getLocalPokemons(countryCode: Int): Flow<List<Pokemon>>
+//    @Query("SELECT * FROM Pokemon  WHERE Pokemon.countryCode = :countryCode")
+//    fun getLocalPokemons(countryCode: Int): Flow<List<Pokemon>>
 
     @Upsert
     suspend fun upsert(pokemon: Pokemon)
@@ -41,9 +41,9 @@ interface UserPokemonDAO {
 @Dao
 interface UserDAO {
 
-    @Query("SELECT * FROM User  WHERE email = :email AND password = :password")
-    fun checkCredentials(email: String, password: String): Flow<List<User>>
-
-    @Upsert
-    suspend fun upsert(user: User)
+//    @Query("SELECT * FROM User  WHERE email = :email AND password = :password")
+//    fun checkCredentials(email: String, password: String): Flow<List<User>>
+//
+//    @Upsert
+//    suspend fun upsert(user: User)
 }

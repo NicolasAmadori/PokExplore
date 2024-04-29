@@ -11,6 +11,7 @@ class PokExploreRepository(
     private val userDAO: UserDAO,
     private val userPokemonDAO: UserPokemonDAO
     ) {
+
     val pokemons: Flow<List<Pokemon>> = pokexploreDAO.getAllPokemons()
 
     suspend fun upsert(pokemon: Pokemon) = pokexploreDAO.upsert(pokemon)

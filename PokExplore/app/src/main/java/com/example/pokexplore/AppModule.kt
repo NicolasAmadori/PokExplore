@@ -10,6 +10,7 @@ import org.koin.dsl.module
 import androidx.room.Room
 import com.example.pokexplore.data.database.PokExploreDatabase
 import com.example.pokexplore.data.repositories.PokExploreRepository
+import com.example.pokexplore.ui.PokExploreViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 
 val appModule = module {
@@ -41,5 +42,5 @@ val appModule = module {
         get<PokExploreDatabase>().userPokemonDAO(),
         ) }
 
-    //viewModel { PokExploreViewModel(get()) }
+    viewModel { PokExploreViewModel(get()) }
 }

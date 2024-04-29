@@ -29,8 +29,11 @@ import com.example.pokexplore.ui.PokemonRoute
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Search
+import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -48,13 +51,16 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.pokexplore.data.remote.EvolutionChain
 import com.example.pokexplore.data.remote.PokeApiDataSource
 import com.example.pokexplore.data.remote.Pokemon
 import com.example.pokexplore.data.remote.PokemonInfo
 import com.example.pokexplore.data.remote.PokemonSpecies
+import com.example.pokexplore.ui.PokExploreViewModel
 import com.example.pokexplore.ui.theme.PokExploreTheme
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 import org.koin.compose.koinInject
 
 class MainActivity : ComponentActivity() {
@@ -66,7 +72,11 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    val vm = koinViewModel<PokExploreViewModel>()
+                    val state by vm.state.collectAsStateWithLifecycle()
+
                     val navController = rememberNavController()
+
                     val backStackEntry by navController.currentBackStackEntryAsState()
                     val currentRoute by remember {
                         derivedStateOf {
@@ -76,83 +86,48 @@ class MainActivity : ComponentActivity() {
                         }
                     }
 
-                    val snackbarHostState = remember { SnackbarHostState() }
-
-                    Scaffold(
-                        snackbarHost = { SnackbarHost(snackbarHostState) },
-                        //topBar = { AppBar(navController, currentRoute) }
-                    ) { contentPadding ->
+                    Scaffold{ contentPadding ->
                         PokemonNavGraph(
                             navController,
-                            modifier =  Modifier.padding(contentPadding)
+                            modifier =  Modifier.padding(contentPadding),
+//                            startDestination = if (state.pokemons.isEmpty()) PokemonRoute.Loading.route else PokemonRoute.AllPokemonList.route
+                            startDestination = PokemonRoute.Loading.route
                         )
 
-                        Column(
-                            modifier = Modifier.padding(contentPadding).padding(16.dp)
-                        ) {
-                            var text by remember { mutableStateOf("") }
-                            var info by remember { mutableStateOf<PokemonInfo?>(null) }
-                            var species by remember { mutableStateOf<PokemonSpecies?>(null) }
-                            var pokemon by remember { mutableStateOf<Pokemon?>(null) }
-                            var evolutionChain by remember { mutableStateOf<EvolutionChain?>(null) }
-
-                            val ctx = LocalContext.current
-                            fun isOnline(): Boolean {
-                                val connectivityManager = ctx
-                                    .applicationContext
-                                    .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-                                val capabilities =
-                                    connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-                                return capabilities?.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) == true ||
-                                        capabilities?.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) == true
-                            }
-                            fun openWirelessSettings() {
-                                val intent = Intent(Settings.ACTION_WIRELESS_SETTINGS).apply {
-                                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                                }
-                                if (intent.resolveActivity(applicationContext.packageManager) != null) {
-                                    applicationContext.startActivity(intent)
-                                }
-                            }
-
-                            val pokeApiDataSource = koinInject<PokeApiDataSource>()
-
-                            val coroutineScope = rememberCoroutineScope()
-                            fun searchPlaces() = coroutineScope.launch {
-                                if (isOnline()) {
-                                    info = pokeApiDataSource.getPokemonByName(text)
-                                    species = pokeApiDataSource.getPokemonSpeciesByName(text)
-                                    evolutionChain = pokeApiDataSource.getEvolutionChainByUrl(species!!.evolutionChain.url)
-                                    pokemon = Pokemon(info = info!!, species = species!!, evolutionChain = evolutionChain!!)
-
-                                } else {
-                                    val res = snackbarHostState.showSnackbar(
-                                        message = "No Internet connectivity",
-                                        actionLabel = "Go to Settings",
-                                        duration = SnackbarDuration.Long
-                                    )
-                                    if (res == SnackbarResult.ActionPerformed) {
-                                        openWirelessSettings()
-                                    }
-                                }
-                            }
-
-                            OutlinedTextField(
-                                value = text,
-                                onValueChange = { text = it },
-                                trailingIcon = {
-                                    IconButton(onClick = ::searchPlaces) {
-                                        Icon(Icons.Outlined.Search, "Search")
-                                    }
-                                },
-                                modifier = Modifier.fillMaxWidth()
-                            )
-                            Spacer(Modifier.size(16.dp))
-                            Text("Result: ${when {
-                                pokemon != null -> "${pokemon?.getAllInfoAsString()}"
-                                else -> "-"
-                            }}")
-                        }
+//                        Column(
+//                            modifier = Modifier.padding(contentPadding).padding(16.dp)
+//                        ) {
+//                            var text by remember { mutableStateOf("") }
+//                            var info by remember { mutableStateOf<PokemonInfo?>(null) }
+//                            var species by remember { mutableStateOf<PokemonSpecies?>(null) }
+//                            var pokemon by remember { mutableStateOf<Pokemon?>(null) }
+//                            var evolutionChain by remember { mutableStateOf<EvolutionChain?>(null) }
+//
+//                            val ctx = LocalContext.current
+//
+//                            val pokeApiDataSource = koinInject<PokeApiDataSource>()
+//
+//                            val coroutineScope = rememberCoroutineScope()
+//                            fun searchPlaces() = coroutineScope.launch {
+//                                info = pokeApiDataSource.getPokemonByName(text)
+//                                species = pokeApiDataSource.getPokemonSpeciesByName(text)
+//                                evolutionChain = pokeApiDataSource.getEvolutionChainByUrl(species!!.evolutionChain.url)
+//                                pokemon = Pokemon(info = info!!, species = species!!, evolutionChain = evolutionChain!!)
+//                            }
+//
+//                            OutlinedTextField(
+//                                value = text,
+//                                onValueChange = { text = it },
+//                                trailingIcon = {
+//                                    IconButton(onClick = ::searchPlaces) {
+//                                        Icon(Icons.Outlined.Search, "Search")
+//                                    }
+//                                },
+//                                modifier = Modifier.fillMaxWidth()
+//                            )
+//                            Spacer(Modifier.size(16.dp))
+//                            Text(state.pokemons.size.toString())
+//                        }
                     }
                 }
             }
