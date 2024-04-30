@@ -2,6 +2,7 @@ package com.example.pokexplore.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -23,7 +24,7 @@ import com.example.pokexplore.ui.screens.SignUpScreen
 sealed class PokemonRoute(
     val route: String,
     val title: String,
-    val arguments: List<NamedNavArgument> = emptyList()
+    val arguments: List<NamedNavArgument> = emptyList(),
 ) {
     data object AllPokemonList : PokemonRoute("allPokemonList", "Pokemon List")
     data object PokemonDetails : PokemonRoute(
@@ -79,7 +80,7 @@ fun PokemonNavGraph(
         }
         with(PokemonRoute.Profile) {
             composable(route) {
-                ProfileScreen()//TODO: passare id profilo
+                ProfileScreen(navController)//TODO: passare id profilo
             }
         }
         with(PokemonRoute.LocalPokemonList) {

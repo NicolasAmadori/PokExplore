@@ -158,15 +158,15 @@ class PokeApiDataSource(
     private val pokemonSpeciesEndpoint = "$baseUrl/pokemon-species/"
     private val evolutionChainEndpoint = "$baseUrl/evolution-chain/"
 
-    suspend fun getPokemonById(pokemonId: Int): PokemonInfo {
+    suspend fun getPokemonInfoById(pokemonId: Int): PokemonInfo {
         return httpClient.get("$pokemonEndpoint$pokemonId").body()
     }
 
-    suspend fun getPokemonByName(pokemonName: String): PokemonInfo {
+    suspend fun getPokemonInfoByName(pokemonName: String): PokemonInfo {
         return httpClient.get("$pokemonEndpoint$pokemonName").body()
     }
 
-    suspend fun getPokemonByUrl(pokemonUrl: String): PokemonInfo {
+    suspend fun getPokemonInfoByUrl(pokemonUrl: String): PokemonInfo {
         return httpClient.get(pokemonUrl).body()
     }
 

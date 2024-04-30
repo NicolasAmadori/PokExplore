@@ -38,12 +38,30 @@ import com.example.pokexplore.ui.PokExploreViewModel
 import com.example.pokexplore.ui.PokemonRoute
 import org.koin.androidx.compose.koinViewModel
 
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.materialIcon
+import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material.icons.rounded.Home
+import androidx.compose.material.icons.rounded.Person
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.text.capitalize
+import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.pokexplore.ui.BottomNavScreen
+import java.util.Locale
+
 @Composable
 fun AllPokemonListScreen(navController: NavHostController) {
     val vm = koinViewModel<PokExploreViewModel>()
     val state by vm.state.collectAsStateWithLifecycle()
 
-    Scaffold()
+    Scaffold(
+        bottomBar = { BottomNavScreen(navController)}
+    )
     { contentPadding ->
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),

@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">PokExplore</string>
+    <string name="app_name" translatable="false">PokExplore</string>
+    <string name="downloading_pokemon">Downloading pokemons…</string>
 </resources>
