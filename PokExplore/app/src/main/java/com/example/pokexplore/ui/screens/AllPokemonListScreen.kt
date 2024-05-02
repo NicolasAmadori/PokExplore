@@ -59,10 +59,7 @@ fun AllPokemonListScreen(navController: NavHostController) {
     val vm = koinViewModel<PokExploreViewModel>()
     val state by vm.state.collectAsStateWithLifecycle()
 
-    Scaffold(
-        bottomBar = { BottomNavScreen(navController)}
-    )
-    { contentPadding ->
+    Scaffold{ contentPadding ->
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             verticalArrangement = Arrangement.spacedBy(8.dp),

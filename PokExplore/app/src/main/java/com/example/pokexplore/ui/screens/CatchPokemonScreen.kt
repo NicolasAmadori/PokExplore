@@ -16,10 +16,7 @@ import com.example.pokexplore.ui.PokemonRoute
 
 @Composable
 fun CatchPokemonScreen(navController: NavHostController) {
-    Scaffold(
-        bottomBar = { BottomNavScreen(navController) }
-    )
-    { contentPadding ->
+    Scaffold{ contentPadding ->
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             verticalArrangement = Arrangement.spacedBy(8.dp),

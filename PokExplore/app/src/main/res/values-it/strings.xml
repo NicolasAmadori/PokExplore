@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="downloading_pokemon">Scaricando i pokemon…</string>
+    <string name="bottom_nav_catch">Cattura</string>
+    <string name="bottom_nav_profile">Profilo</string>
 </resources>
