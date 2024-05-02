@@ -20,6 +20,7 @@ import com.example.pokexplore.ui.screens.ProfileScreen
 import com.example.pokexplore.ui.screens.SettingsScreen
 import com.example.pokexplore.ui.screens.SignInScreen
 import com.example.pokexplore.ui.screens.SignUpScreen
+import com.example.pokexplore.utilities.PermissionHandler
 
 sealed class PokemonRoute(
     val route: String,

@@ -19,6 +19,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.pokexplore.R
+import com.example.pokexplore.utilities.PermissionHandler
+import com.example.pokexplore.utilities.PermissionStatus
 
 sealed class BottomNavItem(val route: String, val unselectedIcon: ImageVector, val selectedIcon: ImageVector, val stringId: Int) {
     data object Home : BottomNavItem(PokemonRoute.AllPokemonList.route, Icons.Outlined.Home, Icons.Filled.Home, R.string.bottom_nav_home)
@@ -43,7 +45,6 @@ fun BottomNavScreen(
             NavigationBarItem(
                 icon = { Icon( if (currentRoute == item.route) item.selectedIcon else item.unselectedIcon, contentDescription = stringResource(item.stringId)) },
                 label = { Text(stringResource(item.stringId)) },
-                alwaysShowLabels = false,
                 selected = currentRoute == item.route,
                 onClick = {
                     navController.navigate(item.route) {

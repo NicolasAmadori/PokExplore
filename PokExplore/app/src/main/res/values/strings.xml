@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">PokExplore</string>
     <string name="downloading_pokemon">Downloading pokemons…</string>
-    <string name="bottom_nav_home" translatable="false">Home</string>
+    <string name="bottom_nav_home" translatable="false">Pokemon</string>
     <string name="bottom_nav_catch">Catch</string>
     <string name="bottom_nav_profile">Profile</string>
 </resources>
