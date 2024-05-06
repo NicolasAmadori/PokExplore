@@ -96,12 +96,12 @@ fun PokemonNavGraph(
         }
         with(PokemonRoute.SignIn) {
             composable(route) {
-                SignInScreen()
+                SignInScreen(navController)
             }
         }
         with(PokemonRoute.SignUp) {
             composable(route) {
-                SignUpScreen()
+                SignUpScreen(navController)
             }
         }
         with(PokemonRoute.Loading) {

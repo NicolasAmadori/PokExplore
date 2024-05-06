@@ -66,7 +66,7 @@ class MainActivity : ComponentActivity() {
                         PokemonNavGraph(
                             navController,
                             modifier =  Modifier.padding(contentPadding),
-                            startDestination = PokemonRoute.Loading.route // startDestination = if (state.pokemons.isEmpty()) PokemonRoute.Loading.route else PokemonRoute.AllPokemonList.route
+                            startDestination = PokemonRoute.SignUp.route // startDestination = if (state.pokemons.isEmpty()) PokemonRoute.Loading.route else PokemonRoute.AllPokemonList.route
                         )
                     }
                 }
