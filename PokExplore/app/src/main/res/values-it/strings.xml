@@ -7,14 +7,17 @@
     <string name="signin_button_text">Accedi</string>
     <string name="signup_title">Registrazione</string>
     <string name="signup_button_text">Registrati</string>
-    <string name="username_input_label">Username</string>
-    <string name="first_name_input_label">Nome</string>
-    <string name="last_name_input_label">Cognome</string>
+    <string name="first_name_input_label">Nome*</string>
+    <string name="last_name_input_label">Cognome*</string>
     <string name="phone_input_label">Telefono</string>
-    <string name="password_input_label">Password</string>
-    <string name="password_confirm_input_label">Conferma Password</string>
+    <string name="password_input_label">Password*</string>
+    <string name="password_confirm_input_label">Conferma Password*</string>
     <string name="show_password">Mostra password</string>
     <string name="hide_password">Nascondi password</string>
+    <string name="phone_error">Deve essere un numero di telefono valido</string>
     <string name="password_error">Le password devono essere identiche</string>
     <string name="cancel_input">Cancella input</string>
+    <string name="email_error">Formato email non valido</string>
+    <string name="first_name_error">Il nome deve contenere solo lettere</string>
+    <string name="last_name_error">Il cognome deve contenere solo lettere</string>
 </resources>

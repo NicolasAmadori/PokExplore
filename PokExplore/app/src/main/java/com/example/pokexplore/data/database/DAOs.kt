@@ -5,6 +5,7 @@ import androidx.room.Query
 import androidx.room.Upsert
 import kotlinx.coroutines.flow.Flow
 import android.provider.ContactsContract.CommonDataKinds.Email
+import androidx.room.Insert
 
 @Dao
 interface PokemonDAO {
@@ -43,7 +44,7 @@ interface UserDAO {
 
 //    @Query("SELECT * FROM User  WHERE email = :email AND password = :password")
 //    fun checkCredentials(email: String, password: String): Flow<List<User>>
-//
-//    @Upsert
-//    suspend fun upsert(user: User)
+
+    @Insert
+    suspend fun insert(user: User)
 }

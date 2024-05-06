@@ -3,6 +3,7 @@ package com.example.pokexplore.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pokexplore.data.database.Pokemon
+import com.example.pokexplore.data.database.User
 import com.example.pokexplore.data.repositories.PokExploreRepository
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,6 +17,7 @@ import kotlinx.coroutines.launch
 data class PokemonsState(val pokemons: List<Pokemon>)
 
 interface PokExploreActions {
+    fun addUser(user: User): Job
     fun addPokemon(pokemon: Pokemon): Job
 //    fun capture(pokemon: Pokemon): Job
 }
@@ -30,6 +32,10 @@ class PokExploreViewModel(
     )
 
     val actions = object : PokExploreActions {
+        override fun addUser(user: User) = viewModelScope.launch {
+            repository.insertUser(user)
+        }
+
         override fun addPokemon(pokemon: Pokemon) = viewModelScope.launch {
             repository.upsert(pokemon)
         }
