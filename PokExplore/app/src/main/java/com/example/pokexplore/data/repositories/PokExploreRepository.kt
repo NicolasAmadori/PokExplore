@@ -18,4 +18,6 @@ class PokExploreRepository(
     suspend fun upsert(pokemon: Pokemon) = pokexploreDAO.upsert(pokemon)
 
     suspend fun insertUser(user: User) = userDAO.insert(user)
+
+    suspend fun login(email: String, password: String) = userDAO.login(email, password)
 }

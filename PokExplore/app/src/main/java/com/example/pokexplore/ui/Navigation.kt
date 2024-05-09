@@ -2,25 +2,26 @@ package com.example.pokexplore.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.pokexplore.data.database.Pokemon
 import com.example.pokexplore.ui.screens.CatchPokemonScreen
 import com.example.pokexplore.ui.screens.PokemonDetailsScreen
 import com.example.pokexplore.ui.screens.AllPokemonListScreen
 import com.example.pokexplore.ui.screens.FavouritesPokemonListScreen
 import com.example.pokexplore.ui.screens.LoadingScreen
 import com.example.pokexplore.ui.screens.LocalPokemonListScreen
-import com.example.pokexplore.ui.screens.ProfileScreen
+import com.example.pokexplore.ui.screens.profile.ProfileScreen
 import com.example.pokexplore.ui.screens.SettingsScreen
-import com.example.pokexplore.ui.screens.SignInScreen
-import com.example.pokexplore.ui.screens.SignUpScreen
-import com.example.pokexplore.utilities.PermissionHandler
+import com.example.pokexplore.ui.screens.signin.SignInScreen
+import com.example.pokexplore.ui.screens.profile.ProfileViewModel
+import com.example.pokexplore.ui.screens.signin.SignInViewModel
+import com.example.pokexplore.ui.screens.signup.SignUpScreen
+import com.example.pokexplore.ui.screens.signup.SignUpViewModel
+import org.koin.androidx.compose.koinViewModel
 
 sealed class PokemonRoute(
     val route: String,
@@ -81,7 +82,8 @@ fun PokemonNavGraph(
         }
         with(PokemonRoute.Profile) {
             composable(route) {
-                ProfileScreen(navController)//TODO: passare id profilo
+                val profileVm = koinViewModel<ProfileViewModel>()
+                ProfileScreen(navController, profileVm.state, profileVm::logOut)
             }
         }
         with(PokemonRoute.LocalPokemonList) {
@@ -96,12 +98,18 @@ fun PokemonNavGraph(
         }
         with(PokemonRoute.SignIn) {
             composable(route) {
-                SignInScreen(navController)
+                val signInVm = koinViewModel<SignInViewModel>()
+                SignInScreen(navController, signInVm)
             }
         }
         with(PokemonRoute.SignUp) {
             composable(route) {
-                SignUpScreen(navController)
+                val signUpVm = koinViewModel<SignUpViewModel>()
+                val dbVm = koinViewModel<PokExploreViewModel>()
+                SignUpScreen(navController) {
+                    signUpVm.setUser(it)
+                    dbVm.actions.addUser(it)
+                }
             }
         }
         with(PokemonRoute.Loading) {

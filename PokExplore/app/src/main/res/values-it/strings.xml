@@ -20,4 +20,6 @@
     <string name="email_error">Formato email non valido</string>
     <string name="first_name_error">Il nome deve contenere solo lettere</string>
     <string name="last_name_error">Il cognome deve contenere solo lettere</string>
+    <string name="field_error">Uno o più campi sono incorretti</string>
+    <string name="length_password_error">La password deve contenere almeno 5 caratteri</string>
 </resources>

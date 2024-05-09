@@ -31,8 +31,8 @@ data class User(
     val password: String,
     val firstName: String,
     val lastName: String,
-    val phone: Int,
-    val profilePicUrl: String
+    val phone: Int?,
+    val profilePicUrl: String?
 )
 
 @Entity(primaryKeys = ["email", "pokemonId"])

@@ -19,7 +19,6 @@ data class PokemonsState(val pokemons: List<Pokemon>)
 interface PokExploreActions {
     fun addUser(user: User): Job
     fun addPokemon(pokemon: Pokemon): Job
-//    fun capture(pokemon: Pokemon): Job
 }
 
 class PokExploreViewModel(

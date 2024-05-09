@@ -22,4 +22,6 @@
     <string name="email_error">Invalid email format</string>
     <string name="first_name_error">First name should contain only letters</string>
     <string name="last_name_error">Last name should contain only letters</string>
+    <string name="field_error">One or more fields are incorrect</string>
+    <string name="length_password_error">Passwords must contains at least 5 characters</string>
 </resources>

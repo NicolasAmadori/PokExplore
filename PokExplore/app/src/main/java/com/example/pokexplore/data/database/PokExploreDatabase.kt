@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import com.example.pokexplore.utilities.ArrayListConverter
 import com.example.pokexplore.utilities.StringMapConverter
 
-@Database(entities = [Pokemon::class, User::class, UserPokemon::class], version = 1)
+@Database(entities = [Pokemon::class, User::class, UserPokemon::class], version = 2)
 @TypeConverters(ArrayListConverter::class, StringMapConverter::class)
 abstract class PokExploreDatabase : RoomDatabase() {
     abstract fun pokemonDAO(): PokemonDAO
