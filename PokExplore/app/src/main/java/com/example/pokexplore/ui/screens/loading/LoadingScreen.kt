@@ -1,4 +1,4 @@
-package com.example.pokexplore.ui.screens
+package com.example.pokexplore.ui.screens.loading
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,7 +22,20 @@ import com.example.pokexplore.ui.PokemonRoute
 import org.koin.compose.koinInject
 
 @Composable
-fun LoadingScreen(navController: NavHostController) {
+fun LoadingScreen(
+    navController: NavHostController,
+    state: LoadingState,
+    actions: LoadingActions
+) {
+    if(state.pokemonList.isEmpty()) {
+        actions.downloadPokemons {
+            navController.navigate(PokemonRoute.AllPokemonList.route)
+        }
+    }
+    else {
+        navController.navigate(PokemonRoute.AllPokemonList.route)
+    }
+
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -35,13 +48,5 @@ fun LoadingScreen(navController: NavHostController) {
             color = MaterialTheme.colorScheme.secondary,
             trackColor = MaterialTheme.colorScheme.surfaceVariant,
         )
-        Button(
-            onClick = {
-                navController.popBackStack() //Delete loading from the routes stack
-                navController.navigate(PokemonRoute.AllPokemonList.route)
-            }
-        ) {
-            Text("Completa")
-        }
     }
 }

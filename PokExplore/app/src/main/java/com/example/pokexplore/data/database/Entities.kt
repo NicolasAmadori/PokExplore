@@ -11,8 +11,8 @@ data class Pokemon(
     @PrimaryKey val pokemonId: Int,
     val name: String,
     val sprite: String,
-    val types: ArrayList<String>,
-    val abilities: ArrayList<String>,
+    val types: List<String>,
+    val abilities: List<String>,
     val weight: Int,
     val height: Int,
     val stats: Map<String, Int>,
@@ -20,9 +20,9 @@ data class Pokemon(
     val color: String,
     val description: String,
     val captureRate: Int,
-    val evolutions: ArrayList<String>,
+    val evolutions: List<String>,
     val generation: String,
-    val countryCode: Int
+    val countryCode: Int?
 )
 
 @Entity

@@ -69,8 +69,13 @@ class MainActivity : ComponentActivity() {
                         PokemonNavGraph(
                             navController,
                             modifier =  Modifier.padding(contentPadding),
-                            startDestination = if (signUpState.user == null) PokemonRoute.SignUp.route else PokemonRoute.Profile.route// startDestination = if (state.pokemons.isEmpty()) PokemonRoute.Loading.route else PokemonRoute.AllPokemonList.route
-                        )
+                            startDestination = if(signUpState.user == null) {
+                                PokemonRoute.AllPokemonList.route//TODO: replace with signin
+                            } else if(pkState.pokemons.isEmpty()){
+                                PokemonRoute.Loading.route
+                            } else {
+                                PokemonRoute.AllPokemonList.route
+                            })
                     }
                 }
             }
