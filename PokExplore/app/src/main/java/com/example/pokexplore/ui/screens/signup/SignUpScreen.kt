@@ -118,6 +118,9 @@ fun SignUpScreen(
             value = email.value,
             onValueChange = {
                 email.value = it
+                if(isErrorEmail) {
+                    isErrorEmail = validateEmail(it)
+                }
             },
             label = { Text(text = stringResource(R.string.email_input_label)) },
             modifier = Modifier
@@ -155,6 +158,9 @@ fun SignUpScreen(
             value = firstName.value,
             onValueChange = {
                 firstName.value = it
+                if(isErrorFirstName) {
+                    isErrorFirstName = validateString(it)
+                }
             },
             label = { Text(text = stringResource(R.string.first_name_input_label)) },
             modifier = Modifier
@@ -191,6 +197,9 @@ fun SignUpScreen(
             value = lastName.value,
             onValueChange = {
                 lastName.value = it
+                if(isErrorLastName) {
+                    isErrorLastName = validateString(it)
+                }
             },
             label = { Text(text = stringResource(R.string.last_name_input_label)) },
             modifier = Modifier
@@ -227,6 +236,9 @@ fun SignUpScreen(
             value = phoneNumber.value,
             onValueChange = {
                 phoneNumber.value = it
+                if(isErrorPhone) {
+                    isErrorPhone = validatePhoneNumber(it)
+                }
             },
             label = { Text(text = stringResource(R.string.phone_input_label)) },
             modifier = Modifier
@@ -262,6 +274,9 @@ fun SignUpScreen(
         // Password 1 input field
         OutlinedTextField(value = password.value, onValueChange = {
             password.value = it
+            if(isErrorPassword) {
+                isErrorPassword = validatePassword(it)
+            }
         },
             label = {
                 Text(text = stringResource(R.string.password_input_label))
@@ -299,7 +314,9 @@ fun SignUpScreen(
         // Password 2 input field
         OutlinedTextField(value = password2.value, onValueChange = {
             password2.value = it
-            isErrorPassword2 = validatePassword(it) || validatePasswordEqualness(password.value, it)
+            if(isErrorPassword2) {
+                isErrorPassword2 = validatePassword(it) || validatePasswordEqualness(password.value, it)
+            }
         },
             label = {
                 Text(text = stringResource(R.string.password_confirm_input_label))
@@ -340,7 +357,7 @@ fun SignUpScreen(
             isErrorFirstName = validateString(firstName.value)
             isErrorLastName = validateString(lastName.value)
             isErrorPhone = validatePhoneNumber(phoneNumber.value)
-            isErrorPassword = validatePassword(firstName.value)
+            isErrorPassword = validatePassword(password.value)
             isErrorPassword2 = validatePassword(password2.value) || validatePasswordEqualness(password.value, password2.value)
 
             if(isErrorEmail || isErrorFirstName || isErrorLastName || isErrorPhone || isErrorPassword || isErrorPassword2) {
@@ -352,11 +369,11 @@ fun SignUpScreen(
                     password = password.value,
                     firstName = firstName.value,
                     lastName = lastName.value,
-                    phone = null,
+                    phone = phoneNumber.value.toInt(),
                     profilePicUrl = null
                 )
                 onUserSignUp(newUser)
-                navController.navigate(PokemonRoute.AllPokemonList.route)
+                navController.navigate(PokemonRoute.Loading.route)
             }
         },
             modifier = Modifier

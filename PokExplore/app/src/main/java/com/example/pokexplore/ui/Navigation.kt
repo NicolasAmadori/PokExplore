@@ -11,14 +11,17 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.pokexplore.ui.screens.CatchPokemonScreen
-import com.example.pokexplore.ui.screens.PokemonDetailsScreen
-import com.example.pokexplore.ui.screens.AllPokemonListScreen
 import com.example.pokexplore.ui.screens.theme.ThemeScreen
+import com.example.pokexplore.ui.screens.pokemonDetails.PokemonDetailsScreen
+import com.example.pokexplore.ui.screens.allpokemonlist.AllPokemonListScreen
 import com.example.pokexplore.ui.screens.FavouritesPokemonListScreen
-import com.example.pokexplore.ui.screens.LoadingScreen
+import com.example.pokexplore.ui.screens.loading.LoadingScreen
 import com.example.pokexplore.ui.screens.LocalPokemonListScreen
 import com.example.pokexplore.ui.screens.profile.ProfileScreen
 import com.example.pokexplore.ui.screens.settings.SettingsScreen
+import com.example.pokexplore.ui.screens.allpokemonlist.AllPokemonListViewModel
+import com.example.pokexplore.ui.screens.loading.LoadingViewModel
+import com.example.pokexplore.ui.screens.pokemonDetails.PokemonDetailsViewModel
 import com.example.pokexplore.ui.screens.signin.SignInScreen
 import com.example.pokexplore.ui.screens.profile.ProfileViewModel
 import com.example.pokexplore.ui.screens.signin.SignInViewModel
@@ -42,7 +45,7 @@ sealed class PokemonRoute(
     }
     data object CatchPokemon : PokemonRoute("catchPokemon", "Catch Pokemon")
     data object Settings : PokemonRoute("settings", "Settings")
-    data object Profile : PokemonRoute("profile", "Profile")//TODO: passare id della persona
+    data object Profile : PokemonRoute("profile", "Profile")
     data object LocalPokemonList : PokemonRoute("localPokemonList", "Local Pokemon List")
     data object FavouritesPokemonList : PokemonRoute("favouritesPokemonList", "Favourites Pokemon List")
     data object SignIn : PokemonRoute("signIn", "Sign In")
@@ -67,7 +70,9 @@ fun PokemonNavGraph(
     ) {
         with(PokemonRoute.AllPokemonList) {
             composable(route) {
-                AllPokemonListScreen(navController)
+                val allPokemonListVm = koinViewModel<AllPokemonListViewModel>()
+                val state by allPokemonListVm.state.collectAsStateWithLifecycle()
+                AllPokemonListScreen(navController, state)
             }
         }
         with(PokemonRoute.Theme) {
@@ -79,7 +84,12 @@ fun PokemonNavGraph(
         }
         with(PokemonRoute.PokemonDetails) {
             composable(route, arguments) { backStackEntry ->
-                PokemonDetailsScreen(backStackEntry.arguments?.getInt("pokemonId") ?: -1)
+                val pokemonDetailsVm = koinViewModel<PokemonDetailsViewModel>()
+                val state by pokemonDetailsVm.state.collectAsStateWithLifecycle()
+                val pokemonId = backStackEntry.arguments?.getInt("pokemonId") ?: -1
+                if(pokemonId != -1) {
+                    PokemonDetailsScreen(navController, state, pokemonId)
+                }
             }
         }
         with(PokemonRoute.CatchPokemon) {
@@ -126,7 +136,9 @@ fun PokemonNavGraph(
         }
         with(PokemonRoute.Loading) {
             composable(route) {
-                LoadingScreen(navController)
+                val loadingVm = koinViewModel<LoadingViewModel>()
+                val state by loadingVm.state.collectAsStateWithLifecycle()
+                LoadingScreen(navController, state, loadingVm.actions)
             }
         }
     }

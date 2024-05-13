@@ -42,6 +42,11 @@ import com.example.pokexplore.ui.PokemonRoute
 fun SignInScreen(
     navController: NavHostController,
     viewModel: SignInViewModel) {
+    if(viewModel.loggedUser.value != null) {
+        viewModel.actions.setUser(viewModel.loggedUser.value!!)
+        navController.navigate(PokemonRoute.AllPokemonList.route)
+    }
+
     val context = LocalContext.current
 
     val email = remember { mutableStateOf("")}
@@ -58,11 +63,6 @@ fun SignInScreen(
 
     fun validatePassword(password: String): Boolean {
         return password.length < 5
-    }
-
-    if(viewModel.loggedUser.value != null) {
-        viewModel.actions.setUser(viewModel.loggedUser.value!!)
-        navController.navigate(PokemonRoute.AllPokemonList.route)
     }
 
     // Column to arrange UI elements vertically
@@ -96,6 +96,9 @@ fun SignInScreen(
             value = email.value,
             onValueChange = {
                 email.value = it
+                if(isErrorEmail) {
+                    isErrorEmail = validateEmail(it)
+                }
             },
             label = { Text(text = stringResource(R.string.email_input_label)) },
             modifier = Modifier
@@ -133,6 +136,9 @@ fun SignInScreen(
             value = password.value,
             onValueChange = {
                 password.value = it
+                if(isErrorPassword){
+                    isErrorPassword = validatePassword(it)
+                }
             },
             label = {
                 Text(text = stringResource(R.string.password_input_label))
@@ -174,7 +180,15 @@ fun SignInScreen(
                 Toast.makeText(context, R.string.field_error, Toast.LENGTH_LONG).show()
             }
             else {
-                viewModel.actions.login(email.value, password.value)
+                viewModel.actions.login(email.value, password.value) {
+                    if(viewModel.loggedUser.value != null) {
+                        viewModel.actions.setUser(viewModel.loggedUser.value!!)
+                        navController.navigate(PokemonRoute.Loading.route)
+                    }
+                    else {
+                        Toast.makeText(context, R.string.app_name, Toast.LENGTH_LONG).show()//TODO: change string resource
+                    }
+                }
             }
         },
             modifier = Modifier

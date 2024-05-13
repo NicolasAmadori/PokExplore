@@ -8,18 +8,18 @@ import com.google.gson.reflect.TypeToken
 inline fun <reified T> Gson.fromJson(json: String) =
     fromJson<T>(json, object : TypeToken<T>() {}.type)
 
-class ArrayListConverter {
+class ListConverter {
 
     @TypeConverter
-    fun fromStringArrayList(value: ArrayList<String>): String {
+    fun fromStringArrayList(value: List<String>): String {
 
         return Gson().toJson(value)
     }
 
     @TypeConverter
-    fun toStringArrayList(value: String): ArrayList<String> {
+    fun toStringArrayList(value: String): List<String> {
         return try {
-            Gson().fromJson<ArrayList<String>>(value) //using extension function
+            Gson().fromJson<List<String>>(value) //using extension function
         } catch (e: Exception) {
             arrayListOf()
         }

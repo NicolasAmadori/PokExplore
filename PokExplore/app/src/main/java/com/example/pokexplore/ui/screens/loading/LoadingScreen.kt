@@ -1,4 +1,4 @@
-package com.example.pokexplore.ui.screens
+package com.example.pokexplore.ui.screens.loading
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -17,12 +16,23 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.pokexplore.R
-import com.example.pokexplore.data.remote.PokeApiDataSource
 import com.example.pokexplore.ui.PokemonRoute
-import org.koin.compose.koinInject
 
 @Composable
-fun LoadingScreen(navController: NavHostController) {
+fun LoadingScreen(
+    navController: NavHostController,
+    state: LoadingState,
+    actions: LoadingActions
+) {
+    if(state.pokemonList.isEmpty()) {
+        actions.downloadPokemons {
+            navController.navigate(PokemonRoute.AllPokemonList.route)
+        }
+    }
+    else {
+        navController.navigate(PokemonRoute.AllPokemonList.route)
+    }
+
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -35,13 +45,5 @@ fun LoadingScreen(navController: NavHostController) {
             color = MaterialTheme.colorScheme.secondary,
             trackColor = MaterialTheme.colorScheme.surfaceVariant,
         )
-        Button(
-            onClick = {
-                navController.popBackStack() //Delete loading from the routes stack
-                navController.navigate(PokemonRoute.AllPokemonList.route)
-            }
-        ) {
-            Text("Completa")
-        }
     }
 }

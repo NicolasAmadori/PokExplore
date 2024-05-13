@@ -1,5 +1,7 @@
 package com.example.pokexplore.data.remote
 
+import com.example.pokexplore.data.database.Pokemon
+
 data class Pokemon(
     private val info: PokemonInfo,
     private val species: PokemonSpecies,
@@ -15,7 +17,6 @@ data class Pokemon(
     val stats = info.stats.associate { it.stat.name to it.value }
     val cry = info.cry.cry
 
-    val color = species.color.name
     val description = species.flavorTextEntries.first { it.language.name == "en" }.flavorText
     val captureRate = species.captureRate
     val generation = species.generation.name
@@ -37,23 +38,22 @@ data class Pokemon(
         evolutions.add(chain.species.name)
     }
 
-    fun getAllInfoAsString(): String {
-        return """
-        |ID: $id
-        |Name: $name
-        |Sprite: $sprite
-        |Types: ${types.joinToString(", ")}
-        |Abilities: ${abilities.joinToString(", ")}
-        |Weight: $weight
-        |Height: $height
-        |Stats: ${stats.entries.joinToString(", ") { (key, value) -> "$key: $value" }}
-        |Cry: $cry
-        |Color: $color
-        |Description: $description
-        |Capture Rate: $captureRate
-        |Generation: $generation
-        |Evolutions: ${evolutions.joinToString(", ")}
-        |Country Code: $countryCode
-        """.trimMargin()
+    fun getDbEntity(): Pokemon {
+        return Pokemon(
+            id,
+            name,
+            sprite,
+            types,
+            abilities,
+            weight,
+            height,
+            stats,
+            cry,
+            description,
+            captureRate,
+            evolutions,
+            generation,
+            countryCode
+        )
     }
 }
