@@ -369,7 +369,7 @@ fun SignUpScreen(
                     password = password.value,
                     firstName = firstName.value,
                     lastName = lastName.value,
-                    phone = phoneNumber.value.toInt(),
+                    phone = phoneNumber.value.takeIf { it.isNotBlank() }?.toIntOrNull(),
                     profilePicUrl = null
                 )
                 onUserSignUp(newUser)

@@ -34,6 +34,7 @@ fun ProfileScreen(
         Column{
             if(state.user != null) {
                 Text(state.user.email)
+                Text(state.user.firstName)
 
                 Button(onClick = {
                     onLogOut()

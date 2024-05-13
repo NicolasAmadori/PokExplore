@@ -91,4 +91,7 @@ dependencies {
     implementation ("androidx.compose.material:material-icons-extended")
 
     implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    /* GPS */
+    implementation("com.google.android.gms:play-services-location:21.2.0")
 }
