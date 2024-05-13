@@ -183,10 +183,10 @@ fun SignInScreen(
                 viewModel.actions.login(email.value, password.value) {
                     if(viewModel.loggedUser.value != null) {
                         viewModel.actions.setUser(viewModel.loggedUser.value!!)
-                        navController.navigate(PokemonRoute.AllPokemonList.route)
+                        navController.navigate(PokemonRoute.Loading.route)
                     }
                     else {
-                        Toast.makeText(context, R.string.app_name, Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, R.string.app_name, Toast.LENGTH_LONG).show()//TODO: change string resource
                     }
                 }
             }

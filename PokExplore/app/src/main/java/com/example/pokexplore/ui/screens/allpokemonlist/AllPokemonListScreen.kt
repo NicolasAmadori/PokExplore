@@ -1,6 +1,5 @@
 package com.example.pokexplore.ui.screens.allpokemonlist
 
-import androidx.navigation.NavHostController
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -24,26 +23,23 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
 import com.example.pokexplore.data.database.Pokemon
-import com.example.pokexplore.ui.PokExploreViewModel
 import com.example.pokexplore.ui.PokemonRoute
-import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun AllPokemonListScreen(
     navController: NavHostController,
     allPokemonListState: AllPokemonListState
 ) {
-
     Scaffold{ contentPadding ->
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
@@ -68,13 +64,40 @@ fun AllPokemonListScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PokemonCard(pokemon: Pokemon, onClick: () -> Unit) {
+    val colours = mapOf(
+        "normal" to 0xFFA8A77A,
+        "fire" to 0xFFEE8130,
+        "water" to 0xFF6390F0,
+        "electric" to 0xFFF7D02C,
+        "grass" to 0xFF7AC74C,
+        "ice" to 0xFF96D9D6,
+        "fighting" to 0xFFC22E28,
+        "poison" to 0xFFA33EA1,
+        "ground" to 0xFFE2BF65,
+        "flying" to 0xFFA98FF3,
+        "psychic" to 0xFFF95587,
+        "bug" to 0xFFA6B91A,
+        "rock" to 0xFFB6A136,
+        "ghost" to 0xFF735797,
+        "dragon" to 0xFF6F35FC,
+        "dark" to 0xFF705746,
+        "steel" to 0xFFB7B7CE,
+        "fairy" to 0xFFD685AD
+    )
+    val firstType = pokemon.types.firstOrNull { colours.containsKey(it) }
+
     Card(
         onClick = onClick,
         modifier = Modifier
             .size(150.dp)
             .fillMaxWidth(),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.secondaryContainer
+            containerColor = if(firstType != null) {
+                Color(colours[firstType]!!)
+                }
+                else {
+                    Color.Transparent
+                }
         )
     ) {
         Column(

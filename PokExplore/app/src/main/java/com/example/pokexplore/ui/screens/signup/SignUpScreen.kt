@@ -373,7 +373,7 @@ fun SignUpScreen(
                     profilePicUrl = null
                 )
                 onUserSignUp(newUser)
-                navController.navigate(PokemonRoute.AllPokemonList.route)
+                navController.navigate(PokemonRoute.Loading.route)
             }
         },
             modifier = Modifier

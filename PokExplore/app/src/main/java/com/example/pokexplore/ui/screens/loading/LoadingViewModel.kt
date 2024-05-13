@@ -3,7 +3,6 @@ package com.example.pokexplore.ui.screens.loading
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pokexplore.data.database.Pokemon
-import com.example.pokexplore.data.repositories.DataStoreRepository
 import com.example.pokexplore.data.repositories.PokExploreRepository
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.SharingStarted
@@ -32,7 +31,7 @@ class LoadingViewModel(
                 pokemonId = 1,
                 name = "Bulbasaur",
                 sprite = "bulbasaur_sprite.png",
-                types = arrayListOf("Grass", "Poison"),
+                types = arrayListOf("grass", "poison"),
                 abilities = arrayListOf("Overgrow", "Chlorophyll"),
                 weight = 69,
                 height = 7,
@@ -45,7 +44,6 @@ class LoadingViewModel(
                     "Speed" to 45
                 ),
                 cry = "bulbasaur_cry.wav",
-                color = "Green",
                 description = "A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokémon.",
                 captureRate = 45,
                 evolutions = arrayListOf("Ivysaur"),
@@ -57,7 +55,7 @@ class LoadingViewModel(
                 pokemonId = 4,
                 name = "Charmander",
                 sprite = "charmander_sprite.png",
-                types = arrayListOf("Fire"),
+                types = arrayListOf("fire"),
                 abilities = arrayListOf("Blaze", "Solar Power"),
                 weight = 85,
                 height = 6,
@@ -70,7 +68,6 @@ class LoadingViewModel(
                     "Speed" to 65
                 ),
                 cry = "charmander_cry.wav",
-                color = "Red",
                 description = "Obviously prefers hot places. When it rains, steam is said to spout from the tip of its tail.",
                 captureRate = 45,
                 evolutions = arrayListOf("Charmeleon"),
@@ -82,7 +79,7 @@ class LoadingViewModel(
                 pokemonId = 7,
                 name = "Squirtle",
                 sprite = "squirtle_sprite.png",
-                types = arrayListOf("Water"),
+                types = arrayListOf("water"),
                 abilities = arrayListOf("Torrent", "Rain Dish"),
                 weight = 90,
                 height = 5,
@@ -95,7 +92,6 @@ class LoadingViewModel(
                     "Speed" to 43
                 ),
                 cry = "squirtle_cry.wav",
-                color = "Blue",
                 description = "After birth, its back swells and hardens into a shell. Powerfully sprays foam from its mouth.",
                 captureRate = 45,
                 evolutions = arrayListOf("Wartortle"),

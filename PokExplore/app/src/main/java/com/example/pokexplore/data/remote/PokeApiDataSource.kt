@@ -83,12 +83,6 @@ data class PokemonInfo(
 /*Pokemon species classes*/
 
 @Serializable
-data class Color(
-    @SerialName("name")
-    val name: String
-)
-
-@Serializable
 data class FlavourText(
     @SerialName("flavor_text")
     val flavorText: String,
@@ -116,8 +110,6 @@ data class Generation(
 
 @Serializable
 data class PokemonSpecies(
-    @SerialName("color")
-    val color: Color,
     @SerialName("flavor_text_entries")
     val flavorTextEntries: List<FlavourText>,
     @SerialName("capture_rate")

@@ -29,8 +29,6 @@ fun PokemonDetailsScreen(
             Spacer(modifier = Modifier.height(10.dp))
             Text(pokemon.name)
             Spacer(modifier = Modifier.height(10.dp))
-            Text(pokemon.color)
-            Spacer(modifier = Modifier.height(10.dp))
             Text(pokemon.description)
             Spacer(modifier = Modifier.height(10.dp))
             Text(pokemon.stats.toString())

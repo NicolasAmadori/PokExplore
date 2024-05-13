@@ -17,7 +17,6 @@ data class Pokemon(
     val stats = info.stats.associate { it.stat.name to it.value }
     val cry = info.cry.cry
 
-    val color = species.color.name
     val description = species.flavorTextEntries.first { it.language.name == "en" }.flavorText
     val captureRate = species.captureRate
     val generation = species.generation.name
@@ -50,7 +49,6 @@ data class Pokemon(
             height,
             stats,
             cry,
-            color,
             description,
             captureRate,
             evolutions,
