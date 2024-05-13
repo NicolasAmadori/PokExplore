@@ -28,7 +28,7 @@ sealed class BottomNavItem(val route: String, val unselectedIcon: ImageVector, v
     data object Profile : BottomNavItem(PokemonRoute.Profile.route, Icons.Outlined.Person, Icons.Filled.Person, R.string.bottom_nav_profile)
 
     companion object {
-        val items = setOf(Home,Catch, Profile)
+        val items = setOf(Home, Catch, Profile)
     }
 }
 

@@ -22,4 +22,7 @@
     <string name="last_name_error">Il cognome deve contenere solo lettere</string>
     <string name="field_error">Uno o più campi sono incorretti</string>
     <string name="length_password_error">La password deve contenere almeno 5 caratteri</string>
+    <string name="theme_light">Chiaro</string>
+    <string name="theme_dark">Scuro</string>
+    <string name="theme_system">Tema di Sistema</string>
 </resources>

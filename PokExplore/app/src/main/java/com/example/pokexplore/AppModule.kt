@@ -17,6 +17,7 @@ import com.example.pokexplore.ui.PokExploreViewModel
 import com.example.pokexplore.ui.screens.profile.ProfileViewModel
 import com.example.pokexplore.ui.screens.signin.SignInViewModel
 import com.example.pokexplore.ui.screens.signup.SignUpViewModel
+import com.example.pokexplore.ui.screens.theme.ThemeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 
 val Context.dataStore by preferencesDataStore("user_preferences")
@@ -55,8 +56,8 @@ val appModule = module {
     single { DataStoreRepository(get()) }
 
     viewModel { PokExploreViewModel(get()) }
-
     viewModel { SignUpViewModel(get()) }
+    viewModel { ThemeViewModel(get()) }
     viewModel { SignInViewModel(get(), get()) }
     viewModel { ProfileViewModel(get()) }
 }

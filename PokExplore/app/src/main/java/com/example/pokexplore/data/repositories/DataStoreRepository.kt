@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.example.pokexplore.data.database.User
+import com.example.pokexplore.data.models.Theme
 import kotlinx.coroutines.flow.map
 
 class DataStoreRepository(
@@ -16,7 +17,17 @@ class DataStoreRepository(
         private val FIRST_NAME_KEY = stringPreferencesKey("first_name")
         private val LAST_NAME_KEY = stringPreferencesKey("last_name")
         private val PHONE_KEY = stringPreferencesKey("phone")
+        private val THEME_KEY = stringPreferencesKey("theme")
     }
+
+    val theme = dataStore.data
+        .map { preferences ->
+            try {
+                Theme.valueOf(preferences[THEME_KEY] ?: "System")
+            } catch (_: Exception) {
+                Theme.System
+            }
+        }
 
     val user = dataStore.data
         .map { preferences ->
@@ -52,5 +63,7 @@ class DataStoreRepository(
         it.remove(LAST_NAME_KEY)
         it.remove(PHONE_KEY)
     }
+
+    suspend fun setTheme(theme: Theme) = dataStore.edit { it[THEME_KEY] = theme.toString() }
 
 }

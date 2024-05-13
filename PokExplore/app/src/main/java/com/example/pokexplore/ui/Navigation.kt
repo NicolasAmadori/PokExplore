@@ -1,7 +1,9 @@
 package com.example.pokexplore.ui
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -11,16 +13,18 @@ import androidx.navigation.navArgument
 import com.example.pokexplore.ui.screens.CatchPokemonScreen
 import com.example.pokexplore.ui.screens.PokemonDetailsScreen
 import com.example.pokexplore.ui.screens.AllPokemonListScreen
+import com.example.pokexplore.ui.screens.theme.ThemeScreen
 import com.example.pokexplore.ui.screens.FavouritesPokemonListScreen
 import com.example.pokexplore.ui.screens.LoadingScreen
 import com.example.pokexplore.ui.screens.LocalPokemonListScreen
 import com.example.pokexplore.ui.screens.profile.ProfileScreen
-import com.example.pokexplore.ui.screens.SettingsScreen
+import com.example.pokexplore.ui.screens.settings.SettingsScreen
 import com.example.pokexplore.ui.screens.signin.SignInScreen
 import com.example.pokexplore.ui.screens.profile.ProfileViewModel
 import com.example.pokexplore.ui.screens.signin.SignInViewModel
 import com.example.pokexplore.ui.screens.signup.SignUpScreen
 import com.example.pokexplore.ui.screens.signup.SignUpViewModel
+import com.example.pokexplore.ui.screens.theme.ThemeViewModel
 import org.koin.androidx.compose.koinViewModel
 
 sealed class PokemonRoute(
@@ -44,8 +48,9 @@ sealed class PokemonRoute(
     data object SignIn : PokemonRoute("signIn", "Sign In")
     data object SignUp: PokemonRoute("signUp", "Sign Up")
     data object Loading: PokemonRoute("loading", "Loading")
+    data object Theme: PokemonRoute("theme", "Theme")
     companion object {
-        val routes = setOf(AllPokemonList, PokemonDetails, CatchPokemon, Settings, Profile, LocalPokemonList, FavouritesPokemonList, SignIn, SignUp, Loading)
+        val routes = setOf(AllPokemonList, PokemonDetails, CatchPokemon, Settings, Profile, LocalPokemonList, FavouritesPokemonList, SignIn, SignUp, Loading, Theme)
     }
 }
 
@@ -65,6 +70,13 @@ fun PokemonNavGraph(
                 AllPokemonListScreen(navController)
             }
         }
+        with(PokemonRoute.Theme) {
+            composable(route) {
+                val themeVm = koinViewModel<ThemeViewModel>()
+                val state by themeVm.state.collectAsStateWithLifecycle()
+                ThemeScreen(navController, state, themeVm::changeTheme )
+            }
+        }
         with(PokemonRoute.PokemonDetails) {
             composable(route, arguments) { backStackEntry ->
                 PokemonDetailsScreen(backStackEntry.arguments?.getInt("pokemonId") ?: -1)
@@ -77,7 +89,7 @@ fun PokemonNavGraph(
         }
         with(PokemonRoute.Settings) {
             composable(route) {
-                SettingsScreen()
+                SettingsScreen(navController)
             }
         }
         with(PokemonRoute.Profile) {

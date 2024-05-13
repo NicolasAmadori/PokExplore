@@ -24,4 +24,7 @@
     <string name="last_name_error">Last name should contain only letters</string>
     <string name="field_error">One or more fields are incorrect</string>
     <string name="length_password_error">Passwords must contains at least 5 characters</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_system">System</string>
 </resources>

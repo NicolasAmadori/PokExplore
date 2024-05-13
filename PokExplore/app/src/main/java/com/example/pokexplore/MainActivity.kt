@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -18,12 +19,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.pokexplore.data.models.Theme
 import com.example.pokexplore.ui.BottomNavItem
 import com.example.pokexplore.ui.BottomNavScreen
 import com.example.pokexplore.ui.PokExploreViewModel
 import com.example.pokexplore.ui.PokemonNavGraph
 import com.example.pokexplore.ui.PokemonRoute
 import com.example.pokexplore.ui.screens.signup.SignUpViewModel
+import com.example.pokexplore.ui.screens.theme.ThemeViewModel
 import com.example.pokexplore.ui.theme.PokExploreTheme
 import com.example.pokexplore.utilities.rememberPermission
 import org.koin.androidx.compose.koinViewModel
@@ -32,7 +35,16 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            PokExploreTheme {
+            val themeViewModel = koinViewModel<ThemeViewModel>()
+            val themeState by themeViewModel.state.collectAsStateWithLifecycle()
+
+            PokExploreTheme (
+                darkTheme = when (themeState.theme) {
+                    Theme.Light -> false
+                    Theme.Dark -> true
+                    Theme.System -> isSystemInDarkTheme()
+                }
+            ){
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -69,7 +81,8 @@ class MainActivity : ComponentActivity() {
                         PokemonNavGraph(
                             navController,
                             modifier =  Modifier.padding(contentPadding),
-                            startDestination = if (signUpState.user == null) PokemonRoute.SignUp.route else PokemonRoute.Profile.route// startDestination = if (state.pokemons.isEmpty()) PokemonRoute.Loading.route else PokemonRoute.AllPokemonList.route
+                            startDestination = PokemonRoute.Settings.route
+                            //startDestination = if (signUpState.user == null) PokemonRoute.SignUp.route else PokemonRoute.Profile.route// startDestination = if (state.pokemons.isEmpty()) PokemonRoute.Loading.route else PokemonRoute.AllPokemonList.route
                         )
                     }
                 }
