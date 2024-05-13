@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.pokexplore.ui.PokemonRoute
-import com.example.pokexplore.ui.screens.signup.SignUpState
 
 @Composable
 fun ProfileScreen(
@@ -38,7 +37,7 @@ fun ProfileScreen(
 
                 Button(onClick = {
                     onLogOut()
-                    navController.navigate(PokemonRoute.SignUp.route)
+                    navController.navigate(PokemonRoute.SignIn.route)
                 }) {
                     Text("Logout")
                 }

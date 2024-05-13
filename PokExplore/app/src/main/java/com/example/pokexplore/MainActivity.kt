@@ -70,7 +70,7 @@ class MainActivity : ComponentActivity() {
                             navController,
                             modifier =  Modifier.padding(contentPadding),
                             startDestination = if(signUpState.user == null) {
-                                PokemonRoute.AllPokemonList.route//TODO: replace with signin
+                                PokemonRoute.SignIn.route
                             } else if(pkState.pokemons.isEmpty()){
                                 PokemonRoute.Loading.route
                             } else {

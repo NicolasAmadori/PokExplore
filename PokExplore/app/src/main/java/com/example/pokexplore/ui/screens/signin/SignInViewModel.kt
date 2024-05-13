@@ -3,17 +3,15 @@ package com.example.pokexplore.ui.screens.signin
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pokexplore.data.database.Pokemon
 import com.example.pokexplore.data.database.User
 import com.example.pokexplore.data.repositories.DataStoreRepository
 import com.example.pokexplore.data.repositories.PokExploreRepository
-import com.example.pokexplore.ui.PokExploreActions
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 interface SignInActions {
     fun setUser(user: User): Job
-    fun login(email: String, password: String): Job
+    fun login(email: String, password: String, onFinished: () -> Unit = {}): Job
 }
 
 class SignInViewModel(
@@ -29,8 +27,9 @@ class SignInViewModel(
             dataStoreRepository.setUser(user)
         }
 
-        override fun login(email: String, password: String) = viewModelScope.launch {
+        override fun login(email: String, password: String, onFinished: () -> Unit) = viewModelScope.launch {
             loggedUser = mutableStateOf(databaseRepository.login(email, password))
+            onFinished()
         }
     }
 
