@@ -38,7 +38,7 @@ class DataStoreRepository(
                         email = preferences[EMAIL_KEY] ?: "",
                         firstName = preferences[FIRST_NAME_KEY] ?: "",
                         lastName = preferences[LAST_NAME_KEY] ?: "",
-                        phone = 3,//TODO: change, ?.toInt() generate an error
+                        phone = preferences[PHONE_KEY]?.toIntOrNull(),
                         profilePicUrl = null,
                         password = ""
                     )
