@@ -94,4 +94,9 @@ dependencies {
 
     /* GPS */
     implementation("com.google.android.gms:play-services-location:21.2.0")
+
+    /* Pokemon Card Elements*/
+    implementation ("io.coil-kt:coil:2.0.0")
+    implementation ("io.coil-kt:coil-compose:2.0.0")
+    implementation ("com.google.accompanist:accompanist-flowlayout:0.24.8-beta")
 }

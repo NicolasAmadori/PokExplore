@@ -31,4 +31,5 @@
     <string name="gps_page_title">Request for GPS access</string>
     <string name="gps_page_body">The application requires GPS location to allow capturing of Pokémon in the area where you are.</string>
     <string name="gps_page_button_label">Grant Permission</string>
+    <string name="favourite_label">Favourite</string>
 </resources>

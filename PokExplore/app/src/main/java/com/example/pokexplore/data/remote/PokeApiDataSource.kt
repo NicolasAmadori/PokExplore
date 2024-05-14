@@ -47,25 +47,11 @@ data class StatValue(
 )
 
 @Serializable
-data class Cry(
-    @SerialName("legacy")
-    val cry: String
-)
-
-@Serializable
-data class Sprite(
-    @SerialName("front_default")
-    val front: String
-)
-
-@Serializable
 data class PokemonInfo(
     @SerialName("id")
     val id: Int,
     @SerialName("name")
     val name: String,
-    @SerialName("sprites")
-    val sprite: Sprite,
     @SerialName("types")
     val types: List<TypeSlot>,
     @SerialName("abilities")
@@ -75,9 +61,7 @@ data class PokemonInfo(
     @SerialName("height")
     val height: Int,
     @SerialName("stats")
-    val stats: List<StatValue>,
-    @SerialName("cries")
-    val cry: Cry
+    val stats: List<StatValue>
 )
 
 /*Pokemon species classes*/

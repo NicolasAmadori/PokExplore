@@ -1,40 +1,46 @@
 package com.example.pokexplore.ui.screens.allpokemonlist
 
+
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Image
+import androidx.compose.material.icons.outlined.Favorite
+import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import coil.compose.rememberAsyncImagePainter
+import com.example.pokexplore.R
 import com.example.pokexplore.data.database.Pokemon
 import com.example.pokexplore.ui.PokemonRoute
+import java.util.Locale
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AllPokemonListScreen(
     navController: NavHostController,
@@ -50,20 +56,23 @@ fun AllPokemonListScreen(
         ) {
 
             items(allPokemonListState.pokemonList) { pokemon ->
-                PokemonCard(
+                ImageCard(
                     pokemon,
                     onClick = {
                         navController.navigate(PokemonRoute.PokemonDetails.buildRoute(pokemon.pokemonId))
-                    }
-                )
+                    })
             }
         }
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@ExperimentalMaterial3Api
 @Composable
-fun PokemonCard(pokemon: Pokemon, onClick: () -> Unit) {
+fun ImageCard(
+    pokemon: Pokemon,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     val colours = mapOf(
         "normal" to 0xFFA8A77A,
         "fire" to 0xFFEE8130,
@@ -106,53 +115,64 @@ fun PokemonCard(pokemon: Pokemon, onClick: () -> Unit) {
     )
 
     val firstType = pokemon.types.firstOrNull { pastelColours.containsKey(it) }
+    val isFavourite = remember { mutableStateOf(false) }
 
     Card(
         onClick = onClick,
-        modifier = Modifier
-            .size(150.dp)
-            .fillMaxWidth(),
+        modifier = modifier,
         colors = CardDefaults.cardColors(
             containerColor = if(firstType != null) {
                 Color(pastelColours[firstType]!!)
-                }
-                else {
-                    Color.Transparent
-                }
-        )
+            }
+            else {
+                Color.Transparent
+            }
+        ),
+        shape = MaterialTheme.shapes.medium
     ) {
         Column(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+            modifier = Modifier.fillMaxWidth()
         ) {
-            Image(
-                Icons.Filled.Image,
-                "Travel picture",
-                contentScale = ContentScale.Fit,
-                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSecondary),
-                modifier = Modifier
-                    .size(72.dp)
-                    .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.secondary)
-                    .padding(20.dp)
-            )
-            Spacer(Modifier.size(8.dp))
-            Text(
-                text = pokemon.name,
-                color = MaterialTheme.colorScheme.onSecondaryContainer,
-                style = MaterialTheme.typography.bodyMedium,
-                textAlign = TextAlign.Center
-            )
-            Text(
-                text = "#${String.format("%03d", pokemon.pokemonId)}",
-                color = MaterialTheme.colorScheme.onSecondaryContainer,
-                style = MaterialTheme.typography.bodyMedium,
-                textAlign = TextAlign.Center
-            )
+            Column(
+            ) {
+                Image(
+                    painter = rememberAsyncImagePainter(
+                        model = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.pokemonId}.png"
+                    ),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .clip(MaterialTheme.shapes.large)
+                        .fillMaxWidth()
+                        .height(120.dp)
+                )
+                Text(
+                    text = pokemon.name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() },
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = Modifier.padding(horizontal = 10.dp)
+                )
+            }
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(horizontal = 10.dp)
+            ) {
+                Text(
+                    text = "#${String.format("%03d", pokemon.pokemonId)}",
+                    style = MaterialTheme.typography.bodyMedium
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                IconButton(onClick = { isFavourite.value = isFavourite.value.not() }) {
+                    Icon(
+                        imageVector = if(isFavourite.value) {
+                            Icons.Outlined.Favorite
+                        }
+                        else {
+                            Icons.Outlined.FavoriteBorder
+                        },
+                        contentDescription = stringResource(R.string.favourite_label),
+                        tint = if (isFavourite.value) Color.Red else Color.Black)
+                }
+            }
         }
     }
 }
-
