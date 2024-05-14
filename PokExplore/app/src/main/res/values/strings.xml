@@ -27,4 +27,8 @@
     <string name="theme_light">Light</string>
     <string name="theme_dark">Dark</string>
     <string name="theme_system">System</string>
+    <string name="incorrect_credentials">The credentials are not correct</string>
+    <string name="gps_page_title">Request for GPS access</string>
+    <string name="gps_page_body">The application requires GPS location to allow capturing of Pokémon in the area where you are.</string>
+    <string name="gps_page_button_label">Grant Permission</string>
 </resources>

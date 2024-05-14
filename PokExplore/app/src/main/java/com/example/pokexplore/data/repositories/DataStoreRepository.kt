@@ -18,6 +18,7 @@ class DataStoreRepository(
         private val LAST_NAME_KEY = stringPreferencesKey("last_name")
         private val PHONE_KEY = stringPreferencesKey("phone")
         private val THEME_KEY = stringPreferencesKey("theme")
+        private val COUNTRY_CODE_KEY = stringPreferencesKey("country_code")
     }
 
     val theme = dataStore.data
@@ -51,6 +52,15 @@ class DataStoreRepository(
             }
         }
 
+    val countryCode = dataStore.data
+        .map { preferences ->
+            try {
+                preferences[COUNTRY_CODE_KEY]
+            } catch (_: Exception) {
+                ""
+            }
+        }
+
     suspend fun setUser(user: User) = dataStore.edit {
         it[EMAIL_KEY] = user.email
         it[FIRST_NAME_KEY] = user.firstName
@@ -65,5 +75,7 @@ class DataStoreRepository(
     }
 
     suspend fun setTheme(theme: Theme) = dataStore.edit { it[THEME_KEY] = theme.toString() }
+
+    suspend fun setCountryCode(countryCode: String) = dataStore.edit { it[COUNTRY_CODE_KEY] = countryCode }
 
 }

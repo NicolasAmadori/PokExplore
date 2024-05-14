@@ -1,5 +1,6 @@
 package com.example.pokexplore.data.remote
 
+import android.util.Log
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
@@ -15,7 +16,7 @@ data class Country(
 @Serializable
 data class Address(
     @SerialName("country_code")
-    val country_code: String
+    val countryCode: String
 )
 
 class OSMDataSource(
@@ -24,6 +25,7 @@ class OSMDataSource(
     private val baseUrl = "https://nominatim.openstreetmap.org/reverse?format=json"
 
     suspend fun getCountryISOCode(latitude: Double, longitude: Double): String {
-        return httpClient.get("$baseUrl$&lat=$latitude&lon=$longitude").body<Country>().address.country_code
+        Log.d("OSMDataSource", "$latitude   $longitude")
+        return httpClient.get("$baseUrl&lat=$latitude&lon=$longitude").body<Country>().address.countryCode
     }
 }

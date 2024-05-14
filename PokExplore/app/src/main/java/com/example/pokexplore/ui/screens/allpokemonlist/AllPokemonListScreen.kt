@@ -15,7 +15,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Call
+import androidx.compose.material.icons.filled.Image
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -84,7 +84,28 @@ fun PokemonCard(pokemon: Pokemon, onClick: () -> Unit) {
         "steel" to 0xFFB7B7CE,
         "fairy" to 0xFFD685AD
     )
-    val firstType = pokemon.types.firstOrNull { colours.containsKey(it) }
+    val pastelColours = mapOf(
+        "normal" to 0xFFBAB5A5,
+        "fire" to 0xFFF8A689,
+        "water" to 0xFF8CB8F2,
+        "electric" to 0xFFFFE580,
+        "grass" to 0xFFB8E6B8,
+        "ice" to 0xFFBFECEB,
+        "fighting" to 0xFFE69D99,
+        "poison" to 0xFFE29EDC,
+        "ground" to 0xFFECCC8C,
+        "flying" to 0xFFCDC9F0,
+        "psychic" to 0xFFFEC1D5,
+        "bug" to 0xFFCED6A3,
+        "rock" to 0xFFD7D0B2,
+        "ghost" to 0xFFB5ABC9,
+        "dragon" to 0xFFC79CF6,
+        "dark" to 0xFFC8C3BD,
+        "steel" to 0xFFDCDCE9,
+        "fairy" to 0xFFE9BCC9
+    )
+
+    val firstType = pokemon.types.firstOrNull { pastelColours.containsKey(it) }
 
     Card(
         onClick = onClick,
@@ -93,7 +114,7 @@ fun PokemonCard(pokemon: Pokemon, onClick: () -> Unit) {
             .fillMaxWidth(),
         colors = CardDefaults.cardColors(
             containerColor = if(firstType != null) {
-                Color(colours[firstType]!!)
+                Color(pastelColours[firstType]!!)
                 }
                 else {
                     Color.Transparent
@@ -108,7 +129,7 @@ fun PokemonCard(pokemon: Pokemon, onClick: () -> Unit) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                Icons.Outlined.Call,
+                Icons.Filled.Image,
                 "Travel picture",
                 contentScale = ContentScale.Fit,
                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSecondary),
@@ -120,7 +141,13 @@ fun PokemonCard(pokemon: Pokemon, onClick: () -> Unit) {
             )
             Spacer(Modifier.size(8.dp))
             Text(
-                pokemon.name,
+                text = pokemon.name,
+                color = MaterialTheme.colorScheme.onSecondaryContainer,
+                style = MaterialTheme.typography.bodyMedium,
+                textAlign = TextAlign.Center
+            )
+            Text(
+                text = "#${String.format("%03d", pokemon.pokemonId)}",
                 color = MaterialTheme.colorScheme.onSecondaryContainer,
                 style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Center

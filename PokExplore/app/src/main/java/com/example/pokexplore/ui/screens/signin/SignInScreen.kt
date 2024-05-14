@@ -186,7 +186,7 @@ fun SignInScreen(
                         navController.navigate(PokemonRoute.Loading.route)
                     }
                     else {
-                        Toast.makeText(context, R.string.app_name, Toast.LENGTH_LONG).show()//TODO: change string resource
+                        Toast.makeText(context, R.string.incorrect_credentials, Toast.LENGTH_LONG).show()
                     }
                 }
             }

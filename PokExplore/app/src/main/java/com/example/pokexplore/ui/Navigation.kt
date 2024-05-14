@@ -11,22 +11,24 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.pokexplore.ui.screens.CatchPokemonScreen
-import com.example.pokexplore.ui.screens.theme.ThemeScreen
-import com.example.pokexplore.ui.screens.pokemonDetails.PokemonDetailsScreen
-import com.example.pokexplore.ui.screens.allpokemonlist.AllPokemonListScreen
 import com.example.pokexplore.ui.screens.FavouritesPokemonListScreen
-import com.example.pokexplore.ui.screens.loading.LoadingScreen
 import com.example.pokexplore.ui.screens.LocalPokemonListScreen
-import com.example.pokexplore.ui.screens.profile.ProfileScreen
-import com.example.pokexplore.ui.screens.settings.SettingsScreen
+import com.example.pokexplore.ui.screens.allpokemonlist.AllPokemonListScreen
 import com.example.pokexplore.ui.screens.allpokemonlist.AllPokemonListViewModel
+import com.example.pokexplore.ui.screens.gpsMandatory.GpsMandatoryScreen
+import com.example.pokexplore.ui.screens.gpsMandatory.GpsMandatoryViewModelViewModel
+import com.example.pokexplore.ui.screens.loading.LoadingScreen
 import com.example.pokexplore.ui.screens.loading.LoadingViewModel
+import com.example.pokexplore.ui.screens.pokemonDetails.PokemonDetailsScreen
 import com.example.pokexplore.ui.screens.pokemonDetails.PokemonDetailsViewModel
-import com.example.pokexplore.ui.screens.signin.SignInScreen
+import com.example.pokexplore.ui.screens.profile.ProfileScreen
 import com.example.pokexplore.ui.screens.profile.ProfileViewModel
+import com.example.pokexplore.ui.screens.settings.SettingsScreen
+import com.example.pokexplore.ui.screens.signin.SignInScreen
 import com.example.pokexplore.ui.screens.signin.SignInViewModel
 import com.example.pokexplore.ui.screens.signup.SignUpScreen
 import com.example.pokexplore.ui.screens.signup.SignUpViewModel
+import com.example.pokexplore.ui.screens.theme.ThemeScreen
 import com.example.pokexplore.ui.screens.theme.ThemeViewModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -52,8 +54,9 @@ sealed class PokemonRoute(
     data object SignUp: PokemonRoute("signUp", "Sign Up")
     data object Loading: PokemonRoute("loading", "Loading")
     data object Theme: PokemonRoute("theme", "Theme")
+    data object GpsMandatory: PokemonRoute("gpsMandatory", "Gps Mandatory")
     companion object {
-        val routes = setOf(AllPokemonList, PokemonDetails, CatchPokemon, Settings, Profile, LocalPokemonList, FavouritesPokemonList, SignIn, SignUp, Loading, Theme)
+        val routes = setOf(AllPokemonList, PokemonDetails, CatchPokemon, Settings, Profile, LocalPokemonList, FavouritesPokemonList, SignIn, SignUp, Loading, Theme, GpsMandatory)
     }
 }
 
@@ -139,6 +142,13 @@ fun PokemonNavGraph(
                 val loadingVm = koinViewModel<LoadingViewModel>()
                 val state by loadingVm.state.collectAsStateWithLifecycle()
                 LoadingScreen(navController, state, loadingVm.actions)
+            }
+        }
+        with(PokemonRoute.GpsMandatory) {
+            composable(route) {
+                val gpsMandatoryVm = koinViewModel<GpsMandatoryViewModelViewModel>()
+                val state = gpsMandatoryVm.state
+                GpsMandatoryScreen(navController, state, gpsMandatoryVm::setCountryCode)
             }
         }
     }

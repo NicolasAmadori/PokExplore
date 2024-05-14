@@ -25,4 +25,8 @@
     <string name="theme_light">Chiaro</string>
     <string name="theme_dark">Scuro</string>
     <string name="theme_system">Tema di Sistema</string>
+    <string name="incorrect_credentials">Le credenziali non sono corrette</string>
+    <string name="gps_page_title">Richiesta di accesso al GPS</string>
+    <string name="gps_page_body">L\'applicazione necessita della localizzazione gps per poter permettere la cattura di pokemon nella zona in cui ci si trova.</string>
+    <string name="gps_page_button_label">Concedi permesso</string>
 </resources>
