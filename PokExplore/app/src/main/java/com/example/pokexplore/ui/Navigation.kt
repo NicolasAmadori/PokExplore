@@ -75,7 +75,7 @@ fun PokemonNavGraph(
             composable(route) {
                 val allPokemonListVm = koinViewModel<AllPokemonListViewModel>()
                 val state by allPokemonListVm.state.collectAsStateWithLifecycle()
-                AllPokemonListScreen(navController, state)
+                AllPokemonListScreen(navController, state, allPokemonListVm)
             }
         }
         with(PokemonRoute.Theme) {
