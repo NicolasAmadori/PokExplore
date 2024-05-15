@@ -10,7 +10,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.pokexplore.ui.screens.CatchPokemonScreen
+import com.example.pokexplore.ui.screens.catchPokemon.CatchPokemonScreen
 import com.example.pokexplore.ui.screens.FavouritesPokemonListScreen
 import com.example.pokexplore.ui.screens.LocalPokemonListScreen
 import com.example.pokexplore.ui.screens.allpokemonlist.AllPokemonListScreen

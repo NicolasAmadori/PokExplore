@@ -1,5 +1,7 @@
 package com.example.pokexplore.ui
 
+import android.Manifest
+import android.widget.Toast
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.AddCircle
@@ -15,12 +17,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.pokexplore.R
 import com.example.pokexplore.utilities.PermissionHandler
 import com.example.pokexplore.utilities.PermissionStatus
+import com.example.pokexplore.utilities.rememberPermission
 
 sealed class BottomNavItem(val route: String, val unselectedIcon: ImageVector, val selectedIcon: ImageVector, val stringId: Int) {
     data object Home : BottomNavItem(PokemonRoute.AllPokemonList.route, Icons.Outlined.Home, Icons.Filled.Home, R.string.bottom_nav_home)
@@ -39,6 +43,31 @@ fun BottomNavScreen(
 ) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
+    val ctx = LocalContext.current
+    val cameraPermission = rememberPermission(Manifest.permission.CAMERA) { status ->
+        if (status.isGranted) {
+            navController.navigate(PokemonRoute.CatchPokemon.route) {
+                popUpTo(navController.graph.startDestinationId) {
+                    inclusive = true
+                }
+                launchSingleTop = true
+            }
+        } else {
+            Toast.makeText(ctx, "Permission denied", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    fun requestPermission() =
+        if (cameraPermission.status.isGranted) {
+            navController.navigate(PokemonRoute.CatchPokemon.route) {
+                popUpTo(navController.graph.startDestinationId) {
+                    inclusive = true
+                }
+                launchSingleTop = true
+            }
+        } else {
+            cameraPermission.launchPermissionRequest()
+        }
 
     NavigationBar(modifier = modifier){
         BottomNavItem.items.forEach { item ->
@@ -47,11 +76,16 @@ fun BottomNavScreen(
                 label = { Text(stringResource(item.stringId)) },
                 selected = currentRoute == item.route,
                 onClick = {
-                    navController.navigate(item.route) {
-                        popUpTo(navController.graph.startDestinationId) {
-                            inclusive = true
+                    if(item.route != PokemonRoute.CatchPokemon.route) {
+                        navController.navigate(item.route) {
+                            popUpTo(navController.graph.startDestinationId) {
+                                inclusive = true
+                            }
+                            launchSingleTop = true
                         }
-                        launchSingleTop = true
+                    }
+                    else {
+                        requestPermission()
                     }
                 }
             )

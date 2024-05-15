@@ -99,4 +99,10 @@ dependencies {
     implementation ("io.coil-kt:coil:2.0.0")
     implementation ("io.coil-kt:coil-compose:2.0.0")
     implementation ("com.google.accompanist:accompanist-flowlayout:0.24.8-beta")
+
+    /* Camera */
+    implementation ("androidx.camera:camera-camera2:1.2.2")
+    implementation ("androidx.camera:camera-lifecycle:1.2.2")
+    implementation ("androidx.camera:camera-view:1.2.2")
+    implementation ("com.google.mlkit:barcode-scanning:17.1.0")
 }
