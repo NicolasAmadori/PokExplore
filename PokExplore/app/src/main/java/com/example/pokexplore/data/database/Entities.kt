@@ -14,7 +14,7 @@ data class Pokemon(
     val stats: Map<String, Int>,
     val description: String,
     val captureRate: Int,
-    val evolutions: List<String>,
+    val evolutions: Map<Int, String>,
     val generation: String,
     val countryCode: String?
 )

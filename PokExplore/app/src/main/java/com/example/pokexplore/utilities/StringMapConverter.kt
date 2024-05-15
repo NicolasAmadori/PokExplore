@@ -17,3 +17,17 @@ object StringMapConverter {
         return gson.toJson(map)
     }
 }
+
+object IntMapConverter {
+    @TypeConverter
+    fun jsonToMap(value: String): Map<Int, String>? {
+        val mapType = object : TypeToken<Map<Int, String>?>() {}.type
+        return Gson().fromJson(value, mapType)
+    }
+
+    @TypeConverter
+    fun mapToJson(map: Map<Int, String>?): String {
+        val gson = Gson()
+        return gson.toJson(map)
+    }
+}

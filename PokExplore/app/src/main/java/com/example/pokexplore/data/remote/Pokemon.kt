@@ -1,7 +1,5 @@
 package com.example.pokexplore.data.remote
 
-import com.example.pokexplore.data.database.Pokemon
-
 data class Pokemon(
     private val info: PokemonInfo,
     private val species: PokemonSpecies,
@@ -25,31 +23,31 @@ data class Pokemon(
                             else -> null //World
                         }
 
-    val evolutions = mutableListOf<String>()
+//    val evolutions = mutableMapOf<Int, String>()
+//
+//    init {
+//        var chain = evolutionChain.chain
+//        while (chain.evolvesTo.isNotEmpty()) {
+//            evolutions.add(chain.species.name)
+//            chain = chain.evolvesTo.first()
+//        }
+//        evolutions.add(chain.species.name)
+//    }
 
-    init {
-        var chain = evolutionChain.chain
-        while (chain.evolvesTo.isNotEmpty()) {
-            evolutions.add(chain.species.name)
-            chain = chain.evolvesTo.first()
-        }
-        evolutions.add(chain.species.name)
-    }
-
-    fun getDbEntity(): Pokemon {
-        return Pokemon(
-            id,
-            name,
-            types,
-            abilities,
-            weight,
-            height,
-            stats,
-            description,
-            captureRate,
-            evolutions,
-            generation,
-            countryCode
-        )
-    }
+//    fun getDbEntity(): Pokemon {
+//        return Pokemon(
+//            id,
+//            name,
+//            types,
+//            abilities,
+//            weight,
+//            height,
+//            stats,
+//            description,
+//            captureRate,
+//            evolutions,
+//            generation,
+//            countryCode
+//        )
+//    }
 }
