@@ -28,7 +28,7 @@
       "3": "venusaur"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 2,
@@ -59,7 +59,7 @@
       "3": "venusaur"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 3,
@@ -90,7 +90,7 @@
       "3": "venusaur"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 4,
@@ -120,7 +120,7 @@
       "6": "charizard"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 5,
@@ -150,7 +150,7 @@
       "6": "charizard"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 6,
@@ -181,7 +181,7 @@
       "6": "charizard"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 7,
@@ -211,7 +211,7 @@
       "9": "blastoise"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 8,
@@ -241,7 +241,7 @@
       "9": "blastoise"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 9,
@@ -271,7 +271,7 @@
       "9": "blastoise"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 10,
@@ -301,7 +301,7 @@
       "12": "butterfree"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 11,
@@ -330,7 +330,7 @@
       "12": "butterfree"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 12,
@@ -361,7 +361,7 @@
       "12": "butterfree"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 13,
@@ -392,7 +392,7 @@
       "15": "beedrill"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 14,
@@ -422,7 +422,7 @@
       "15": "beedrill"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 15,
@@ -453,7 +453,7 @@
       "15": "beedrill"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 16,
@@ -485,7 +485,7 @@
       "18": "pidgeot"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 17,
@@ -517,7 +517,7 @@
       "18": "pidgeot"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 18,
@@ -549,7 +549,7 @@
       "18": "pidgeot"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 19,
@@ -579,7 +579,7 @@
       "20": "raticate"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 20,
@@ -609,7 +609,7 @@
       "20": "raticate"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 21,
@@ -639,7 +639,7 @@
       "22": "fearow"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 22,
@@ -669,7 +669,7 @@
       "22": "fearow"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 23,
@@ -699,7 +699,7 @@
       "24": "arbok"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 24,
@@ -729,7 +729,7 @@
       "24": "arbok"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 25,
@@ -759,7 +759,7 @@
       "26": "raichu"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 26,
@@ -789,7 +789,7 @@
       "26": "raichu"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 27,
@@ -818,7 +818,7 @@
       "28": "sandslash"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 28,
@@ -847,7 +847,7 @@
       "28": "sandslash"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 29,
@@ -878,7 +878,7 @@
       "31": "nidoqueen"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 30,
@@ -909,7 +909,7 @@
       "31": "nidoqueen"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 31,
@@ -941,7 +941,7 @@
       "31": "nidoqueen"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 32,
@@ -972,7 +972,7 @@
       "34": "nidoking"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 33,
@@ -1003,7 +1003,7 @@
       "34": "nidoking"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 34,
@@ -1035,7 +1035,7 @@
       "34": "nidoking"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 35,
@@ -1066,7 +1066,7 @@
       "36": "clefable"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 36,
@@ -1097,7 +1097,7 @@
       "36": "clefable"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 37,
@@ -1126,7 +1126,7 @@
       "38": "ninetales"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 38,
@@ -1155,7 +1155,7 @@
       "38": "ninetales"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 39,
@@ -1187,7 +1187,7 @@
       "40": "wigglytuff"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 40,
@@ -1219,7 +1219,7 @@
       "40": "wigglytuff"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 41,
@@ -1250,7 +1250,7 @@
       "169": "crobat"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 42,
@@ -1281,7 +1281,7 @@
       "169": "crobat"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 43,
@@ -1312,7 +1312,7 @@
       "45": "vileplume"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 44,
@@ -1343,7 +1343,7 @@
       "45": "vileplume"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 45,
@@ -1374,7 +1374,7 @@
       "45": "vileplume"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 46,
@@ -1405,7 +1405,7 @@
       "47": "parasect"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 47,
@@ -1436,7 +1436,7 @@
       "47": "parasect"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 48,
@@ -1467,7 +1467,7 @@
       "49": "venomoth"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 49,
@@ -1498,7 +1498,7 @@
       "49": "venomoth"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 50,
@@ -1528,7 +1528,7 @@
       "51": "dugtrio"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 51,
@@ -1558,7 +1558,7 @@
       "51": "dugtrio"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 52,
@@ -1588,7 +1588,7 @@
       "53": "persian"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 53,
@@ -1618,7 +1618,7 @@
       "53": "persian"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 54,
@@ -1648,7 +1648,7 @@
       "55": "golduck"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 55,
@@ -1678,7 +1678,7 @@
       "55": "golduck"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 56,
@@ -1709,7 +1709,7 @@
       "979": "annihilape"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 57,
@@ -1740,7 +1740,7 @@
       "979": "annihilape"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 58,
@@ -1770,7 +1770,7 @@
       "59": "arcanine"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 59,
@@ -1800,7 +1800,7 @@
       "59": "arcanine"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 60,
@@ -1831,7 +1831,7 @@
       "62": "poliwrath"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 61,
@@ -1862,7 +1862,7 @@
       "62": "poliwrath"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 62,
@@ -1894,7 +1894,7 @@
       "62": "poliwrath"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 63,
@@ -1925,7 +1925,7 @@
       "65": "alakazam"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 64,
@@ -1956,7 +1956,7 @@
       "65": "alakazam"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 65,
@@ -1987,7 +1987,7 @@
       "65": "alakazam"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 66,
@@ -2018,7 +2018,7 @@
       "68": "machamp"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 67,
@@ -2049,7 +2049,7 @@
       "68": "machamp"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 68,
@@ -2080,7 +2080,7 @@
       "68": "machamp"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 69,
@@ -2111,7 +2111,7 @@
       "71": "victreebel"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 70,
@@ -2142,7 +2142,7 @@
       "71": "victreebel"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 71,
@@ -2173,7 +2173,7 @@
       "71": "victreebel"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 72,
@@ -2204,7 +2204,7 @@
       "73": "tentacruel"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 73,
@@ -2235,7 +2235,7 @@
       "73": "tentacruel"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 74,
@@ -2267,7 +2267,7 @@
       "76": "golem"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 75,
@@ -2299,7 +2299,7 @@
       "76": "golem"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 76,
@@ -2331,7 +2331,7 @@
       "76": "golem"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 77,
@@ -2361,7 +2361,7 @@
       "78": "rapidash"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 78,
@@ -2391,7 +2391,7 @@
       "78": "rapidash"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 79,
@@ -2422,7 +2422,7 @@
       "80": "slowbro"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 80,
@@ -2453,7 +2453,7 @@
       "80": "slowbro"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 81,
@@ -2485,7 +2485,7 @@
       "462": "magnezone"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 82,
@@ -2517,7 +2517,7 @@
       "462": "magnezone"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 83,
@@ -2548,7 +2548,7 @@
       "865": "sirfetchd"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 84,
@@ -2579,7 +2579,7 @@
       "85": "dodrio"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 85,
@@ -2610,7 +2610,7 @@
       "85": "dodrio"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 86,
@@ -2640,7 +2640,7 @@
       "87": "dewgong"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 87,
@@ -2671,7 +2671,7 @@
       "87": "dewgong"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 88,
@@ -2701,7 +2701,7 @@
       "89": "muk"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 89,
@@ -2731,7 +2731,7 @@
       "89": "muk"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 90,
@@ -2761,7 +2761,7 @@
       "91": "cloyster"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 91,
@@ -2792,7 +2792,7 @@
       "91": "cloyster"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 92,
@@ -2822,7 +2822,7 @@
       "94": "gengar"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 93,
@@ -2852,7 +2852,7 @@
       "94": "gengar"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 94,
@@ -2882,7 +2882,7 @@
       "94": "gengar"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 95,
@@ -2913,7 +2913,7 @@
       "208": "steelix"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 96,
@@ -2943,7 +2943,7 @@
       "97": "hypno"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 97,
@@ -2973,7 +2973,7 @@
       "97": "hypno"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 98,
@@ -3003,7 +3003,7 @@
       "99": "kingler"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 99,
@@ -3033,7 +3033,7 @@
       "99": "kingler"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 100,
@@ -3063,7 +3063,7 @@
       "101": "electrode"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 101,
@@ -3093,7 +3093,7 @@
       "101": "electrode"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 102,
@@ -3123,7 +3123,7 @@
       "103": "exeggutor"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 103,
@@ -3153,7 +3153,7 @@
       "103": "exeggutor"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 104,
@@ -3183,7 +3183,7 @@
       "105": "marowak"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 105,
@@ -3213,7 +3213,7 @@
       "105": "marowak"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 106,
@@ -3243,7 +3243,7 @@
       "106": "hitmonlee"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 107,
@@ -3273,7 +3273,7 @@
       "106": "hitmonlee"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 108,
@@ -3303,7 +3303,7 @@
       "463": "lickilicky"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 109,
@@ -3333,7 +3333,7 @@
       "110": "weezing"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 110,
@@ -3363,7 +3363,7 @@
       "110": "weezing"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 111,
@@ -3395,7 +3395,7 @@
       "464": "rhyperior"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 112,
@@ -3427,7 +3427,7 @@
       "464": "rhyperior"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 113,
@@ -3458,7 +3458,7 @@
       "242": "blissey"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 114,
@@ -3488,7 +3488,7 @@
       "465": "tangrowth"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 115,
@@ -3517,7 +3517,7 @@
       "115": "kangaskhan"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 116,
@@ -3548,7 +3548,7 @@
       "230": "kingdra"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 117,
@@ -3579,7 +3579,7 @@
       "230": "kingdra"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 118,
@@ -3609,7 +3609,7 @@
       "119": "seaking"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 119,
@@ -3639,7 +3639,7 @@
       "119": "seaking"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 120,
@@ -3669,7 +3669,7 @@
       "121": "starmie"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 121,
@@ -3700,7 +3700,7 @@
       "121": "starmie"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 122,
@@ -3732,7 +3732,7 @@
       "866": "mr-rime"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 123,
@@ -3763,7 +3763,7 @@
       "212": "scizor"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 124,
@@ -3794,7 +3794,7 @@
       "124": "jynx"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 125,
@@ -3824,7 +3824,7 @@
       "466": "electivire"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 126,
@@ -3854,7 +3854,7 @@
       "467": "magmortar"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 127,
@@ -3883,7 +3883,7 @@
       "127": "pinsir"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 128,
@@ -3912,7 +3912,7 @@
       "128": "tauros"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 129,
@@ -3941,7 +3941,7 @@
       "130": "gyarados"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 130,
@@ -3971,7 +3971,7 @@
       "130": "gyarados"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 131,
@@ -4001,7 +4001,7 @@
       "131": "lapras"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 132,
@@ -4029,7 +4029,7 @@
       "132": "ditto"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 133,
@@ -4059,7 +4059,7 @@
       "134": "vaporeon"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 134,
@@ -4088,7 +4088,7 @@
       "134": "vaporeon"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 135,
@@ -4117,7 +4117,7 @@
       "134": "vaporeon"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 136,
@@ -4146,7 +4146,7 @@
       "134": "vaporeon"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 137,
@@ -4177,7 +4177,7 @@
       "474": "porygon-z"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 138,
@@ -4208,7 +4208,7 @@
       "139": "omastar"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 139,
@@ -4239,7 +4239,7 @@
       "139": "omastar"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 140,
@@ -4270,7 +4270,7 @@
       "141": "kabutops"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 141,
@@ -4301,7 +4301,7 @@
       "141": "kabutops"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 142,
@@ -4331,7 +4331,7 @@
       "142": "aerodactyl"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 143,
@@ -4361,7 +4361,7 @@
       "143": "snorlax"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 144,
@@ -4390,7 +4390,7 @@
       "144": "articuno"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 145,
@@ -4419,7 +4419,7 @@
       "145": "zapdos"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 146,
@@ -4448,7 +4448,7 @@
       "146": "moltres"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 147,
@@ -4478,7 +4478,7 @@
       "149": "dragonite"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 148,
@@ -4508,7 +4508,7 @@
       "149": "dragonite"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 149,
@@ -4539,7 +4539,7 @@
       "149": "dragonite"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 150,
@@ -4567,7 +4567,7 @@
       "150": "mewtwo"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 151,
@@ -4594,7 +4594,7 @@
       "151": "mew"
     },
     "generation": "generation-i",
-    "country_code": "jp"
+    "countryCode": "jp"
   },
   {
     "pokemonId": 152,
@@ -4624,7 +4624,7 @@
       "154": "meganium"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 153,
@@ -4654,7 +4654,7 @@
       "154": "meganium"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 154,
@@ -4684,7 +4684,7 @@
       "154": "meganium"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 155,
@@ -4714,7 +4714,7 @@
       "157": "typhlosion"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 156,
@@ -4744,7 +4744,7 @@
       "157": "typhlosion"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 157,
@@ -4774,7 +4774,7 @@
       "157": "typhlosion"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 158,
@@ -4804,7 +4804,7 @@
       "160": "feraligatr"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 159,
@@ -4834,7 +4834,7 @@
       "160": "feraligatr"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 160,
@@ -4864,7 +4864,7 @@
       "160": "feraligatr"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 161,
@@ -4894,7 +4894,7 @@
       "162": "furret"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 162,
@@ -4924,7 +4924,7 @@
       "162": "furret"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 163,
@@ -4955,7 +4955,7 @@
       "164": "noctowl"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 164,
@@ -4986,7 +4986,7 @@
       "164": "noctowl"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 165,
@@ -5017,7 +5017,7 @@
       "166": "ledian"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 166,
@@ -5048,7 +5048,7 @@
       "166": "ledian"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 167,
@@ -5079,7 +5079,7 @@
       "168": "ariados"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 168,
@@ -5110,7 +5110,7 @@
       "168": "ariados"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 169,
@@ -5141,7 +5141,7 @@
       "169": "crobat"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 170,
@@ -5172,7 +5172,7 @@
       "171": "lanturn"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 171,
@@ -5203,7 +5203,7 @@
       "171": "lanturn"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 172,
@@ -5233,7 +5233,7 @@
       "26": "raichu"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 173,
@@ -5264,7 +5264,7 @@
       "36": "clefable"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 174,
@@ -5296,7 +5296,7 @@
       "40": "wigglytuff"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 175,
@@ -5327,7 +5327,7 @@
       "468": "togekiss"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 176,
@@ -5359,7 +5359,7 @@
       "468": "togekiss"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 177,
@@ -5390,7 +5390,7 @@
       "178": "xatu"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 178,
@@ -5421,7 +5421,7 @@
       "178": "xatu"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 179,
@@ -5451,7 +5451,7 @@
       "181": "ampharos"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 180,
@@ -5481,7 +5481,7 @@
       "181": "ampharos"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 181,
@@ -5511,7 +5511,7 @@
       "181": "ampharos"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 182,
@@ -5541,7 +5541,7 @@
       "45": "vileplume"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 183,
@@ -5573,7 +5573,7 @@
       "184": "azumarill"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 184,
@@ -5605,7 +5605,7 @@
       "184": "azumarill"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 185,
@@ -5635,7 +5635,7 @@
       "185": "sudowoodo"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 186,
@@ -5666,7 +5666,7 @@
       "62": "poliwrath"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 187,
@@ -5698,7 +5698,7 @@
       "189": "jumpluff"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 188,
@@ -5730,7 +5730,7 @@
       "189": "jumpluff"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 189,
@@ -5762,7 +5762,7 @@
       "189": "jumpluff"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 190,
@@ -5792,7 +5792,7 @@
       "424": "ambipom"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 191,
@@ -5822,7 +5822,7 @@
       "192": "sunflora"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 192,
@@ -5852,7 +5852,7 @@
       "192": "sunflora"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 193,
@@ -5883,7 +5883,7 @@
       "469": "yanmega"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 194,
@@ -5914,7 +5914,7 @@
       "195": "quagsire"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 195,
@@ -5945,7 +5945,7 @@
       "195": "quagsire"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 196,
@@ -5974,7 +5974,7 @@
       "134": "vaporeon"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 197,
@@ -6003,7 +6003,7 @@
       "134": "vaporeon"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 198,
@@ -6034,7 +6034,7 @@
       "430": "honchkrow"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 199,
@@ -6065,7 +6065,7 @@
       "80": "slowbro"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 200,
@@ -6093,7 +6093,7 @@
       "429": "mismagius"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 201,
@@ -6120,7 +6120,7 @@
       "201": "unown"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 202,
@@ -6149,7 +6149,7 @@
       "202": "wobbuffet"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 203,
@@ -6180,7 +6180,7 @@
       "981": "farigiraf"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 204,
@@ -6209,7 +6209,7 @@
       "205": "forretress"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 205,
@@ -6239,7 +6239,7 @@
       "205": "forretress"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 206,
@@ -6269,7 +6269,7 @@
       "982": "dudunsparce"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 207,
@@ -6300,7 +6300,7 @@
       "472": "gliscor"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 208,
@@ -6331,7 +6331,7 @@
       "208": "steelix"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 209,
@@ -6361,7 +6361,7 @@
       "210": "granbull"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 210,
@@ -6391,7 +6391,7 @@
       "210": "granbull"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 211,
@@ -6422,7 +6422,7 @@
       "904": "overqwil"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 212,
@@ -6453,7 +6453,7 @@
       "212": "scizor"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 213,
@@ -6483,7 +6483,7 @@
       "213": "shuckle"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 214,
@@ -6513,7 +6513,7 @@
       "214": "heracross"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 215,
@@ -6544,7 +6544,7 @@
       "461": "weavile"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 216,
@@ -6575,7 +6575,7 @@
       "901": "ursaluna"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 217,
@@ -6606,7 +6606,7 @@
       "901": "ursaluna"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 218,
@@ -6636,7 +6636,7 @@
       "219": "magcargo"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 219,
@@ -6667,7 +6667,7 @@
       "219": "magcargo"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 220,
@@ -6699,7 +6699,7 @@
       "473": "mamoswine"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 221,
@@ -6731,7 +6731,7 @@
       "473": "mamoswine"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 222,
@@ -6762,7 +6762,7 @@
       "864": "cursola"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 223,
@@ -6792,7 +6792,7 @@
       "224": "octillery"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 224,
@@ -6822,7 +6822,7 @@
       "224": "octillery"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 225,
@@ -6852,7 +6852,7 @@
       "225": "delibird"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 226,
@@ -6883,7 +6883,7 @@
       "226": "mantine"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 227,
@@ -6913,7 +6913,7 @@
       "227": "skarmory"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 228,
@@ -6944,7 +6944,7 @@
       "229": "houndoom"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 229,
@@ -6975,7 +6975,7 @@
       "229": "houndoom"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 230,
@@ -7007,7 +7007,7 @@
       "230": "kingdra"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 231,
@@ -7036,7 +7036,7 @@
       "232": "donphan"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 232,
@@ -7065,7 +7065,7 @@
       "232": "donphan"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 233,
@@ -7096,7 +7096,7 @@
       "474": "porygon-z"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 234,
@@ -7126,7 +7126,7 @@
       "899": "wyrdeer"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 235,
@@ -7155,7 +7155,7 @@
       "235": "smeargle"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 236,
@@ -7185,7 +7185,7 @@
       "106": "hitmonlee"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 237,
@@ -7215,7 +7215,7 @@
       "106": "hitmonlee"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 238,
@@ -7246,7 +7246,7 @@
       "124": "jynx"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 239,
@@ -7276,7 +7276,7 @@
       "466": "electivire"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 240,
@@ -7306,7 +7306,7 @@
       "467": "magmortar"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 241,
@@ -7335,7 +7335,7 @@
       "241": "miltank"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 242,
@@ -7366,7 +7366,7 @@
       "242": "blissey"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 243,
@@ -7394,7 +7394,7 @@
       "243": "raikou"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 244,
@@ -7422,7 +7422,7 @@
       "244": "entei"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 245,
@@ -7450,7 +7450,7 @@
       "245": "suicune"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 246,
@@ -7481,7 +7481,7 @@
       "248": "tyranitar"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 247,
@@ -7511,7 +7511,7 @@
       "248": "tyranitar"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 248,
@@ -7542,7 +7542,7 @@
       "248": "tyranitar"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 249,
@@ -7571,7 +7571,7 @@
       "249": "lugia"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 250,
@@ -7600,7 +7600,7 @@
       "250": "ho-oh"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 251,
@@ -7628,7 +7628,7 @@
       "251": "celebi"
     },
     "generation": "generation-ii",
-    "country_code": "it"
+    "countryCode": "it"
   },
   {
     "pokemonId": 252,
@@ -7658,7 +7658,7 @@
       "254": "sceptile"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 253,
@@ -7688,7 +7688,7 @@
       "254": "sceptile"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 254,
@@ -7718,7 +7718,7 @@
       "254": "sceptile"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 255,
@@ -7748,7 +7748,7 @@
       "257": "blaziken"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 256,
@@ -7779,7 +7779,7 @@
       "257": "blaziken"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 257,
@@ -7810,7 +7810,7 @@
       "257": "blaziken"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 258,
@@ -7840,7 +7840,7 @@
       "260": "swampert"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 259,
@@ -7871,7 +7871,7 @@
       "260": "swampert"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 260,
@@ -7902,7 +7902,7 @@
       "260": "swampert"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 261,
@@ -7932,7 +7932,7 @@
       "262": "mightyena"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 262,
@@ -7962,7 +7962,7 @@
       "262": "mightyena"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 263,
@@ -7993,7 +7993,7 @@
       "862": "obstagoon"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 264,
@@ -8024,7 +8024,7 @@
       "862": "obstagoon"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 265,
@@ -8054,7 +8054,7 @@
       "267": "beautifly"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 266,
@@ -8083,7 +8083,7 @@
       "267": "beautifly"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 267,
@@ -8114,7 +8114,7 @@
       "267": "beautifly"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 268,
@@ -8143,7 +8143,7 @@
       "267": "beautifly"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 269,
@@ -8174,7 +8174,7 @@
       "267": "beautifly"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 270,
@@ -8206,7 +8206,7 @@
       "272": "ludicolo"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 271,
@@ -8238,7 +8238,7 @@
       "272": "ludicolo"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 272,
@@ -8270,7 +8270,7 @@
       "272": "ludicolo"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 273,
@@ -8301,7 +8301,7 @@
       "275": "shiftry"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 274,
@@ -8333,7 +8333,7 @@
       "275": "shiftry"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 275,
@@ -8365,7 +8365,7 @@
       "275": "shiftry"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 276,
@@ -8395,7 +8395,7 @@
       "277": "swellow"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 277,
@@ -8425,7 +8425,7 @@
       "277": "swellow"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 278,
@@ -8456,7 +8456,7 @@
       "279": "pelipper"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 279,
@@ -8487,7 +8487,7 @@
       "279": "pelipper"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 280,
@@ -8519,7 +8519,7 @@
       "282": "gardevoir"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 281,
@@ -8551,7 +8551,7 @@
       "282": "gardevoir"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 282,
@@ -8583,7 +8583,7 @@
       "282": "gardevoir"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 283,
@@ -8613,7 +8613,7 @@
       "284": "masquerain"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 284,
@@ -8643,7 +8643,7 @@
       "284": "masquerain"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 285,
@@ -8673,7 +8673,7 @@
       "286": "breloom"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 286,
@@ -8704,7 +8704,7 @@
       "286": "breloom"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 287,
@@ -8733,7 +8733,7 @@
       "289": "slaking"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 288,
@@ -8762,7 +8762,7 @@
       "289": "slaking"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 289,
@@ -8791,7 +8791,7 @@
       "289": "slaking"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 290,
@@ -8821,7 +8821,7 @@
       "291": "ninjask"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 291,
@@ -8851,7 +8851,7 @@
       "291": "ninjask"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 292,
@@ -8880,7 +8880,7 @@
       "291": "ninjask"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 293,
@@ -8910,7 +8910,7 @@
       "295": "exploud"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 294,
@@ -8940,7 +8940,7 @@
       "295": "exploud"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 295,
@@ -8970,7 +8970,7 @@
       "295": "exploud"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 296,
@@ -9000,7 +9000,7 @@
       "297": "hariyama"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 297,
@@ -9030,7 +9030,7 @@
       "297": "hariyama"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 298,
@@ -9062,7 +9062,7 @@
       "184": "azumarill"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 299,
@@ -9092,7 +9092,7 @@
       "476": "probopass"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 300,
@@ -9122,7 +9122,7 @@
       "301": "delcatty"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 301,
@@ -9152,7 +9152,7 @@
       "301": "delcatty"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 302,
@@ -9182,7 +9182,7 @@
       "302": "sableye"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 303,
@@ -9212,7 +9212,7 @@
       "303": "mawile"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 304,
@@ -9244,7 +9244,7 @@
       "306": "aggron"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 305,
@@ -9276,7 +9276,7 @@
       "306": "aggron"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 306,
@@ -9308,7 +9308,7 @@
       "306": "aggron"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 307,
@@ -9338,7 +9338,7 @@
       "308": "medicham"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 308,
@@ -9368,7 +9368,7 @@
       "308": "medicham"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 309,
@@ -9398,7 +9398,7 @@
       "310": "manectric"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 310,
@@ -9428,7 +9428,7 @@
       "310": "manectric"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 311,
@@ -9456,7 +9456,7 @@
       "311": "plusle"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 312,
@@ -9484,7 +9484,7 @@
       "312": "minun"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 313,
@@ -9513,7 +9513,7 @@
       "313": "volbeat"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 314,
@@ -9542,7 +9542,7 @@
       "314": "illumise"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 315,
@@ -9574,7 +9574,7 @@
       "407": "roserade"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 316,
@@ -9604,7 +9604,7 @@
       "317": "swalot"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 317,
@@ -9634,7 +9634,7 @@
       "317": "swalot"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 318,
@@ -9664,7 +9664,7 @@
       "319": "sharpedo"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 319,
@@ -9694,7 +9694,7 @@
       "319": "sharpedo"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 320,
@@ -9724,7 +9724,7 @@
       "321": "wailord"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 321,
@@ -9754,7 +9754,7 @@
       "321": "wailord"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 322,
@@ -9785,7 +9785,7 @@
       "323": "camerupt"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 323,
@@ -9816,7 +9816,7 @@
       "323": "camerupt"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 324,
@@ -9845,7 +9845,7 @@
       "324": "torkoal"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 325,
@@ -9875,7 +9875,7 @@
       "326": "grumpig"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 326,
@@ -9905,7 +9905,7 @@
       "326": "grumpig"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 327,
@@ -9934,7 +9934,7 @@
       "327": "spinda"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 328,
@@ -9965,7 +9965,7 @@
       "330": "flygon"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 329,
@@ -9995,7 +9995,7 @@
       "330": "flygon"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 330,
@@ -10025,7 +10025,7 @@
       "330": "flygon"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 331,
@@ -10054,7 +10054,7 @@
       "332": "cacturne"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 332,
@@ -10084,7 +10084,7 @@
       "332": "cacturne"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 333,
@@ -10114,7 +10114,7 @@
       "334": "altaria"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 334,
@@ -10144,7 +10144,7 @@
       "334": "altaria"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 335,
@@ -10172,7 +10172,7 @@
       "335": "zangoose"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 336,
@@ -10200,7 +10200,7 @@
       "336": "seviper"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 337,
@@ -10228,7 +10228,7 @@
       "337": "lunatone"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 338,
@@ -10256,7 +10256,7 @@
       "338": "solrock"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 339,
@@ -10287,7 +10287,7 @@
       "340": "whiscash"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 340,
@@ -10318,7 +10318,7 @@
       "340": "whiscash"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 341,
@@ -10348,7 +10348,7 @@
       "342": "crawdaunt"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 342,
@@ -10379,7 +10379,7 @@
       "342": "crawdaunt"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 343,
@@ -10408,7 +10408,7 @@
       "344": "claydol"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 344,
@@ -10437,7 +10437,7 @@
       "344": "claydol"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 345,
@@ -10467,7 +10467,7 @@
       "346": "cradily"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 346,
@@ -10497,7 +10497,7 @@
       "346": "cradily"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 347,
@@ -10527,7 +10527,7 @@
       "348": "armaldo"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 348,
@@ -10557,7 +10557,7 @@
       "348": "armaldo"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 349,
@@ -10587,7 +10587,7 @@
       "350": "milotic"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 350,
@@ -10617,7 +10617,7 @@
       "350": "milotic"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 351,
@@ -10644,7 +10644,7 @@
       "351": "castform"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 352,
@@ -10672,7 +10672,7 @@
       "352": "kecleon"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 353,
@@ -10702,7 +10702,7 @@
       "354": "banette"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 354,
@@ -10732,7 +10732,7 @@
       "354": "banette"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 355,
@@ -10762,7 +10762,7 @@
       "477": "dusknoir"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 356,
@@ -10792,7 +10792,7 @@
       "477": "dusknoir"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 357,
@@ -10822,7 +10822,7 @@
       "357": "tropius"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 358,
@@ -10850,7 +10850,7 @@
       "358": "chimecho"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 359,
@@ -10879,7 +10879,7 @@
       "359": "absol"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 360,
@@ -10908,7 +10908,7 @@
       "202": "wobbuffet"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 361,
@@ -10938,7 +10938,7 @@
       "362": "glalie"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 362,
@@ -10968,7 +10968,7 @@
       "362": "glalie"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 363,
@@ -11000,7 +11000,7 @@
       "365": "walrein"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 364,
@@ -11032,7 +11032,7 @@
       "365": "walrein"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 365,
@@ -11064,7 +11064,7 @@
       "365": "walrein"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 366,
@@ -11093,7 +11093,7 @@
       "367": "huntail"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 367,
@@ -11122,7 +11122,7 @@
       "367": "huntail"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 368,
@@ -11151,7 +11151,7 @@
       "367": "huntail"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 369,
@@ -11181,7 +11181,7 @@
       "369": "relicanth"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 370,
@@ -11209,7 +11209,7 @@
       "370": "luvdisc"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 371,
@@ -11239,7 +11239,7 @@
       "373": "salamence"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 372,
@@ -11269,7 +11269,7 @@
       "373": "salamence"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 373,
@@ -11300,7 +11300,7 @@
       "373": "salamence"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 374,
@@ -11331,7 +11331,7 @@
       "376": "metagross"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 375,
@@ -11362,7 +11362,7 @@
       "376": "metagross"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 376,
@@ -11393,7 +11393,7 @@
       "376": "metagross"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 377,
@@ -11421,7 +11421,7 @@
       "377": "regirock"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 378,
@@ -11449,7 +11449,7 @@
       "378": "regice"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 379,
@@ -11477,7 +11477,7 @@
       "379": "registeel"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 380,
@@ -11505,7 +11505,7 @@
       "380": "latias"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 381,
@@ -11533,7 +11533,7 @@
       "381": "latios"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 382,
@@ -11560,7 +11560,7 @@
       "382": "kyogre"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 383,
@@ -11587,7 +11587,7 @@
       "383": "groudon"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 384,
@@ -11615,7 +11615,7 @@
       "384": "rayquaza"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 385,
@@ -11643,7 +11643,7 @@
       "385": "jirachi"
     },
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   },
   {
     "pokemonId": 386,
@@ -11668,6 +11668,6 @@
     "capture_rate": 3,
     "evolutions": {},
     "generation": "generation-iii",
-    "country_code": null
+    "countryCode": null
   }
 ]
