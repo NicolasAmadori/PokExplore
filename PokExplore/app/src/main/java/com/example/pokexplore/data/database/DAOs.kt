@@ -1,11 +1,10 @@
 package com.example.pokexplore.data.database
 
 import androidx.room.Dao
+import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Upsert
 import kotlinx.coroutines.flow.Flow
-import android.provider.ContactsContract.CommonDataKinds.Email
-import androidx.room.Insert
 
 @Dao
 interface PokemonDAO {

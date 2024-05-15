@@ -39,4 +39,5 @@
     <string name="pokemon_details">Pokemon Details</string>
     <string name="theme">Theme</string>
     <string name="appearance">Appearance</string>
+    <string name="type">Type</string>
 </resources>
