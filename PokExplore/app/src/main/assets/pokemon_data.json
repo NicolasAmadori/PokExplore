@@ -851,7 +851,7 @@
   },
   {
     "pokemonId": 29,
-    "name": "nidoran-f",
+    "name": "nidoran (F)",
     "types": [
       "poison"
     ],
@@ -873,7 +873,7 @@
     "description": "Although small, its venomous barbs render this POKéMON dangerous. The female has smaller horns.",
     "capture_rate": 235,
     "evolutions": {
-      "29": "nidoran-f",
+      "29": "nidoran (F)",
       "30": "nidorina",
       "31": "nidoqueen"
     },
@@ -904,7 +904,7 @@
     "description": "The female's horn develops slowly. Prefers physical attacks such as clawing and biting.",
     "capture_rate": 120,
     "evolutions": {
-      "29": "nidoran-f",
+      "29": "nidoran (F)",
       "30": "nidorina",
       "31": "nidoqueen"
     },
@@ -936,7 +936,7 @@
     "description": "Its hard scales provide strong protection. It uses its hefty bulk to execute powerful moves.",
     "capture_rate": 45,
     "evolutions": {
-      "29": "nidoran-f",
+      "29": "nidoran (F)",
       "30": "nidorina",
       "31": "nidoqueen"
     },
@@ -945,7 +945,7 @@
   },
   {
     "pokemonId": 32,
-    "name": "nidoran-m",
+    "name": "nidoran (M)",
     "types": [
       "poison"
     ],
@@ -967,7 +967,7 @@
     "description": "Stiffens its ears to sense danger. The larger its horns, the more powerful its secreted venom.",
     "capture_rate": 235,
     "evolutions": {
-      "32": "nidoran-m",
+      "32": "nidoran (M)",
       "33": "nidorino",
       "34": "nidoking"
     },
@@ -998,7 +998,7 @@
     "description": "An aggressive POKéMON that is quick to attack. The horn on its head secretes a powerful venom.",
     "capture_rate": 120,
     "evolutions": {
-      "32": "nidoran-m",
+      "32": "nidoran (M)",
       "33": "nidorino",
       "34": "nidoking"
     },
@@ -1030,7 +1030,7 @@
     "description": "It uses its powerful tail in battle to smash, constrict, then break the prey's bones.",
     "capture_rate": 45,
     "evolutions": {
-      "32": "nidoran-m",
+      "32": "nidoran (M)",
       "33": "nidorino",
       "34": "nidoking"
     },
@@ -11647,7 +11647,7 @@
   },
   {
     "pokemonId": 386,
-    "name": "deoxys-normal",
+    "name": "deoxys",
     "types": [
       "psychic"
     ],
@@ -11666,7 +11666,9 @@
     },
     "description": "The DNA of a space virus underwent a sudden mutation upon exposure to a laser beam and resulted in DEOXYS. The crystalline organ on this POKéMON’s chest appears to be its brain.",
     "capture_rate": 3,
-    "evolutions": {},
+    "evolutions": {
+      "386": "deoxys"
+    },
     "generation": "generation-iii",
     "countryCode": null
   }

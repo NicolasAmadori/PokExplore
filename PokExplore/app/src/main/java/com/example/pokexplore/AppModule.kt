@@ -5,7 +5,6 @@ import androidx.datastore.preferences.preferencesDataStore
 import androidx.room.Room
 import com.example.pokexplore.data.database.PokExploreDatabase
 import com.example.pokexplore.data.remote.OSMDataSource
-import com.example.pokexplore.data.remote.PokeApiDataSource
 import com.example.pokexplore.data.repositories.DataStoreRepository
 import com.example.pokexplore.data.repositories.PokExploreRepository
 import com.example.pokexplore.ui.PokExploreViewModel
@@ -38,7 +37,6 @@ val appModule = module {
         }
     }
 
-    single { PokeApiDataSource(get()) }
     single { OSMDataSource(get()) }
 
     /* Room */
