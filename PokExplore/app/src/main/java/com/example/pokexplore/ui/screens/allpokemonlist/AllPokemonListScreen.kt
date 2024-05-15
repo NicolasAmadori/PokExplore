@@ -52,7 +52,8 @@ fun AllPokemonListScreen(
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             contentPadding = PaddingValues(8.dp, 8.dp, 8.dp, 80.dp),
-            modifier = Modifier.padding(contentPadding)
+            modifier = Modifier
+                .padding(contentPadding)
         ) {
 
             items(allPokemonListState.pokemonList) { pokemon ->

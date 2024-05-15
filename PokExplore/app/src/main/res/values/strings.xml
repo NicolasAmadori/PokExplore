@@ -34,4 +34,9 @@
     <string name="favourite_label">Favourite</string>
     <string name="profile_picture_description">Profile Picture</string>
     <string name="logout_description">Logout</string>
+    <string name="settings_description">Settings</string>
+    <string name="back_description">Back</string>
+    <string name="pokemon_details">Pokemon Details</string>
+    <string name="theme">Theme</string>
+    <string name="appearance">Appearance</string>
 </resources>

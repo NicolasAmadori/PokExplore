@@ -1,6 +1,5 @@
 package com.example.pokexplore.ui.screens.profile
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,6 +8,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Logout
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -59,6 +59,14 @@ fun ProfileScreen(
                         Icon(
                             imageVector = Icons.Filled.Logout,
                             contentDescription = stringResource(R.string.logout_description)
+                        )
+                    }
+                    IconButton(onClick = {
+                        navController.navigate(PokemonRoute.Settings.route)
+                    }) {
+                        Icon(
+                            imageVector = Icons.Filled.Settings,
+                            contentDescription = stringResource(R.string.settings_description)
                         )
                     }
                 },

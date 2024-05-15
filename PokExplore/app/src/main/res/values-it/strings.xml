@@ -32,4 +32,9 @@
     <string name="favourite_label">Preferito</string>
     <string name="profile_picture_description">Immagine Profilo</string>
     <string name="logout_description">Esci</string>
+    <string name="settings_description">Impostazioni</string>
+    <string name="back_description">Indietro</string>
+    <string name="pokemon_details">Dettagli Pokemon</string>
+    <string name="theme">Tema</string>
+    <string name="appearance">Aspetto</string>
 </resources>

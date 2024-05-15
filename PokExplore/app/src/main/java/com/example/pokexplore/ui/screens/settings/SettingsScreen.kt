@@ -1,6 +1,5 @@
 package com.example.pokexplore.ui.screens.settings
 
-import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,33 +15,28 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.KeyboardArrowRight
-import androidx.compose.material.icons.rounded.KeyboardArrowUp
-import androidx.compose.material3.Divider
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Palette
+import androidx.compose.material.icons.rounded.KeyboardArrowRight
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Shapes
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.pokexplore.R
 import com.example.pokexplore.ui.PokemonRoute
@@ -52,15 +46,32 @@ import com.example.pokexplore.ui.PokemonRoute
 fun SettingsScreen(
     navController: NavController,
 ) {
+    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
     Scaffold(
         topBar = {
             TopAppBar(
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    titleContentColor = MaterialTheme.colorScheme.primary,
+                ),
                 title = {
                     Text(
-                        text = stringResource(id = R.string.cancel_input),
-                        style = MaterialTheme.typography.titleMedium
+                        text = stringResource(R.string.settings_description),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
                     )
                 },
+                navigationIcon = {
+                    IconButton(onClick = {
+                        navController.navigate(PokemonRoute.Profile.route)
+                    }) {
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = stringResource(R.string.back_description)
+                        )
+                    }
+                },
+                scrollBehavior = scrollBehavior
             )
         }
     ) {
@@ -70,11 +81,41 @@ fun SettingsScreen(
                 .padding(it)
                 .padding(16.dp)
         ) {
-            SettingsGroup(name = R.string.app_name) {
+            SettingsGroup(name = R.string.appearance) {
                 SettingsClickableComp(
-                    name = stringResource(R.string.phone_error),
-                    icon = Icons.Filled.Add,
-                    iconDesc = stringResource(R.string.phone_error),
+                    name = stringResource(R.string.theme),
+                    icon = Icons.Filled.Palette,
+                    iconDesc = stringResource(R.string.theme),
+                ) {
+                    navController.navigate(PokemonRoute.Theme.route)
+                }
+                SettingsClickableComp(
+                    name = stringResource(R.string.theme),
+                    icon = Icons.Filled.Palette,
+                    iconDesc = stringResource(R.string.theme),
+                ) {
+                    navController.navigate(PokemonRoute.Theme.route)
+                }
+            }
+            SettingsGroup(name = R.string.appearance) {
+                SettingsClickableComp(
+                    name = stringResource(R.string.theme),
+                    icon = Icons.Filled.Palette,
+                    iconDesc = stringResource(R.string.theme),
+                ) {
+                    navController.navigate(PokemonRoute.Theme.route)
+                }
+                SettingsClickableComp(
+                    name = stringResource(R.string.theme),
+                    icon = Icons.Filled.Palette,
+                    iconDesc = stringResource(R.string.theme),
+                ) {
+                    navController.navigate(PokemonRoute.Theme.route)
+                }
+                SettingsClickableComp(
+                    name = stringResource(R.string.theme),
+                    icon = Icons.Filled.Palette,
+                    iconDesc = stringResource(R.string.theme),
                 ) {
                     navController.navigate(PokemonRoute.Theme.route)
                 }
@@ -94,7 +135,7 @@ fun SettingsClickableComp(
         color = Color.Transparent,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(top = 1.dp),
         onClick = onClick,
     ) {
         Column {
@@ -123,14 +164,13 @@ fun SettingsClickableComp(
                 }
                 Spacer(modifier = Modifier.weight(1.0f))
                 Icon(
-                    Icons.Rounded.KeyboardArrowUp,
+                    Icons.Rounded.KeyboardArrowRight,
                     tint = MaterialTheme.colorScheme.surfaceTint,
                     contentDescription = stringResource(id = R.string.downloading_pokemon)
                 )
             }
-            Divider()
+            //Divider()
         }
-
     }
 }
 
