@@ -63,7 +63,7 @@ fun SettingsScreen(
                 },
                 navigationIcon = {
                     IconButton(onClick = {
-                        navController.navigate(PokemonRoute.Profile.route)
+                        navController.popBackStack()
                     }) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,

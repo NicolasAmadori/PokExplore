@@ -53,7 +53,7 @@ fun PokemonDetailsScreen(
                 },
                 navigationIcon = {
                     IconButton(onClick = {
-                        navController.navigate(PokemonRoute.AllPokemonList.route)
+                        navController.popBackStack()
                     }) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,

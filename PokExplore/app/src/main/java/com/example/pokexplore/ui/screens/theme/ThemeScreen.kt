@@ -55,7 +55,7 @@ fun ThemeScreen(
                 },
                 navigationIcon = {
                     IconButton(onClick = {
-                        navController.navigate(PokemonRoute.Settings.route)
+                        navController.popBackStack()
                     }) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,

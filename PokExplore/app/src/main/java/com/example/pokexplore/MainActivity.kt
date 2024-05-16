@@ -19,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -35,7 +36,7 @@ import com.example.pokexplore.utilities.LocationService
 import com.example.pokexplore.utilities.rememberPermission
 import org.koin.androidx.compose.koinViewModel
 
-class MainActivity : ComponentActivity() {
+class MainActivity : FragmentActivity() {
     private lateinit var locationService: LocationService
 
     override fun onCreate(savedInstanceState: Bundle?) {

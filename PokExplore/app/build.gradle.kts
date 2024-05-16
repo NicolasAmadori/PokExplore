@@ -105,4 +105,7 @@ dependencies {
     implementation ("androidx.camera:camera-lifecycle:1.2.2")
     implementation ("androidx.camera:camera-view:1.2.2")
     implementation ("com.google.mlkit:barcode-scanning:17.1.0")
+
+    /* Biometric */
+    implementation("androidx.biometric:biometric:1.2.0-alpha05")
 }
