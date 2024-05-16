@@ -28,11 +28,11 @@ fun LoadingScreen(
     val context = LocalContext.current
     if(state.pokemonList.isEmpty()) {
         actions.downloadPokemons(context) {
-            navController.navigate(PokemonRoute.AllPokemonList.route)
+            navController.navigate(PokemonRoute.SignIn.route)
         }
     }
     else {
-        navController.navigate(PokemonRoute.AllPokemonList.route)
+        navController.navigate(PokemonRoute.SignIn.route)
     }
 
     Column(

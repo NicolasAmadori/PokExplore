@@ -86,7 +86,7 @@ fun SignInScreen(
                     super.onAuthenticationSucceeded(result)
                     Toast.makeText(contextBiometric, "Authentication succeeded!", Toast.LENGTH_SHORT).show()
                     viewModel.actions.setUser(viewModel.loggedUser.value!!)
-                    navController.navigate(PokemonRoute.Loading.route)
+                    navController.navigate(PokemonRoute.AllPokemonList.route)
                 }
 
                 override fun onAuthenticationFailed() {
@@ -236,7 +236,7 @@ fun SignInScreen(
                                 biometricPrompt.authenticate(promptInfo)
                             } else {
                                 //viewModel.actions.setUser(viewModel.loggedUser.value!!)
-                                navController.navigate(PokemonRoute.Loading.route)
+                                navController.navigate(PokemonRoute.AllPokemonList.route)
                             }
                         } else {
                             Toast.makeText(context, R.string.incorrect_credentials, Toast.LENGTH_LONG).show()

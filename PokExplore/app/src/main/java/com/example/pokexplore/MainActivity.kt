@@ -154,11 +154,10 @@ class MainActivity : FragmentActivity() {
                         PokemonNavGraph(
                             navController,
                             modifier =  Modifier.padding(contentPadding),
-//                            startDestination = PokemonRoute.GpsMandatory.route
-                            startDestination = if(signUpState.user == null) {
-                                PokemonRoute.SignIn.route
-                            } else if(pkState.pokemons.isEmpty()){
+                            startDestination = if(pkState.pokemons.isEmpty()){
                                 PokemonRoute.Loading.route
+                            } else if(signUpState.user == null) {
+                                PokemonRoute.SignIn.route
                             } else {
                                 PokemonRoute.AllPokemonList.route
                             }
