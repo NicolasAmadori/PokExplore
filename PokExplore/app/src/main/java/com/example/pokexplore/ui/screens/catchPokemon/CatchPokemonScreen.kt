@@ -16,6 +16,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavHostController
 import com.example.pokexplore.ui.PokemonRoute
+import java.security.MessageDigest
 
 
 @Composable
@@ -40,8 +41,8 @@ fun CatchPokemonScreen(navController: NavHostController) {
             imageAnalysis.setAnalyzer(
                 ContextCompat.getMainExecutor(context),
                 CameraAnalyzer(context){
-
-                    navController.navigate(PokemonRoute.PokemonDetails.buildRoute(it.toInt())) //TODO: add qrcode conversion to pokemonId
+                    val pokemonCode = generatePokemonCode(it)
+                    navController.navigate(PokemonRoute.PokemonDetails.buildRoute(pokemonCode)) //TODO: add qrcode conversion to pokemonId
                 }
             )
 
@@ -59,4 +60,22 @@ fun CatchPokemonScreen(navController: NavHostController) {
         }
     )
 }
+
+private fun generatePokemonCode(qrContent: String): Int {
+    val md5Hash = calculateMD5(qrContent)
+    val firstThreeDigits = md5Hash.filter { it.isDigit() }.substring(0,3).toInt()
+    return mapToPokemonCode(firstThreeDigits, 0, 999, 1, 386)
+}
+
+private fun calculateMD5(input: String): String {
+    val md = MessageDigest.getInstance("MD5")
+    val byteArray = md.digest(input.toByteArray())
+    return byteArray.joinToString("") { "%02x".format(it) }
+}
+
+private fun mapToPokemonCode(input: Int, start1: Int, end1: Int, start2: Int, end2: Int): Int {
+    val slope = (end2 - start2).toDouble() / (end1 - start1)
+    return (start2 + slope * (input - start1)).toInt()
+}
+
 
