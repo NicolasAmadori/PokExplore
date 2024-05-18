@@ -40,4 +40,14 @@
     <string name="theme">Theme</string>
     <string name="appearance">Appearance</string>
     <string name="type">Type</string>
+    <string name="hp_label" translatable="false">HP</string>
+    <string name="atk_label" translatable="false">ATK</string>
+    <string name="atksp_label" translatable="false">ATK-SP</string>
+    <string name="defsp_label" translatable="false">DEF-SP</string>
+    <string name="def_label" translatable="false">DEF</string>
+    <string name="spd_label" translatable="false">SPD</string>
+    <string name="pokedex_description">Pokémon Description</string>
+    <string name="base_stats">Base Stats</string>
+    <string name="abilities">Abilities</string>
+    <string name="evolutions">Lines Evolutions</string>
 </resources>

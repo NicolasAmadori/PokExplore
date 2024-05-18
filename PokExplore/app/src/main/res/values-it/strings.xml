@@ -38,4 +38,8 @@
     <string name="theme">Tema</string>
     <string name="appearance">Aspetto</string>
     <string name="type">Tipo</string>
+    <string name="pokedex_description">Descrizione del Pokédex</string>
+    <string name="base_stats">Statistiche base</string>
+    <string name="abilities">Abilità</string>
+    <string name="evolutions">Linea Evolutiva</string>
 </resources>
