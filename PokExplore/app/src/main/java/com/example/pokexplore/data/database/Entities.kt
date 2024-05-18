@@ -2,6 +2,7 @@ package com.example.pokexplore.data.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.Date
 
 @Entity
 data class Pokemon(
@@ -34,5 +35,6 @@ data class UserPokemon(
     val email: String,
     val pokemonId: Int,
     val isCaptured: Boolean = false,
-    val isFavourite: Boolean = false
+    val isFavourite: Boolean = false,
+    val captureDate: Date? = null
 )

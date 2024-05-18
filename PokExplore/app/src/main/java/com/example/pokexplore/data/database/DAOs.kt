@@ -2,9 +2,11 @@ package com.example.pokexplore.data.database
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Upsert
 import kotlinx.coroutines.flow.Flow
+import java.util.Date
 
 @Dao
 interface PokemonDAO {
@@ -34,8 +36,14 @@ interface PokemonDAO {
 @Dao
 interface UserPokemonDAO {
 
-    //@Query("UPDATE UserPokemon SET isCaptured = 1 WHERE user = :user AND pokemon = :pokemon")
-    //suspend fun addUserAssociations(user: User)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertUserPokemon(userPokemon: UserPokemon)
+
+    @Query("UPDATE UserPokemon SET isCaptured = 1, captureDate = :captureDate WHERE email = :email AND pokemonId = :pokemonId AND isCaptured = 0")
+    suspend fun capturePokemon(email: String, pokemonId: Int, captureDate: Date)
+
+    @Query("UPDATE UserPokemon SET isFavourite = NOT isFavourite WHERE email = :email AND pokemonId = :pokemonId")
+    suspend fun toggleFavorite(email: String, pokemonId: Int)
 }
 
 @Dao

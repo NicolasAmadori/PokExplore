@@ -63,7 +63,7 @@ val appModule = module {
     viewModel { LoadingViewModel(get()) }
     viewModel { AllPokemonListViewModel(get(), get()) }
     viewModel { PokemonDetailsViewModel(get()) }
-    viewModel { SignUpViewModel(get()) }
+    viewModel { SignUpViewModel(get(), get()) }
     viewModel { ThemeViewModel(get()) }
     viewModel { SignInViewModel(get(), get()) }
     viewModel { ProfileViewModel(get()) }
