@@ -18,6 +18,7 @@ class PokExploreRepository(
     private val userWithPokemonsDao: UserWithPokemonsDao
     ) {
 
+    val users: Flow<List<User>> = userDAO.getAllUsers()
     val pokemons: Flow<List<Pokemon>> = pokexploreDAO.getAllPokemons()
     val userPokemons: Flow<List<UserWithPokemons>> = userWithPokemonsDao.getUserPokemons()
 

@@ -126,8 +126,7 @@ fun AllPokemonListScreen(
 fun PokemonCard(
     userWithPokemon: UserWithPokemons,
     onClick: () -> Unit,
-    onToggleFavourite: () -> Unit = {},
-    modifier: Modifier = Modifier,
+    onToggleFavourite: () -> Unit
 ) {
     val typeIcons = mapOf(
         "normal" to R.drawable.normal,
@@ -158,7 +157,7 @@ fun PokemonCard(
 
     Card(
         onClick = onClick,
-        modifier = modifier,
+        modifier = Modifier,
         colors = CardDefaults.cardColors(
             containerColor = Color(pastelColours[colorType]!!)
         ),

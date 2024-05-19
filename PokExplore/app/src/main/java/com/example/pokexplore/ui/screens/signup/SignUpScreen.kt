@@ -42,6 +42,7 @@ import com.example.pokexplore.ui.PokemonRoute
 @Composable
 fun SignUpScreen(
     navController: NavHostController,
+    usersState: UsersState,
     onUserSignUp: (User, () -> Unit) -> Unit
 ) {
     val context = LocalContext.current
@@ -362,6 +363,9 @@ fun SignUpScreen(
 
             if(isErrorEmail || isErrorFirstName || isErrorLastName || isErrorPhone || isErrorPassword || isErrorPassword2) {
                 Toast.makeText(context, R.string.field_error, Toast.LENGTH_LONG).show()
+            }
+            else if(usersState.users.map { it.email }.contains(email.value)){
+                Toast.makeText(context, R.string.duplicate_email, Toast.LENGTH_LONG).show()
             }
             else {
                 val newUser = User(

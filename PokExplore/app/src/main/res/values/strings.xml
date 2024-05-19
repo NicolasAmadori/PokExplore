@@ -57,4 +57,5 @@
     <string name="tab_near_me">Near me</string>
     <string name="tab_favourites">Favourites</string>
     <string name="caught_pokemons_label">Caught Pokemons</string>
+    <string name="duplicate_email">Email already used for another account</string>
 </resources>

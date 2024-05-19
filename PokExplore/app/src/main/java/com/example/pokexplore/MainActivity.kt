@@ -1,18 +1,29 @@
 package com.example.pokexplore
 
 import android.Manifest
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.widget.Toast
+import android.provider.Settings
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.fragment.app.FragmentActivity
@@ -29,6 +40,8 @@ import com.example.pokexplore.ui.screens.signup.SignUpViewModel
 import com.example.pokexplore.ui.screens.theme.ThemeViewModel
 import com.example.pokexplore.ui.theme.PokExploreTheme
 import com.example.pokexplore.utilities.LocationService
+import com.example.pokexplore.utilities.PermissionStatus
+import com.example.pokexplore.utilities.StartMonitoringResult
 import com.example.pokexplore.utilities.rememberPermission
 import org.koin.androidx.compose.koinViewModel
 
@@ -56,6 +69,7 @@ class MainActivity : FragmentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    val ctx = LocalContext.current
                     /* Pokemon list */
                     val pkVm = koinViewModel<PokExploreViewModel>()
                     val pkState by pkVm.state.collectAsStateWithLifecycle()
@@ -81,7 +95,7 @@ class MainActivity : FragmentActivity() {
 //                    val osmDataSource = koinInject<OSMDataSource>()
 //                    val dataStoreRepository = koinInject<DataStoreRepository>()
 //
-                    val ctx = LocalContext.current
+
 //                    val coroutineScope = rememberCoroutineScope()
 //                    fun getCountryCode() = coroutineScope.launch {
 //                        if (isOnline()) {
@@ -106,41 +120,42 @@ class MainActivity : FragmentActivity() {
 //                        getCountryCode()
 //                    }
 //
-//                    /* GPS */
-//                    val locationPermission = rememberPermission(
-//                        Manifest.permission.ACCESS_COARSE_LOCATION
-//                    ) { status ->
-//                        when (status) {
-//                            PermissionStatus.Granted -> {
-//                                val res = locationService.requestCurrentLocation()
-//                            }
-//
-//                            PermissionStatus.Denied -> {}
-//                            PermissionStatus.PermanentlyDenied -> {}
-//                            PermissionStatus.Unknown -> {}
-//                        }
-//                    }
-//
-//                    fun requestLocation() {
-//                        if (locationPermission.status.isGranted) {
-//                            val res = locationService.requestCurrentLocation()
-//                            showLocationDisabledAlert = res == StartMonitoringResult.GPSDisabled
-//                        } else {
-//                            navController.navigate(PokemonRoute.GpsMandatory.route)
-//                        }
-//                    }
-//
-//                    LaunchedEffect(true) {
-//                        requestLocation()
-//                    }
+                    /* GPS */
+                    val snackbarHostState = remember { SnackbarHostState() }
+                    var showLocationDisabledAlert by remember { mutableStateOf(false) }
+                    var showPermissionDeniedAlert by remember { mutableStateOf(false) }
+                    var showPermissionPermanentlyDeniedSnackbar by remember { mutableStateOf(false) }
 
-                    /* Camera */
-                    val cameraPermission = rememberPermission(Manifest.permission.CAMERA) { status ->
-                        if (status.isGranted) {
-                            //cameraLauncher.captureImage()
-                        } else {
-                            Toast.makeText(ctx, "Permission denied", Toast.LENGTH_SHORT).show()
+                    val locationPermission = rememberPermission(
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    ) { status ->
+                        when (status) {
+                            PermissionStatus.Granted -> {
+                                val res = locationService.requestCurrentLocation()
+                                showLocationDisabledAlert = res == StartMonitoringResult.GPSDisabled
+                            }
+
+                            PermissionStatus.Denied ->
+                                showPermissionDeniedAlert = true
+
+                            PermissionStatus.PermanentlyDenied ->
+                                showPermissionPermanentlyDeniedSnackbar = true
+
+                            PermissionStatus.Unknown -> {}
                         }
+                    }
+
+                    fun requestLocation() {
+                        if (locationPermission.status.isGranted) {
+                            val res = locationService.requestCurrentLocation()
+                            showLocationDisabledAlert = res == StartMonitoringResult.GPSDisabled
+                        } else {
+                            locationPermission.launchPermissionRequest()
+                        }
+                    }
+
+                    LaunchedEffect(Unit) {
+                        requestLocation()
                     }
 
                     /* UI */
@@ -158,6 +173,66 @@ class MainActivity : FragmentActivity() {
                                 PokemonRoute.AllPokemonList.route
                             }
                         )
+                        if (showLocationDisabledAlert) {
+                            AlertDialog(
+                                title = { Text("Location disabled") },
+                                text = { Text("Location must be enabled to get your current location in the app.") },
+                                confirmButton = {
+                                    TextButton(onClick = {
+                                        locationService.openLocationSettings()
+                                        showLocationDisabledAlert = false
+                                    }) {
+                                        Text("Enable")
+                                    }
+                                },
+                                dismissButton = {
+                                    TextButton(onClick = { showLocationDisabledAlert = false }) {
+                                        Text("Dismiss")
+                                    }
+                                },
+                                onDismissRequest = { showLocationDisabledAlert = false }
+                            )
+                        }
+
+                        if (showPermissionDeniedAlert) {
+                            AlertDialog(
+                                title = { Text("Location permission denied") },
+                                text = { Text("Location permission is required to get your current location in the app.") },
+                                confirmButton = {
+                                    TextButton(onClick = {
+                                        locationPermission.launchPermissionRequest()
+                                        showPermissionDeniedAlert = false
+                                    }) {
+                                        Text("Grant")
+                                    }
+                                },
+                                dismissButton = {
+                                    TextButton(onClick = { showPermissionDeniedAlert = false }) {
+                                        Text("Dismiss")
+                                    }
+                                },
+                                onDismissRequest = { showPermissionDeniedAlert = false }
+                            )
+                        }
+                        if (showPermissionPermanentlyDeniedSnackbar) {
+                            LaunchedEffect(snackbarHostState) {
+                                val res = snackbarHostState.showSnackbar(
+                                    "Location permission is required.",
+                                    "Go to Settings",
+                                    duration = SnackbarDuration.Long
+                                )
+                                if (res == SnackbarResult.ActionPerformed) {
+                                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+                                        data = Uri.fromParts("package", ctx.packageName, null)
+                                        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                    }
+                                    if (intent.resolveActivity(ctx.packageManager) != null) {
+                                        ctx.startActivity(intent)
+                                    }
+                                }
+                                showPermissionPermanentlyDeniedSnackbar = false
+                            }
+                        }
                     }
                 }
             }

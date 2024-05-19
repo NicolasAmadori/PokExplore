@@ -14,11 +14,19 @@ import kotlinx.coroutines.launch
 
 data class SignUpState(val user: User?)
 
+data class UsersState(val users: List<User>)
+
 class SignUpViewModel(
     private val repository: DataStoreRepository,
     private val databaseRepository: PokExploreRepository
 ) : ViewModel()  {
     var state by mutableStateOf(SignUpState(null))
+        private set
+
+//    var loggedUser = mutableStateOf<User?>(null)
+//        private set
+
+    var usersState by mutableStateOf(UsersState(listOf()))
         private set
 
     fun signUpUser(user: User, onFinished: () -> Unit) {
@@ -33,9 +41,10 @@ class SignUpViewModel(
                     pokemonId = pokemon.pokemonId
                 ))
             }
-            repository.setUser(user) //Save user in DataStore
+//            loggedUser = mutableStateOf(user)
             databaseRepository.insertUser(user) //Save user in the database
             databaseRepository.insertUserPokemon(userPokemonList.toList())
+            repository.setUser(user) //Save user in DataStore
         }
         onFinished()
     }
@@ -43,6 +52,7 @@ class SignUpViewModel(
     init {
         viewModelScope.launch {
             state = SignUpState(repository.user.first())
+            usersState = UsersState(databaseRepository.users.first())
         }
     }
 }

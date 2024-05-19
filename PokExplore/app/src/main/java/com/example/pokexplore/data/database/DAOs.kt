@@ -49,6 +49,9 @@ interface UserPokemonDAO {
 @Dao
 interface UserDAO {
 
+    @Query("SELECT * FROM User")
+    fun getAllUsers(): Flow<List<User>>
+
     @Query("SELECT * FROM User WHERE email = :email AND password = :password")
     suspend fun login(email: String, password: String): User
 

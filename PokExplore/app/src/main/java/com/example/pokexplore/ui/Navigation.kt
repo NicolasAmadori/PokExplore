@@ -135,7 +135,7 @@ fun PokemonNavGraph(
         with(PokemonRoute.SignUp) {
             composable(route) {
                 val signUpVm = koinViewModel<SignUpViewModel>()
-                SignUpScreen(navController, signUpVm::signUpUser)
+                SignUpScreen(navController, signUpVm.usersState, signUpVm::signUpUser)
             }
         }
         with(PokemonRoute.Loading) {

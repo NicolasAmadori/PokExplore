@@ -74,18 +74,16 @@ fun BottomNavScreen(
                 label = { Text(stringResource(item.stringId)) },
                 selected = currentRoute == item.route,
                 onClick = {
-                    if(currentRoute != item.route) {
-                        if(item.route != PokemonRoute.CatchPokemon.route) {
-                            navController.navigate(item.route) {
-                                popUpTo(navController.graph.startDestinationId) {
-                                    inclusive = true
-                                }
-                                launchSingleTop = true
+                    if(item.route != PokemonRoute.CatchPokemon.route) {
+                        navController.navigate(item.route) {
+                            popUpTo(currentRoute!!) {
+                                inclusive = true
                             }
+                            launchSingleTop = true
                         }
-                        else {
-                            requestPermission()
-                        }
+                    }
+                    else {
+                        requestPermission()
                     }
                 }
             )
