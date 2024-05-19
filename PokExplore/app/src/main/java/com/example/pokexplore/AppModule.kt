@@ -54,6 +54,7 @@ val appModule = module {
         get<PokExploreDatabase>().pokemonDAO(),
         get<PokExploreDatabase>().userDAO(),
         get<PokExploreDatabase>().userPokemonDAO(),
+        get<PokExploreDatabase>().userWithPokemonsDao()
     ) }
 
     single { DataStoreRepository(get()) }

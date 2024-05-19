@@ -42,7 +42,7 @@ import com.example.pokexplore.ui.PokemonRoute
 @Composable
 fun SignUpScreen(
     navController: NavHostController,
-    onUserSignUp: (User) -> Unit
+    onUserSignUp: (User, () -> Unit) -> Unit
 ) {
     val context = LocalContext.current
 
@@ -372,8 +372,9 @@ fun SignUpScreen(
                     phone = phoneNumber.value.takeIf { it.isNotBlank() }?.toIntOrNull(),
                     profilePicUrl = null
                 )
-                onUserSignUp(newUser)
-                navController.navigate(PokemonRoute.AllPokemonList.route)
+                onUserSignUp(newUser){
+                    navController.navigate(PokemonRoute.AllPokemonList.route)
+                }
             }
         },
             modifier = Modifier

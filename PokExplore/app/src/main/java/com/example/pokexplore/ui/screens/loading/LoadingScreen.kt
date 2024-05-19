@@ -26,7 +26,7 @@ fun LoadingScreen(
     actions: LoadingActions
 ) {
     val context = LocalContext.current
-    if(state.pokemonList.isEmpty()) {
+    if(state.pokemonList.size < 386) {
         actions.downloadPokemons(context) {
             navController.navigate(PokemonRoute.SignIn.route)
         }

@@ -21,21 +21,23 @@ class SignUpViewModel(
     var state by mutableStateOf(SignUpState(null))
         private set
 
-    fun signUpUser(user: User) {
+    fun signUpUser(user: User, onFinished: () -> Unit) {
         state = SignUpState(user)
         viewModelScope.launch {
-            repository.setUser(user) //Save user in DataStore
+            val userPokemonList = mutableListOf<UserPokemon>()
+            val pokemons = databaseRepository.pokemons.first()
 
-            databaseRepository.insertUser(user) //Save user in the database
-            databaseRepository.pokemons.collect{
-                it.forEach{pokemon->
-                    databaseRepository.insertUserPokemon(UserPokemon(
-                        email = user.email,
-                        pokemonId = pokemon.pokemonId
-                    ))
-                }
+            pokemons.forEach{pokemon->
+                userPokemonList.add(UserPokemon(
+                    email = user.email,
+                    pokemonId = pokemon.pokemonId
+                ))
             }
+            repository.setUser(user) //Save user in DataStore
+            databaseRepository.insertUser(user) //Save user in the database
+            databaseRepository.insertUserPokemon(userPokemonList.toList())
         }
+        onFinished()
     }
 
     init {

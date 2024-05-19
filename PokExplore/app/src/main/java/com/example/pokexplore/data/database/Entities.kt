@@ -1,5 +1,6 @@
 package com.example.pokexplore.data.database
 
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.Date
@@ -37,4 +38,12 @@ data class UserPokemon(
     val isCaptured: Boolean = false,
     val isFavourite: Boolean = false,
     val captureDate: Date? = null
+)
+
+data class UserWithPokemons(
+    @Embedded val user: User,
+    @Embedded val pokemon: Pokemon,
+    val isCaptured: Boolean,
+    val isFavourite: Boolean,
+    val captureDate: Date?
 )

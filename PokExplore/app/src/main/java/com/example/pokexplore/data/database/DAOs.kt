@@ -24,7 +24,7 @@ interface PokemonDAO {
 //    fun getLocalPokemons(countryCode: Int): Flow<List<Pokemon>>
 
     @Upsert
-    suspend fun upsert(pokemon: Pokemon)
+    suspend fun upsert(pokemons: List<Pokemon>)
 
 //    @Query("UPDATE UserPokemon SET isCaptured = 1 WHERE user = :user AND pokemon = :pokemon")
 //    suspend fun capture(user: User, pokemon: Pokemon)
@@ -37,7 +37,7 @@ interface PokemonDAO {
 interface UserPokemonDAO {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertUserPokemon(userPokemon: UserPokemon)
+    suspend fun insertUserPokemon(userPokemonList: List<UserPokemon>)
 
     @Query("UPDATE UserPokemon SET isCaptured = 1, captureDate = :captureDate WHERE email = :email AND pokemonId = :pokemonId AND isCaptured = 0")
     suspend fun capturePokemon(email: String, pokemonId: Int, captureDate: Date)
@@ -54,4 +54,14 @@ interface UserDAO {
 
     @Insert
     suspend fun insert(user: User)
+}
+
+@Dao
+interface UserWithPokemonsDao {
+    @Query("""
+        select User.*, Pokemon.*, UserPokemon.isFavourite, UserPokemon.isCaptured, UserPokemon.captureDate
+        from User inner join UserPokemon on user.email = UserPokemon.email 
+        inner join Pokemon on Pokemon.pokemonId = UserPokemon.pokemonId
+        """)
+    fun getUserPokemons(): Flow<List<UserWithPokemons>>
 }

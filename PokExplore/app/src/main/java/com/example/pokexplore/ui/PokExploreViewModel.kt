@@ -15,7 +15,6 @@ data class PokemonsState(val pokemons: List<Pokemon>)
 
 interface PokExploreActions {
     fun addUser(user: User): Job
-    fun addPokemon(pokemon: Pokemon): Job
 }
 
 class PokExploreViewModel(
@@ -30,10 +29,6 @@ class PokExploreViewModel(
     val actions = object : PokExploreActions {
         override fun addUser(user: User) = viewModelScope.launch {
             repository.insertUser(user)
-        }
-
-        override fun addPokemon(pokemon: Pokemon) = viewModelScope.launch {
-            repository.upsert(pokemon)
         }
 
 //        override fun capture(pokemon: Pokemon) = viewModelScope.launch {

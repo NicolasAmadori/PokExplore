@@ -1,7 +1,6 @@
 package com.example.pokexplore.ui.screens.allpokemonlist
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -15,13 +14,10 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -29,10 +25,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -43,7 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.pokexplore.R
-import com.example.pokexplore.data.database.Pokemon
+import com.example.pokexplore.data.database.UserWithPokemons
 import com.example.pokexplore.ui.PokemonRoute
 import java.util.Locale
 
@@ -52,40 +44,10 @@ import java.util.Locale
 fun AllPokemonListScreen(
     navController: NavHostController,
     allPokemonListState: AllPokemonListState,
-    allPokemonListViewModel: AllPokemonListViewModel
+    userState: UserState,
+    actions: AllPokemonListActions
 ) {
-    val types = allPokemonListState.pokemonList.flatMap { it.types}.distinct()
-//    val searchText by allPokemonListViewModel.searchText.collectAsState()
-//    val isSearching by allPokemonListViewModel.isSearching.collectAsState()
-//    val countriesList by allPokemonListViewModel.countriesList.collectAsState()
-
-    Scaffold(
-//        topBar = {
-//            SearchBar(
-//                query = searchText,//text showed on SearchBar
-//                onQueryChange = allPokemonListViewModel::onSearchTextChange, //update the value of searchText
-//                onSearch = allPokemonListViewModel::onSearchTextChange, //the callback to be invoked when the input service triggers the ImeAction.Search action
-//                active = isSearching, //whether the user is searching or not
-//                onActiveChange = { allPokemonListViewModel.onToogleSearch() }, //the callback to be invoked when this search bar's active state is changed
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .padding(16.dp)
-//            ) {
-//                LazyColumn {
-//                    items(countriesList) { country ->
-//                        Text(
-//                            text = country,
-//                            modifier = Modifier.padding(
-//                                start = 8.dp,
-//                                top = 4.dp,
-//                                end = 8.dp,
-//                                bottom = 4.dp)
-//                        )
-//                    }
-//                }
-//            }
-//        }
-    ){ contentPadding ->
+    Scaffold{ contentPadding ->
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -94,57 +56,19 @@ fun AllPokemonListScreen(
             modifier = Modifier
                 .padding(contentPadding)
         ) {
-            items(allPokemonListState.pokemonList) { pokemon ->
-                ImageCard(
-                    pokemon,
-                    onClick = {
-                        navController.navigate(PokemonRoute.PokemonDetails.buildRoute(pokemon.pokemonId))
-                    })
-            }
-        }
-    }
-}
-
-@Composable
-fun DropdownChip(
-    options: List<String>,
-    onOptionSelected: (String) -> Unit,
-    modifier: Modifier = Modifier
-) {
-    var selectedOption by remember { mutableStateOf("") }
-    var expanded by remember { mutableStateOf(false) }
-
-    Column(
-        modifier = modifier
-    ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.clickable { expanded = true }
-        ) {
-            Text(
-                text = selectedOption ?: "Select option",
-                modifier = Modifier.padding(8.dp)
-            )
-            Icon(
-                imageVector = Icons.Filled.ArrowDropDown,
-                contentDescription = "Dropdown arrow",
-                modifier = Modifier.padding(end = 8.dp)
-            )
-        }
-
-        DropdownMenu(
-            expanded = expanded,
-            onDismissRequest = { expanded = false }
-        ) {
-            options.forEach { option ->
-                DropdownMenuItem(
-                    text = {Text(text = option)},
-                    onClick = {
-                        onOptionSelected(option)
-                        selectedOption = option
-                        expanded = false
-                    }
-                )
+            userState.user?.let{user ->
+                items(
+                    allPokemonListState.userWithPokemonsList.filter { it.user.email == user.email }
+                ) { userWithPokemon ->
+                    ImageCard(
+                        userWithPokemon,
+                        onClick = {
+                            navController.navigate(PokemonRoute.PokemonDetails.buildRoute(userWithPokemon.pokemon.pokemonId))
+                        },
+                        onToggleFavourite = {
+                            actions.toggleFavourite(userWithPokemon.user.email, userWithPokemon.pokemon.pokemonId)
+                        })
+                }
             }
         }
     }
@@ -153,30 +77,11 @@ fun DropdownChip(
 @ExperimentalMaterial3Api
 @Composable
 fun ImageCard(
-    pokemon: Pokemon,
+    userWithPokemon: UserWithPokemons,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    onToggleFavourite: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
-    val colours = mapOf(
-        "normal" to 0xFFA8A77A,
-        "fire" to 0xFFEE8130,
-        "water" to 0xFF6390F0,
-        "electric" to 0xFFF7D02C,
-        "grass" to 0xFF7AC74C,
-        "ice" to 0xFF96D9D6,
-        "fighting" to 0xFFC22E28,
-        "poison" to 0xFFA33EA1,
-        "ground" to 0xFFE2BF65,
-        "flying" to 0xFFA98FF3,
-        "psychic" to 0xFFF95587,
-        "bug" to 0xFFA6B91A,
-        "rock" to 0xFFB6A136,
-        "ghost" to 0xFF735797,
-        "dragon" to 0xFF6F35FC,
-        "dark" to 0xFF705746,
-        "steel" to 0xFFB7B7CE,
-        "fairy" to 0xFFD685AD
-    )
     val pastelColours = mapOf(
         "normal" to 0xFFBAB5A5,
         "fire" to 0xFFF8A689,
@@ -219,12 +124,11 @@ fun ImageCard(
         "fairy" to R.drawable.fairy
     )
 
-    val colorType = if (pokemon.types.size == 1) {
-        pokemon.types.first()
+    val colorType = if (userWithPokemon.pokemon.types.size == 1) {
+        userWithPokemon.pokemon.types.first()
     } else {
-        pokemon.types.first { pastelColours.containsKey(it) && it != "normal" }
+        userWithPokemon.pokemon.types.first { pastelColours.containsKey(it) && it != "normal" }
     }
-    val isFavourite = remember { mutableStateOf(false) }
 
     Card(
         onClick = onClick,
@@ -242,7 +146,7 @@ fun ImageCard(
             ){
                 Image(
                     painter = rememberAsyncImagePainter(
-                        model = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.pokemonId}.png"
+                        model = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${userWithPokemon.pokemon.pokemonId}.png"
                     ),
                     contentDescription = null,
                     modifier = Modifier
@@ -251,12 +155,12 @@ fun ImageCard(
                         .height(120.dp)
                 )
                 Text(
-                    text = pokemon.name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() },
+                    text = userWithPokemon.pokemon.name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() },
                     style = MaterialTheme.typography.titleLarge,
                     modifier = Modifier.padding(horizontal = 10.dp)
                 )
                 Text(
-                    text = "#${String.format("%03d", pokemon.pokemonId)}",
+                    text = "#${String.format("%03d", userWithPokemon.pokemon.pokemonId)}",
                     style = MaterialTheme.typography.bodySmall,
                     modifier = Modifier.padding(horizontal = 10.dp)
                 )
@@ -267,7 +171,7 @@ fun ImageCard(
                 modifier = Modifier.padding(horizontal = 5.dp)
             ) {
                 Spacer(modifier = Modifier.size(10.dp))
-                pokemon.types.forEach{type ->
+                userWithPokemon.pokemon.types.forEach{ type ->
                     Image(
                         painter = painterResource(typeIcons[type]!!),
                         contentDescription = stringResource(R.string.type),
@@ -277,16 +181,16 @@ fun ImageCard(
                     Spacer(modifier = Modifier.size(5.dp))
                 }
                 Spacer(modifier = Modifier.weight(1f))
-                IconButton(onClick = { isFavourite.value = isFavourite.value.not() }) {
+                IconButton(onClick = { onToggleFavourite() }) {
                     Icon(
-                        imageVector = if(isFavourite.value) {
+                        imageVector = if(userWithPokemon.isFavourite) {
                             Icons.Outlined.Favorite
                         }
                         else {
                             Icons.Outlined.FavoriteBorder
                         },
                         contentDescription = stringResource(R.string.favourite_label),
-                        tint = if (isFavourite.value) Color.Red else Color.Black)
+                        tint = if (userWithPokemon.isFavourite) Color.Red else Color.Black)
                 }
             }
         }

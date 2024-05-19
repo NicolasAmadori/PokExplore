@@ -10,11 +10,11 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.pokexplore.ui.screens.catchPokemon.CatchPokemonScreen
 import com.example.pokexplore.ui.screens.FavouritesPokemonListScreen
 import com.example.pokexplore.ui.screens.LocalPokemonListScreen
 import com.example.pokexplore.ui.screens.allpokemonlist.AllPokemonListScreen
 import com.example.pokexplore.ui.screens.allpokemonlist.AllPokemonListViewModel
+import com.example.pokexplore.ui.screens.catchPokemon.CatchPokemonScreen
 import com.example.pokexplore.ui.screens.gpsMandatory.GpsMandatoryScreen
 import com.example.pokexplore.ui.screens.gpsMandatory.GpsMandatoryViewModelViewModel
 import com.example.pokexplore.ui.screens.loading.LoadingScreen
@@ -75,7 +75,8 @@ fun PokemonNavGraph(
             composable(route) {
                 val allPokemonListVm = koinViewModel<AllPokemonListViewModel>()
                 val state by allPokemonListVm.state.collectAsStateWithLifecycle()
-                AllPokemonListScreen(navController, state, allPokemonListVm)
+                val userState = allPokemonListVm.userState
+                AllPokemonListScreen(navController, state, userState, allPokemonListVm.actions)
             }
         }
         with(PokemonRoute.Theme) {

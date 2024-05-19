@@ -32,9 +32,7 @@ class LoadingViewModel(
         override fun downloadPokemons(context: Context, onFinished: () -> Unit) = viewModelScope.launch {
             val jsonString = readJsonFromAssets(context, "pokemon_data.json")
             val pokemonList = parseJsonToPokemonList(jsonString)
-            pokemonList.forEach {
-                databaseRepository.upsert(it)
-            }
+            databaseRepository.upsert(pokemonList)
             onFinished()
         }
     }
