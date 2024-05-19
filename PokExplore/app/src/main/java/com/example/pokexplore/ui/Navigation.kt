@@ -15,6 +15,8 @@ import com.example.pokexplore.ui.screens.LocalPokemonListScreen
 import com.example.pokexplore.ui.screens.allpokemonlist.AllPokemonListScreen
 import com.example.pokexplore.ui.screens.allpokemonlist.AllPokemonListViewModel
 import com.example.pokexplore.ui.screens.catchPokemon.CatchPokemonScreen
+import com.example.pokexplore.ui.screens.caughtPokemons.CaughtPokemonsScreen
+import com.example.pokexplore.ui.screens.caughtPokemons.CaughtPokemonsViewModel
 import com.example.pokexplore.ui.screens.gpsMandatory.GpsMandatoryScreen
 import com.example.pokexplore.ui.screens.gpsMandatory.GpsMandatoryViewModelViewModel
 import com.example.pokexplore.ui.screens.loading.LoadingScreen
@@ -55,8 +57,9 @@ sealed class PokemonRoute(
     data object Loading: PokemonRoute("loading", "Loading")
     data object Theme: PokemonRoute("theme", "Theme")
     data object GpsMandatory: PokemonRoute("gpsMandatory", "Gps Mandatory")
+    data object CaughtPokemons: PokemonRoute("caughtPokemons", "Caught Pokemons")
     companion object {
-        val routes = setOf(AllPokemonList, PokemonDetails, CatchPokemon, Settings, Profile, LocalPokemonList, FavouritesPokemonList, SignIn, SignUp, Loading, Theme, GpsMandatory)
+        val routes = setOf(AllPokemonList, PokemonDetails, CatchPokemon, Settings, Profile, LocalPokemonList, FavouritesPokemonList, SignIn, SignUp, Loading, Theme, GpsMandatory, CaughtPokemons)
     }
 }
 
@@ -147,6 +150,14 @@ fun PokemonNavGraph(
                 val gpsMandatoryVm = koinViewModel<GpsMandatoryViewModelViewModel>()
                 val state = gpsMandatoryVm.state
                 GpsMandatoryScreen(navController, state, gpsMandatoryVm::setCountryCode)
+            }
+        }
+        with(PokemonRoute.CaughtPokemons) {
+            composable(route) {
+                val caughtPokemonsVm = koinViewModel<CaughtPokemonsViewModel>()
+                val state by caughtPokemonsVm.state.collectAsStateWithLifecycle()
+                val userState = caughtPokemonsVm.userState
+                CaughtPokemonsScreen(navController, state, userState, caughtPokemonsVm.actions)
             }
         }
     }

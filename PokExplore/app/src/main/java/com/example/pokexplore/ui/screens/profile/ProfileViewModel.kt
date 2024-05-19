@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 data class ProfileState(val user: User?)
 
 class ProfileViewModel(
-    private val dataStoreRepository: DataStoreRepository
+    private val dataStoreRepository: DataStoreRepository,
 ) : ViewModel()  {
     var state by mutableStateOf(ProfileState(null))
         private set

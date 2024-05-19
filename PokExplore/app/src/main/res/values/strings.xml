@@ -53,4 +53,8 @@
     <string name="evolutions">Evolution Chain</string>
     <string name="catched">Catched</string>
     <string name="not_catched">Not Catched</string>
+    <string name="tab_all">All</string>
+    <string name="tab_near_me">Near me</string>
+    <string name="tab_favourites">Favourites</string>
+    <string name="caught_pokemons_label">Caught Pokemons</string>
 </resources>

@@ -403,7 +403,6 @@ fun PokemonCard(pokemon: Pokemon, onClick: () -> Unit) {
                 modifier = Modifier
                     .size(64.dp)
                     .graphicsLayer {
-                        shadowElevation = 8.dp.toPx()
                         shape = RoundedCornerShape(8.dp)
                         clip = true
                     },

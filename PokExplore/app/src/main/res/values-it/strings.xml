@@ -45,4 +45,8 @@
     <string name="evolutions">Linea Evolutiva</string>
     <string name="catched">Cattura</string>
     <string name="not_catched">Non Catturato</string>
+    <string name="tab_all">Tutti</string>
+    <string name="tab_near_me">Vicini</string>
+    <string name="tab_favourites">Preferiti</string>
+    <string name="caught_pokemons_label">Pokemon Catturati</string>
 </resources>

@@ -15,6 +15,9 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.GpsFixed
+import androidx.compose.material.icons.filled.Public
 import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Card
@@ -24,12 +27,19 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -41,6 +51,8 @@ import com.example.pokexplore.ui.PokemonRoute
 import com.example.pokexplore.utilities.pastelColours
 import java.util.Locale
 
+data class TabItem(val icon: ImageVector, val stringId: Int, val index: Int)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AllPokemonListScreen(
@@ -49,7 +61,36 @@ fun AllPokemonListScreen(
     userState: UserState,
     actions: AllPokemonListActions
 ) {
-    Scaffold{ contentPadding ->
+    var selectedTabIndex by remember { mutableIntStateOf(0) }
+    Scaffold(
+        topBar = {
+            TabRow(selectedTabIndex = selectedTabIndex) {
+                val tabs = listOf(
+                    TabItem(Icons.Filled.Public, R.string.tab_all,0),
+                    TabItem(Icons.Filled.GpsFixed,R.string.tab_near_me,1),
+                    TabItem(Icons.Filled.FavoriteBorder,R.string.tab_favourites,2)
+                )
+                tabs.forEach { (icon, stringId, index) ->
+                    Tab(
+                        selected = selectedTabIndex == index,
+                        onClick = {
+                            selectedTabIndex = index
+                        },
+                        text = {
+                            Text(stringResource(stringId))
+                        },
+                        icon = {
+                            Icon(
+                                icon,
+                                contentDescription = stringResource(stringId),
+                                modifier = Modifier.padding(end = 4.dp)
+                            )
+                        }
+                    )
+                }
+            }
+        }
+    ){ contentPadding ->
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -58,18 +99,22 @@ fun AllPokemonListScreen(
             modifier = Modifier
                 .padding(contentPadding)
         ) {
-            userState.user?.let{user ->
-                items(
-                    allPokemonListState.userWithPokemonsList.filter { it.user.email == user.email }
-                ) { userWithPokemon ->
-                    ImageCard(
+            if(userState.user != null) {
+                val filteredList = when (selectedTabIndex) {
+                    0 -> allPokemonListState.userWithPokemonsList.filter { it.user.email == userState.user.email }
+                    1 -> allPokemonListState.userWithPokemonsList.filter { it.user.email == userState.user.email && it.pokemon.countryCode == "it" }
+                    else -> allPokemonListState.userWithPokemonsList.filter { it.user.email == userState.user.email && it.isFavourite }
+                }
+                items(filteredList) { userWithPokemon ->
+                    PokemonCard(
                         userWithPokemon,
                         onClick = {
                             navController.navigate(PokemonRoute.PokemonDetails.buildRoute(userWithPokemon.pokemon.pokemonId))
                         },
                         onToggleFavourite = {
                             actions.toggleFavourite(userWithPokemon.user.email, userWithPokemon.pokemon.pokemonId)
-                        })
+                        }
+                    )
                 }
             }
         }
@@ -78,10 +123,10 @@ fun AllPokemonListScreen(
 
 @ExperimentalMaterial3Api
 @Composable
-fun ImageCard(
+fun PokemonCard(
     userWithPokemon: UserWithPokemons,
     onClick: () -> Unit,
-    onToggleFavourite: () -> Unit,
+    onToggleFavourite: () -> Unit = {},
     modifier: Modifier = Modifier,
 ) {
     val typeIcons = mapOf(
@@ -163,6 +208,13 @@ fun ImageCard(
                     Spacer(modifier = Modifier.size(5.dp))
                 }
                 Spacer(modifier = Modifier.weight(1f))
+                if(userWithPokemon.isCaptured){
+                    Image(
+                        painter = painterResource(R.drawable.full_pokeball),
+                        contentDescription = stringResource(R.string.catched),
+                        modifier = Modifier.size(24.dp)
+                    )
+                }
                 IconButton(onClick = { onToggleFavourite() }) {
                     Icon(
                         imageVector = if(userWithPokemon.isFavourite) {
