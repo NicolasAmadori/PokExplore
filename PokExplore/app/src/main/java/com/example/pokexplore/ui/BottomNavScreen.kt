@@ -22,8 +22,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.pokexplore.R
-import com.example.pokexplore.utilities.PermissionHandler
-import com.example.pokexplore.utilities.PermissionStatus
 import com.example.pokexplore.utilities.rememberPermission
 
 sealed class BottomNavItem(val route: String, val unselectedIcon: ImageVector, val selectedIcon: ImageVector, val stringId: Int) {
@@ -76,16 +74,18 @@ fun BottomNavScreen(
                 label = { Text(stringResource(item.stringId)) },
                 selected = currentRoute == item.route,
                 onClick = {
-                    if(item.route != PokemonRoute.CatchPokemon.route) {
-                        navController.navigate(item.route) {
-                            popUpTo(navController.graph.startDestinationId) {
-                                inclusive = true
+                    if(currentRoute != item.route) {
+                        if(item.route != PokemonRoute.CatchPokemon.route) {
+                            navController.navigate(item.route) {
+                                popUpTo(navController.graph.startDestinationId) {
+                                    inclusive = true
+                                }
+                                launchSingleTop = true
                             }
-                            launchSingleTop = true
                         }
-                    }
-                    else {
-                        requestPermission()
+                        else {
+                            requestPermission()
+                        }
                     }
                 }
             )

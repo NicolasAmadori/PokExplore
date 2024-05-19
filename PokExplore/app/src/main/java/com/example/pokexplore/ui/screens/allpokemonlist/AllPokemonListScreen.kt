@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.FavoriteBorder
@@ -37,6 +38,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.pokexplore.R
 import com.example.pokexplore.data.database.UserWithPokemons
 import com.example.pokexplore.ui.PokemonRoute
+import com.example.pokexplore.utilities.pastelColours
 import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -82,27 +84,6 @@ fun ImageCard(
     onToggleFavourite: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val pastelColours = mapOf(
-        "normal" to 0xFFBAB5A5,
-        "fire" to 0xFFF8A689,
-        "water" to 0xFF8CB8F2,
-        "electric" to 0xFFFFE580,
-        "grass" to 0xFFB8E6B8,
-        "ice" to 0xFFBFECEB,
-        "fighting" to 0xFFE69D99,
-        "poison" to 0xFFE29EDC,
-        "ground" to 0xFFECCC8C,
-        "flying" to 0xFFCDC9F0,
-        "psychic" to 0xFFFEC1D5,
-        "bug" to 0xFFCED6A3,
-        "rock" to 0xFFD7D0B2,
-        "ghost" to 0xFFB5ABC9,
-        "dragon" to 0xFFC79CF6,
-        "dark" to 0xFFC8C3BD,
-        "steel" to 0xFFDCDCE9,
-        "fairy" to 0xFFE9BCC9
-    )
-
     val typeIcons = mapOf(
         "normal" to R.drawable.normal,
         "fire" to R.drawable.fire,
@@ -136,7 +117,8 @@ fun ImageCard(
         colors = CardDefaults.cardColors(
             containerColor = Color(pastelColours[colorType]!!)
         ),
-        shape = MaterialTheme.shapes.medium
+        shape = RoundedCornerShape(16.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Column(
             modifier = Modifier.fillMaxWidth()

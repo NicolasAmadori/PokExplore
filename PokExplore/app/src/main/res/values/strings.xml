@@ -32,6 +32,7 @@
     <string name="gps_page_body">The application requires GPS location to allow capturing of Pokémon in the area where you are.</string>
     <string name="gps_page_button_label">Grant Permission</string>
     <string name="favourite_label">Favourite</string>
+    <string name="not_favourite_label">Not Favourite</string>
     <string name="profile_picture_description">Profile Picture</string>
     <string name="logout_description">Logout</string>
     <string name="settings_description">Settings</string>
@@ -49,5 +50,7 @@
     <string name="pokedex_description">Pokémon Description</string>
     <string name="base_stats">Base Stats</string>
     <string name="abilities">Abilities</string>
-    <string name="evolutions">Lines Evolutions</string>
+    <string name="evolutions">Evolution Chain</string>
+    <string name="catched">Catched</string>
+    <string name="not_catched">Not Catched</string>
 </resources>

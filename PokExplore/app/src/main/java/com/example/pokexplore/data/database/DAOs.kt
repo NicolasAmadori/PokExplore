@@ -52,7 +52,7 @@ interface UserDAO {
     @Query("SELECT * FROM User WHERE email = :email AND password = :password")
     suspend fun login(email: String, password: String): User
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(user: User)
 }
 

@@ -90,9 +90,10 @@ fun PokemonNavGraph(
             composable(route, arguments) { backStackEntry ->
                 val pokemonDetailsVm = koinViewModel<PokemonDetailsViewModel>()
                 val state by pokemonDetailsVm.state.collectAsStateWithLifecycle()
+                val userState = pokemonDetailsVm.userState
                 val pokemonId = backStackEntry.arguments?.getInt("pokemonId") ?: -1
                 if(pokemonId != -1) {
-                    PokemonDetailsScreen(navController, state, pokemonId)
+                    PokemonDetailsScreen(navController, state, userState, pokemonDetailsVm.actions, pokemonId)
                 }
             }
         }

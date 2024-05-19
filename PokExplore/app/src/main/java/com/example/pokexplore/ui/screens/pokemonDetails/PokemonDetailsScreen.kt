@@ -3,9 +3,19 @@ package com.example.pokexplore.ui.screens.pokemonDetails
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -13,9 +23,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -24,7 +35,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -33,34 +46,47 @@ import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.pokexplore.R
 import com.example.pokexplore.data.database.Pokemon
+import com.example.pokexplore.data.database.UserWithPokemons
 import com.example.pokexplore.ui.PokemonRoute
-import com.example.pokexplore.ui.screens.allpokemonlist.ImageCard
+import com.example.pokexplore.utilities.pastelColours
+import java.util.Locale
 
 @Composable
 fun PokemonDetailsScreen(
     navController: NavHostController,
     state: PokemonDetailsState,
+    userState: UserState,
+    actions: PokemonDetailsActions,
     pokemonId: Int
 ) {
-    val pokemon = state.pokemonList.firstOrNull { it.pokemonId == pokemonId }
-    val scrollState = rememberScrollState()
+    userState.user?.let{user ->
+        val userWithPokemon = state.pokemonList.firstOrNull { it.pokemon.pokemonId == pokemonId && it.user.email == user.email}
+        val scrollState = rememberScrollState()
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-            .verticalScroll(scrollState)
-    ) {
-        if (pokemon != null) {
-            HeaderSection(pokemon, navController)
-            Spacer(modifier = Modifier.height(16.dp))
-            WeightHeightSection(pokemon)
-            Spacer(modifier = Modifier.height(16.dp))
-            DescriptionSection(pokemon, pokemon.description, pokemon.abilities)
-            Spacer(modifier = Modifier.height(16.dp))
-            BaseStatsSection(pokemon.stats)
-            Spacer(modifier = Modifier.height(16.dp))
-            EvolutionSection(pokemon, navController)
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+                .verticalScroll(scrollState)
+        ) {
+            if (userWithPokemon != null) {
+                HeaderSection(userWithPokemon, navController) {
+                    actions.toggleFavourite(
+                        userWithPokemon.user.email,
+                        userWithPokemon.pokemon.pokemonId
+                    )
+                }
+                WeightHeightSection(userWithPokemon)
+                Spacer(modifier = Modifier.height(4.dp))
+                DescriptionSection(userWithPokemon, userWithPokemon.pokemon.description, userWithPokemon.pokemon.abilities)
+                Spacer(modifier = Modifier.height(16.dp))
+                BaseStatsSection(userWithPokemon.pokemon.stats)
+                Spacer(modifier = Modifier.height(16.dp))
+                EvolutionSection(
+                    pokemonId,
+                    state.pokemonList.filter{it.user.email == user.email && userWithPokemon.pokemon.evolutions.keys.contains(it.pokemon.pokemonId)},
+                    navController)
+            }
         }
     }
 }
@@ -83,41 +109,29 @@ val statColors = mapOf(
     "speed" to Color(0xFFFFFF00) // Giallo
 )
 
-val pastelColours = mapOf(
-    "normal" to 0xFFBAB5A5,
-    "fire" to 0xFFF8A689,
-    "water" to 0xFF8CB8F2,
-    "electric" to 0xFFFFE580,
-    "grass" to 0xFFB8E6B8,
-    "ice" to 0xFFBFECEB,
-    "fighting" to 0xFFE69D99,
-    "poison" to 0xFFE29EDC,
-    "ground" to 0xFFECCC8C,
-    "flying" to 0xFFCDC9F0,
-    "psychic" to 0xFFFEC1D5,
-    "bug" to 0xFFCED6A3,
-    "rock" to 0xFFD7D0B2,
-    "ghost" to 0xFFB5ABC9,
-    "dragon" to 0xFFC79CF6,
-    "dark" to 0xFFC8C3BD,
-    "steel" to 0xFFDCDCE9,
-    "fairy" to 0xFFE9BCC9
-)
-
 @Composable
-fun HeaderSection(pokemon: Pokemon, navController: NavHostController) {
-    val backgroundColor = Color(pastelColours[pokemon.types[0]]!!)
+fun HeaderSection(
+    userWithPokemon: UserWithPokemons,
+    navController: NavHostController,
+    onToggleFavourite: () -> Unit
+) {
+    val colorType = if (userWithPokemon.pokemon.types.size == 1) {
+        userWithPokemon.pokemon.types.first()
+    } else {
+        userWithPokemon.pokemon.types.first { pastelColours.containsKey(it) && it != "normal" }
+    }
+    val backgroundColor = Color(pastelColours[colorType]!!)
     val painter = rememberAsyncImagePainter(
-        model = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.pokemonId}.png"
+        model = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${userWithPokemon.pokemon.pokemonId}.png"
     )
     Box(
         modifier = Modifier
             .background(
                 color = backgroundColor,
-                shape = RoundedCornerShape(16.dp)
+                shape = RoundedCornerShape(16.dp),
             )
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(16.dp),
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Row(
@@ -136,33 +150,34 @@ fun HeaderSection(pokemon: Pokemon, navController: NavHostController) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Icon(
-                        //imageVector = if (pokemon.isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
-                        //contentDescription = if (pokemon.isFavorite) stringResource(R.string.favorite) else stringResource(R.string.not_favorite),
-                        imageVector = Icons.Default.Favorite,
-                        contentDescription = stringResource(R.string.favourite_label),
-                        tint = Color.White,
+                    Image(
+                        painter = painterResource(if (userWithPokemon.isCaptured) R.drawable.full_pokeball else R.drawable.empty_pokeball),
+                        contentDescription = stringResource(if (userWithPokemon.isCaptured) R.string.catched else R.string.not_catched),
                         modifier = Modifier.size(24.dp)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-                    Icon(
-                        imageVector = Icons.Default.CheckCircle,
-                        //contentDescription = stringResource(R.string.caught),
-                        contentDescription = stringResource(R.string.theme_dark),
-                        tint = Color.White,
+                    IconButton(
+                        onClick = { onToggleFavourite() },
                         modifier = Modifier.size(24.dp)
-                    )
+                    ) {
+                        Icon(
+                            imageVector = if (userWithPokemon.isFavourite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                            contentDescription = if (userWithPokemon.isFavourite) stringResource(R.string.favourite_label) else stringResource(R.string.not_favourite_label),
+                            tint = if (userWithPokemon.isFavourite) Color.Red else Color.White
+                        )
+                    }
                 }
             }
             Spacer(modifier = Modifier.height(16.dp))
 
             Box(
                 contentAlignment = Alignment.Center,
-                modifier = Modifier.padding(vertical = 8.dp)
+                modifier = Modifier
+                    .padding(vertical = 8.dp)
             ) {
                 Image(
                     painter = painter,
-                    contentDescription = pokemon.name,
+                    contentDescription = userWithPokemon.pokemon.name,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .size(200.dp)
@@ -171,13 +186,13 @@ fun HeaderSection(pokemon: Pokemon, navController: NavHostController) {
             }
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = pokemon.name,
+                text = userWithPokemon.pokemon.name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() },
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White
             )
             Text(
-                text = "#${pokemon.pokemonId.toString().padStart(3, '0')}",
+                text = "#${userWithPokemon.pokemon.pokemonId.toString().padStart(3, '0')}",
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White
@@ -188,17 +203,18 @@ fun HeaderSection(pokemon: Pokemon, navController: NavHostController) {
 }
 
 @Composable
-fun DescriptionSection(pokemon: Pokemon, description: String, abilities:List<String>) {
+fun DescriptionSection(userWithPokemon: UserWithPokemons, description: String, abilities:List<String>) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        pokemon.types.forEach { type ->
+        userWithPokemon.pokemon.types.forEach { type ->
             TypeBadge(type = type)
             Spacer(modifier = Modifier.width(8.dp))
         }
     }
+    Spacer(modifier = Modifier.height(8.dp))
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxWidth()
@@ -220,7 +236,11 @@ fun DescriptionSection(pokemon: Pokemon, description: String, abilities:List<Str
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(horizontal = 16.dp)
         )
-        val ability = abilities.joinToString(separator = ",")
+        val ability = abilities.joinToString(separator = ", ") { it ->
+            it.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+            }
+        }
         Text(
             text = ability,
             fontSize = 16.sp,
@@ -241,16 +261,16 @@ fun TypeBadge(type: String) {
             .padding(horizontal = 8.dp, vertical = 4.dp)
     ) {
         Text(
-            text = type,
+            text = type.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() },
             fontWeight = FontWeight.Bold
         )
     }
 }
 
 @Composable
-fun WeightHeightSection(pokemon: Pokemon) {
-    val height = pokemon.height * 0.1
-    val weight = pokemon.weight * 0.1
+fun WeightHeightSection(userWithPokemon: UserWithPokemons) {
+    val height = userWithPokemon.pokemon.height * 0.1
+    val weight = userWithPokemon.pokemon.weight * 0.1
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -322,7 +342,7 @@ fun BaseStatsSection(stats: Map<String, Int>) {
 }
 
 @Composable
-fun EvolutionSection(pokemon: Pokemon, navController: NavHostController) {
+fun EvolutionSection(pokemonId: Int, userWithPokemons: List<UserWithPokemons>, navController: NavHostController) {
     Column(
         modifier = Modifier
             .padding(horizontal = 16.dp)
@@ -335,14 +355,14 @@ fun EvolutionSection(pokemon: Pokemon, navController: NavHostController) {
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(vertical = 8.dp)
         )
-        val evolution = pokemon.evolutions.keys.filter { valu -> valu != pokemon.pokemonId  }.toList()
         LazyRow {
-            items(evolution) { Id ->
+            items(userWithPokemons) { p ->
                 PokemonCard(
-                    pokemonName = pokemon.evolutions[Id] ?: "h",
-                    pokemonId = Id,
+                    pokemon = p.pokemon,
                     onClick = {
-                        navController.navigate(PokemonRoute.PokemonDetails.buildRoute(Id))
+                        if(pokemonId != p.pokemon.pokemonId){
+                            navController.navigate(PokemonRoute.PokemonDetails.buildRoute(p.pokemon.pokemonId))
+                        }
                     })
             }
         }
@@ -350,24 +370,62 @@ fun EvolutionSection(pokemon: Pokemon, navController: NavHostController) {
 }
 
 @Composable
-fun PokemonCard(pokemonName: String, pokemonId: Int, onClick: () -> Unit) {
+fun PokemonCard(pokemon: Pokemon, onClick: () -> Unit) {
+    val colorType = if (pokemon.types.size == 1) {
+        pokemon.types.first()
+    } else {
+        pokemon.types.first { pastelColours.containsKey(it) && it != "normal" }
+    }
+    val cardColor = Color(pastelColours[colorType]!!)
     Card(
         modifier = Modifier
-            .padding(vertical = 8.dp)
+            .padding(8.dp)
+            .fillMaxWidth()
             .clickable(onClick = onClick),
-        //elevation = 4.dp
+        colors = CardDefaults.cardColors(
+            containerColor = cardColor
+        ),
+        shape = RoundedCornerShape(16.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
-        Column(
-            modifier = Modifier.padding(16.dp)
+        Row(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            // Inserisci qui l'immagine del Pokémon
-            Text(
-                text = pokemonName,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(vertical = 8.dp)
+            val painter = rememberAsyncImagePainter(
+                model = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.pokemonId}.png"
             )
-            // Altre informazioni del Pokémon
+            Image(
+                painter = painter,
+                contentDescription = "${pokemon.name} image",
+                modifier = Modifier
+                    .size(64.dp)
+                    .graphicsLayer {
+                        shadowElevation = 8.dp.toPx()
+                        shape = RoundedCornerShape(8.dp)
+                        clip = true
+                    },
+                contentScale = ContentScale.Crop
+            )
+
+            Spacer(modifier = Modifier.width(16.dp))
+
+            Column {
+                Text(
+                    text = pokemon.name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() },
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White,
+                    modifier = Modifier.padding(vertical = 4.dp)
+                )
+                Text(
+                    text = "#${String.format("%03d", pokemon.pokemonId)}",
+                    fontSize = 14.sp,
+                    color = Color.White
+                )
+            }
         }
     }
 }
