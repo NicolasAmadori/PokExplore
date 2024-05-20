@@ -96,13 +96,16 @@ fun AllPokemonListScreen(
             SearchBar(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(if(!isSearchActive) 16.dp else 0.dp),
+                    .padding(if (!isSearchActive) 16.dp else 0.dp),
                 query = searchText,
                 onQueryChange = {
                     searchText = it
                 },
                 onSearch = {
-                    if(searchHistory.size == 5){
+                    if(searchHistory.contains(it)){
+                        searchHistory.remove(it)
+                    }
+                    else if(searchHistory.size == 5){
                         searchHistory.removeAt(0)
                     }
                     searchHistory+= it
@@ -113,7 +116,7 @@ fun AllPokemonListScreen(
                     isSearchActive = it
                 },
                 placeholder = {
-                    Text(text = "Search by name or id")
+                    Text(stringResource(R.string.searchbar_placeholder))
                 },
                 leadingIcon = {
                     Icon(
@@ -121,7 +124,7 @@ fun AllPokemonListScreen(
                             isSearchActive = !isSearchActive
                         },
                         imageVector = Icons.Default.Search,
-                        contentDescription = "Search icon")
+                        contentDescription = stringResource(R.string.search_icon_description))
                 },
                 trailingIcon = {
                     if (isSearchActive || searchText.trim().isNotEmpty()) {
@@ -131,7 +134,7 @@ fun AllPokemonListScreen(
                                 isSearchActive = false
                             },
                             imageVector = Icons.Default.Close,
-                            contentDescription = "Close icon"
+                            contentDescription = stringResource(R.string.search_close_description)
                         )
                     }
                 }
@@ -142,7 +145,8 @@ fun AllPokemonListScreen(
                         modifier = Modifier.padding(8.dp))
                     FlowRow(
                         modifier = Modifier.padding(8.dp),
-                        maxItemsInEachRow = 6
+                        maxItemsInEachRow = 6,
+                        horizontalArrangement = Arrangement.Center
                     ) {
                         allPokemonListState.userWithPokemonsList
                             .flatMap { it.pokemon.types }
@@ -156,14 +160,14 @@ fun AllPokemonListScreen(
                             Row(modifier = Modifier.padding(all = 14.dp)) {
                                 Icon(
                                     imageVector = Icons.Default.History,
-                                    contentDescription = "History item"
+                                    contentDescription = stringResource(R.string.history_item_description)
                                 )
                                 Spacer(modifier = Modifier.width(10.dp))
                                 Text(text = it)
                                 Spacer(modifier = Modifier.weight(1f))
                                 Icon(
                                     imageVector = Icons.Filled.Delete,
-                                    contentDescription = "Delete",
+                                    contentDescription = stringResource(R.string.delete_history_item),
                                     modifier = Modifier.clickable {
                                         searchHistory.remove(it)
                                     }

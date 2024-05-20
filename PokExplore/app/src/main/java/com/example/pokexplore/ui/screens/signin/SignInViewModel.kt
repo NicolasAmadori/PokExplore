@@ -7,6 +7,7 @@ import com.example.pokexplore.data.database.User
 import com.example.pokexplore.data.repositories.DataStoreRepository
 import com.example.pokexplore.data.repositories.PokExploreRepository
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 interface SignInActions {
@@ -33,4 +34,9 @@ class SignInViewModel(
         }
     }
 
+    init {
+        viewModelScope.launch {
+            loggedUser = mutableStateOf(dataStoreRepository.user.first())
+        }
+    }
 }

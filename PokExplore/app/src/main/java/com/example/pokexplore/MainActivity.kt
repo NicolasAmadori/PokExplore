@@ -33,10 +33,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.pokexplore.data.models.Theme
 import com.example.pokexplore.ui.BottomNavItem
 import com.example.pokexplore.ui.BottomNavScreen
-import com.example.pokexplore.ui.PokExploreViewModel
 import com.example.pokexplore.ui.PokemonNavGraph
 import com.example.pokexplore.ui.PokemonRoute
-import com.example.pokexplore.ui.screens.signup.SignUpViewModel
 import com.example.pokexplore.ui.screens.theme.ThemeViewModel
 import com.example.pokexplore.ui.theme.PokExploreTheme
 import com.example.pokexplore.utilities.LocationService
@@ -70,13 +68,6 @@ class MainActivity : FragmentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val ctx = LocalContext.current
-                    /* Pokemon list */
-                    val pkVm = koinViewModel<PokExploreViewModel>()
-                    val pkState by pkVm.state.collectAsStateWithLifecycle()
-
-                    /* Logged in user */
-                    val signUpVm = koinViewModel<SignUpViewModel>()
-                    val signUpState = signUpVm.state
 
                     /* Navigation */
                     val navController = rememberNavController()
@@ -86,7 +77,7 @@ class MainActivity : FragmentActivity() {
                         derivedStateOf {
                             PokemonRoute.routes.find {
                                 it.route == backStackEntry?.destination?.route
-                            } ?: PokemonRoute.AllPokemonList
+                            } ?: PokemonRoute.Loading
                         }
                     }
 
@@ -165,13 +156,7 @@ class MainActivity : FragmentActivity() {
                         PokemonNavGraph(
                             navController,
                             modifier =  Modifier.padding(contentPadding),
-                            startDestination = if(pkState.pokemons.size < 386){
-                                PokemonRoute.Loading.route
-                            } else if(signUpState.user == null) {
-                                PokemonRoute.SignIn.route
-                            } else {
-                                PokemonRoute.AllPokemonList.route
-                            }
+                            startDestination = PokemonRoute.Loading.route
                         )
                         if (showLocationDisabledAlert) {
                             AlertDialog(

@@ -235,7 +235,7 @@ fun SignInScreen(
                             if (isBiometricAvailable == BiometricManager.BIOMETRIC_SUCCESS) {
                                 biometricPrompt.authenticate(promptInfo)
                             } else {
-                                //viewModel.actions.setUser(viewModel.loggedUser.value!!)
+                                viewModel.actions.setUser(viewModel.loggedUser.value!!)
                                 navController.navigate(PokemonRoute.AllPokemonList.route)
                             }
                         } else {

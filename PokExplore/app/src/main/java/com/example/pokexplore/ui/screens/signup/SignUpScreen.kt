@@ -44,8 +44,9 @@ import com.example.pokexplore.ui.PokemonRoute
 @Composable
 fun SignUpScreen(
     navController: NavHostController,
+    signUpViewModel: SignUpViewModel,
     usersState: UsersState,
-    onUserSignUp: (User, () -> Unit) -> Unit
+    actions: SignUpActions
 ) {
     val context = LocalContext.current
 
@@ -88,6 +89,11 @@ fun SignUpScreen(
     fun validateEmail(email: String): Boolean {
         val regex = Regex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\$")
         return !regex.matches(email)
+    }
+
+    if (signUpViewModel.loggedUser.value != null) {
+        signUpViewModel.actions.setUser(signUpViewModel.loggedUser.value!!)
+        navController.navigate(PokemonRoute.AllPokemonList.route)
     }
 
     // Column to arrange UI elements vertically
@@ -379,8 +385,11 @@ fun SignUpScreen(
                     phone = phoneNumber.value.takeIf { it.isNotBlank() }?.toIntOrNull(),
                     profilePicUrl = null
                 )
-                onUserSignUp(newUser){
-                    navController.navigate(PokemonRoute.AllPokemonList.route)
+                actions.signUpUser(newUser){
+                    if (signUpViewModel.loggedUser.value != null) {
+                        signUpViewModel.actions.setUser(signUpViewModel.loggedUser.value!!)
+                        navController.navigate(PokemonRoute.AllPokemonList.route)
+                    }
                 }
             }
         },

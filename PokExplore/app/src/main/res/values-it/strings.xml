@@ -49,5 +49,10 @@
     <string name="tab_near_me">Vicini</string>
     <string name="tab_favourites">Preferiti</string>
     <string name="caught_pokemons_label">Pokemon Catturati</string>
-    <string name="duplicate_email">Email già utilizzata per un altro account</string>
+    <string name="duplicate_email">Email già utilizzata in un altro account</string>
+    <string name="searchbar_placeholder">Ricerca tramite nome o id</string>
+    <string name="search_icon_description">Icona della ricerca</string>
+    <string name="search_close_description">Icona di chiusura barra di ricerca</string>
+    <string name="history_item_description">Elemento cronologia</string>
+    <string name="delete_history_item">Elimina elemento cronologia</string>
 </resources>

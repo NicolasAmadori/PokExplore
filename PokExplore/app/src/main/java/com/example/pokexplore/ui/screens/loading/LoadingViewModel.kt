@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 data class LoadingState(val pokemonList: List<Pokemon>)
 
 interface LoadingActions {
-    fun downloadPokemons(context: Context, onFinished: () -> Unit): Job
+    fun downloadPokemons(context: Context): Job
 }
 
 class LoadingViewModel(
@@ -29,11 +29,10 @@ class LoadingViewModel(
     )
 
     val actions = object : LoadingActions {
-        override fun downloadPokemons(context: Context, onFinished: () -> Unit) = viewModelScope.launch {
+        override fun downloadPokemons(context: Context) = viewModelScope.launch {
             val jsonString = readJsonFromAssets(context, "pokemon_data.json")
             val pokemonList = parseJsonToPokemonList(jsonString)
             databaseRepository.upsert(pokemonList)
-            onFinished()
         }
     }
 }

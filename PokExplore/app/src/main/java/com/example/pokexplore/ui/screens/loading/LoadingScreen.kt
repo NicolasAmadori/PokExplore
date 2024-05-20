@@ -10,6 +10,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -26,13 +27,16 @@ fun LoadingScreen(
     actions: LoadingActions
 ) {
     val context = LocalContext.current
-    if(state.pokemonList.size < 386) {
-        actions.downloadPokemons(context) {
-            navController.navigate(PokemonRoute.SignIn.route)
+    LaunchedEffect(state.pokemonList.isEmpty()) {
+        if (state.pokemonList.isEmpty()) {
+            actions.downloadPokemons(context)
         }
     }
-    else {
-        navController.navigate(PokemonRoute.SignIn.route)
+
+    if (state.pokemonList.isNotEmpty()) {
+        LaunchedEffect(Unit) {
+            navController.navigate(PokemonRoute.SignIn.route)
+        }
     }
 
     Column(
