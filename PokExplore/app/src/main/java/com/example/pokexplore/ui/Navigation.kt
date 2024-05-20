@@ -10,8 +10,6 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.pokexplore.ui.screens.FavouritesPokemonListScreen
-import com.example.pokexplore.ui.screens.LocalPokemonListScreen
 import com.example.pokexplore.ui.screens.allpokemonlist.AllPokemonListScreen
 import com.example.pokexplore.ui.screens.allpokemonlist.AllPokemonListViewModel
 import com.example.pokexplore.ui.screens.catchPokemon.CatchPokemonScreen
@@ -50,8 +48,6 @@ sealed class PokemonRoute(
     data object CatchPokemon : PokemonRoute("catchPokemon", "Catch Pokemon")
     data object Settings : PokemonRoute("settings", "Settings")
     data object Profile : PokemonRoute("profile", "Profile")
-    data object LocalPokemonList : PokemonRoute("localPokemonList", "Local Pokemon List")
-    data object FavouritesPokemonList : PokemonRoute("favouritesPokemonList", "Favourites Pokemon List")
     data object SignIn : PokemonRoute("signIn", "Sign In")
     data object SignUp: PokemonRoute("signUp", "Sign Up")
     data object Loading: PokemonRoute("loading", "Loading")
@@ -59,7 +55,7 @@ sealed class PokemonRoute(
     data object GpsMandatory: PokemonRoute("gpsMandatory", "Gps Mandatory")
     data object CaughtPokemons: PokemonRoute("caughtPokemons", "Caught Pokemons")
     companion object {
-        val routes = setOf(AllPokemonList, PokemonDetails, CatchPokemon, Settings, Profile, LocalPokemonList, FavouritesPokemonList, SignIn, SignUp, Loading, Theme, GpsMandatory, CaughtPokemons)
+        val routes = setOf(AllPokemonList, PokemonDetails, CatchPokemon, Settings, Profile, SignIn, SignUp, Loading, Theme, GpsMandatory, CaughtPokemons)
     }
 }
 
@@ -114,16 +110,6 @@ fun PokemonNavGraph(
             composable(route) {
                 val profileVm = koinViewModel<ProfileViewModel>()
                 ProfileScreen(navController, profileVm.state, profileVm::logOut)
-            }
-        }
-        with(PokemonRoute.LocalPokemonList) {
-            composable(route) {
-                LocalPokemonListScreen()
-            }
-        }
-        with(PokemonRoute.FavouritesPokemonList) {
-            composable(route) {
-                FavouritesPokemonListScreen()
             }
         }
         with(PokemonRoute.SignIn) {

@@ -1,8 +1,12 @@
 package com.example.pokexplore.ui.screens.allpokemonlist
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -10,29 +14,39 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.GpsFixed
+import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Public
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -46,6 +60,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.pokexplore.R
+import com.example.pokexplore.data.database.Pokemon
 import com.example.pokexplore.data.database.UserWithPokemons
 import com.example.pokexplore.ui.PokemonRoute
 import com.example.pokexplore.utilities.pastelColours
@@ -53,7 +68,7 @@ import java.util.Locale
 
 data class TabItem(val icon: ImageVector, val stringId: Int, val index: Int)
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun AllPokemonListScreen(
     navController: NavHostController,
@@ -62,9 +77,75 @@ fun AllPokemonListScreen(
     actions: AllPokemonListActions
 ) {
     var selectedTabIndex by remember { mutableIntStateOf(0) }
+    var searchText by remember { mutableStateOf("") } // Query for SearchBar
+    var isSearchActive by remember { mutableStateOf(false) } // Active state for SearchBar
+    val searchHistory = remember { mutableStateListOf("") }
+
+    fun isSearchCoherent(pokemon: Pokemon): Boolean{
+        return pokemon.name.lowercase().contains(searchText.trim().lowercase()) || pokemon.pokemonId.toString().contains(searchText.trim())
+    }
     Scaffold(
         topBar = {
-            TabRow(selectedTabIndex = selectedTabIndex) {
+            SearchBar(modifier = Modifier.fillMaxWidth(),
+                query = searchText,
+                onQueryChange = {
+                    searchText = it
+                },
+                onSearch = {
+                    isSearchActive = false
+                    searchHistory+= it
+                },
+                active = isSearchActive,
+                onActiveChange = {
+                    isSearchActive = it
+                },
+                placeholder = {
+                    Text(text = "Search by name or id")
+                },
+                leadingIcon = {
+                    Icon(imageVector = Icons.Default.Search, contentDescription = "Search icon")
+                },
+                trailingIcon = {
+                    if (isSearchActive || searchText.trim().isNotEmpty()) {
+                        Icon(
+                            modifier = Modifier.clickable {
+                                searchText = ""
+                                isSearchActive = false
+                            },
+                            imageVector = Icons.Default.Close,
+                            contentDescription = "Close icon"
+                        )
+                    }
+                }
+            ) {
+                Column{
+                    FlowRow(modifier = Modifier.padding(8.dp)) {
+                        ChipItem("Water")
+                        ChipItem("Fire")
+                        ChipItem("Ps ycho")
+                        ChipItem("Dragon")
+                        ChipItem("Normal")
+                        ChipItem("Air")
+                    }
+                    searchHistory.forEach {
+                        if (it.isNotEmpty()) {
+                            Row(modifier = Modifier.padding(all = 14.dp)) {
+                                Icon(
+                                    imageVector = Icons.Default.History,
+                                    contentDescription = null
+                                )
+                                Spacer(modifier = Modifier.width(10.dp))
+                                Text(text = it)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ){ contentPadding ->
+        Column(modifier = Modifier.padding(contentPadding)){
+            TabRow(selectedTabIndex = selectedTabIndex)
+            {
                 val tabs = listOf(
                     TabItem(Icons.Filled.Public, R.string.tab_all,0),
                     TabItem(Icons.Filled.GpsFixed,R.string.tab_near_me,1),
@@ -89,32 +170,30 @@ fun AllPokemonListScreen(
                     )
                 }
             }
-        }
-    ){ contentPadding ->
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(2),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            contentPadding = PaddingValues(8.dp, 8.dp, 8.dp, 80.dp),
-            modifier = Modifier
-                .padding(contentPadding)
-        ) {
-            if(userState.user != null) {
-                val filteredList = when (selectedTabIndex) {
-                    0 -> allPokemonListState.userWithPokemonsList.filter { it.user.email == userState.user.email }
-                    1 -> allPokemonListState.userWithPokemonsList.filter { it.user.email == userState.user.email && it.pokemon.countryCode == "it" }
-                    else -> allPokemonListState.userWithPokemonsList.filter { it.user.email == userState.user.email && it.isFavourite }
-                }
-                items(filteredList) { userWithPokemon ->
-                    PokemonCard(
-                        userWithPokemon,
-                        onClick = {
-                            navController.navigate(PokemonRoute.PokemonDetails.buildRoute(userWithPokemon.pokemon.pokemonId))
-                        },
-                        onToggleFavourite = {
-                            actions.toggleFavourite(userWithPokemon.user.email, userWithPokemon.pokemon.pokemonId)
-                        }
-                    )
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(2),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                contentPadding = PaddingValues(8.dp, 8.dp, 8.dp, 80.dp)
+            ) {
+                if(userState.user != null) {
+                    var filteredList = when (selectedTabIndex) {
+                        0 -> allPokemonListState.userWithPokemonsList.filter { it.user.email == userState.user.email }
+                        1 -> allPokemonListState.userWithPokemonsList.filter { it.user.email == userState.user.email && it.pokemon.countryCode == "it" }
+                        else -> allPokemonListState.userWithPokemonsList.filter { it.user.email == userState.user.email && it.isFavourite }
+                    }
+                    filteredList = filteredList.filter { isSearchCoherent(it.pokemon) }
+                    items(filteredList) { userWithPokemon ->
+                        PokemonCard(
+                            userWithPokemon,
+                            onClick = {
+                                navController.navigate(PokemonRoute.PokemonDetails.buildRoute(userWithPokemon.pokemon.pokemonId))
+                            },
+                            onToggleFavourite = {
+                                actions.toggleFavourite(userWithPokemon.user.email, userWithPokemon.pokemon.pokemonId)
+                            }
+                        )
+                    }
                 }
             }
         }
@@ -228,4 +307,31 @@ fun PokemonCard(
             }
         }
     }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun ChipItem(text: String) {
+    var selected by remember { mutableStateOf(false) }
+
+    FilterChip(
+        onClick = { selected = !selected },
+        label = {
+            Text(text)
+        },
+        selected = selected,
+        leadingIcon = if (selected) {
+            {
+                Icon(
+                    imageVector = Icons.Filled.Done,
+                    contentDescription = "Done icon",
+                    modifier = Modifier.size(FilterChipDefaults.IconSize)
+                )
+            }
+        } else {
+            null
+        },
+        modifier= Modifier.padding(end = 12.dp)
+    )
+
 }
