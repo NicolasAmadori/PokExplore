@@ -1,6 +1,5 @@
 package com.example.pokexplore.ui.screens.allpokemonlist
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -21,6 +20,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.GpsFixed
@@ -31,6 +31,7 @@ import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
@@ -49,6 +50,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -80,20 +82,31 @@ fun AllPokemonListScreen(
     var searchText by remember { mutableStateOf("") } // Query for SearchBar
     var isSearchActive by remember { mutableStateOf(false) } // Active state for SearchBar
     val searchHistory = remember { mutableStateListOf("") }
+    val selectedTypes = remember { mutableStateListOf<String>() }
 
     fun isSearchCoherent(pokemon: Pokemon): Boolean{
-        return pokemon.name.lowercase().contains(searchText.trim().lowercase()) || pokemon.pokemonId.toString().contains(searchText.trim())
+        return if(selectedTypes.isEmpty()){
+            pokemon.name.lowercase().contains(searchText.trim().lowercase()) || pokemon.pokemonId.toString().contains(searchText.trim())
+        } else {
+            (pokemon.name.lowercase().contains(searchText.trim().lowercase()) || pokemon.pokemonId.toString().contains(searchText.trim())) && pokemon.types.any{selectedTypes.contains(it)}
+        }
     }
     Scaffold(
         topBar = {
-            SearchBar(modifier = Modifier.fillMaxWidth(),
+            SearchBar(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(if(!isSearchActive) 16.dp else 0.dp),
                 query = searchText,
                 onQueryChange = {
                     searchText = it
                 },
                 onSearch = {
-                    isSearchActive = false
+                    if(searchHistory.size == 5){
+                        searchHistory.removeAt(0)
+                    }
                     searchHistory+= it
+                    isSearchActive = false
                 },
                 active = isSearchActive,
                 onActiveChange = {
@@ -103,7 +116,12 @@ fun AllPokemonListScreen(
                     Text(text = "Search by name or id")
                 },
                 leadingIcon = {
-                    Icon(imageVector = Icons.Default.Search, contentDescription = "Search icon")
+                    Icon(
+                        modifier = Modifier.clickable {
+                            isSearchActive = !isSearchActive
+                        },
+                        imageVector = Icons.Default.Search,
+                        contentDescription = "Search icon")
                 },
                 trailingIcon = {
                     if (isSearchActive || searchText.trim().isNotEmpty()) {
@@ -119,23 +137,37 @@ fun AllPokemonListScreen(
                 }
             ) {
                 Column{
-                    FlowRow(modifier = Modifier.padding(8.dp)) {
-                        ChipItem("Water")
-                        ChipItem("Fire")
-                        ChipItem("Ps ycho")
-                        ChipItem("Dragon")
-                        ChipItem("Normal")
-                        ChipItem("Air")
+                    Text("Types",
+                        fontSize = MaterialTheme.typography.titleLarge.fontSize,
+                        modifier = Modifier.padding(8.dp))
+                    FlowRow(
+                        modifier = Modifier.padding(8.dp),
+                        maxItemsInEachRow = 6
+                    ) {
+                        allPokemonListState.userWithPokemonsList
+                            .flatMap { it.pokemon.types }
+                            .distinct().forEach{
+                                ChipItem(it, selectedTypes)
+                            }
                     }
-                    searchHistory.forEach {
+                    Divider()
+                    searchHistory.reversed().forEach {
                         if (it.isNotEmpty()) {
                             Row(modifier = Modifier.padding(all = 14.dp)) {
                                 Icon(
                                     imageVector = Icons.Default.History,
-                                    contentDescription = null
+                                    contentDescription = "History item"
                                 )
                                 Spacer(modifier = Modifier.width(10.dp))
                                 Text(text = it)
+                                Spacer(modifier = Modifier.weight(1f))
+                                Icon(
+                                    imageVector = Icons.Filled.Delete,
+                                    contentDescription = "Delete",
+                                    modifier = Modifier.clickable {
+                                        searchHistory.remove(it)
+                                    }
+                                )
                             }
                         }
                     }
@@ -311,16 +343,21 @@ fun PokemonCard(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ChipItem(text: String) {
-    var selected by remember { mutableStateOf(false) }
-
+fun ChipItem(text: String, selectedItems: SnapshotStateList<String>) {
     FilterChip(
-        onClick = { selected = !selected },
+        onClick = {
+            if(selectedItems.contains(text)){
+                selectedItems.remove(text)
+            }
+            else {
+                selectedItems.add(text)
+            }
+        },
         label = {
             Text(text)
         },
-        selected = selected,
-        leadingIcon = if (selected) {
+        selected = selectedItems.contains(text),
+        leadingIcon = if (selectedItems.contains(text)) {
             {
                 Icon(
                     imageVector = Icons.Filled.Done,
@@ -331,7 +368,7 @@ fun ChipItem(text: String) {
         } else {
             null
         },
-        modifier= Modifier.padding(end = 12.dp)
+        modifier= Modifier.padding(end = 4.dp)
     )
 
 }

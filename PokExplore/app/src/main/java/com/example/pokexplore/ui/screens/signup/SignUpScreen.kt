@@ -8,7 +8,9 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material.icons.filled.Visibility
@@ -91,6 +93,7 @@ fun SignUpScreen(
     // Column to arrange UI elements vertically
     Column(modifier = Modifier
         .fillMaxHeight()
+        .verticalScroll(rememberScrollState())
         .padding(40.dp)) {
 
         Row(
