@@ -1,6 +1,5 @@
 package com.example.pokexplore.ui.screens.theme
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pokexplore.data.models.Theme

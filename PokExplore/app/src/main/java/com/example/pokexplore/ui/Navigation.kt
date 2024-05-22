@@ -30,6 +30,7 @@ import com.example.pokexplore.ui.screens.signup.SignUpScreen
 import com.example.pokexplore.ui.screens.signup.SignUpViewModel
 import com.example.pokexplore.ui.screens.theme.ThemeScreen
 import com.example.pokexplore.ui.screens.theme.ThemeViewModel
+import com.example.pokexplore.utilities.LocationService
 import org.koin.androidx.compose.koinViewModel
 
 sealed class PokemonRoute(
@@ -63,7 +64,8 @@ sealed class PokemonRoute(
 fun PokemonNavGraph(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    startDestination: String
+    startDestination: String,
+    locationService: LocationService
 ) {
     NavHost(
         navController = navController,
@@ -75,7 +77,8 @@ fun PokemonNavGraph(
                 val allPokemonListVm = koinViewModel<AllPokemonListViewModel>()
                 val state by allPokemonListVm.state.collectAsStateWithLifecycle()
                 val userState = allPokemonListVm.userState
-                AllPokemonListScreen(navController, state, userState, allPokemonListVm.actions)
+                val countryCodeState by allPokemonListVm.countryCodeState.collectAsStateWithLifecycle()
+                AllPokemonListScreen(navController, state, userState, countryCodeState, allPokemonListVm.actions, locationService)
             }
         }
         with(PokemonRoute.Theme) {

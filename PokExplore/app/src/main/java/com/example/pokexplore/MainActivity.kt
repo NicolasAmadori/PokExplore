@@ -68,6 +68,7 @@ class MainActivity : FragmentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val ctx = LocalContext.current
+                    val snackbarHostState = remember { SnackbarHostState() }
 
                     /* Navigation */
                     val navController = rememberNavController()
@@ -81,49 +82,22 @@ class MainActivity : FragmentActivity() {
                         }
                     }
 
-                    /* HTTP */
-//                    val snackbarHostState = remember { SnackbarHostState() }
-//                    val osmDataSource = koinInject<OSMDataSource>()
-//                    val dataStoreRepository = koinInject<DataStoreRepository>()
-//
-
-//                    val coroutineScope = rememberCoroutineScope()
-//                    fun getCountryCode() = coroutineScope.launch {
-//                        if (isOnline()) {
-//                            if(locationService.coordinates != null) {
-//                                mainVm.setCountryCode(
-//                                    osmDataSource.getCountryISOCode(locationService.coordinates!!.latitude, locationService.coordinates!!.longitude)
-//                                )
-//                            }
-//                        } else {
-//                            val res = snackbarHostState.showSnackbar(
-//                                message = "No Internet connectivity",
-//                                actionLabel = "Go to Settings",
-//                                duration = SnackbarDuration.Long
-//                            )
-//                            if (res == SnackbarResult.ActionPerformed) {
-//                                openWirelessSettings()
-//                            }
-//                        }
-//                    }
-//
-//                    LaunchedEffect(locationService.coordinates) {
-//                        getCountryCode()
-//                    }
-//
                     /* GPS */
-                    val snackbarHostState = remember { SnackbarHostState() }
                     var showLocationDisabledAlert by remember { mutableStateOf(false) }
                     var showPermissionDeniedAlert by remember { mutableStateOf(false) }
                     var showPermissionPermanentlyDeniedSnackbar by remember { mutableStateOf(false) }
+
+                    fun onLocationGranted(){
+                        val res = locationService.requestCurrentLocation()
+                        showLocationDisabledAlert = res == StartMonitoringResult.GPSDisabled
+                    }
 
                     val locationPermission = rememberPermission(
                         Manifest.permission.ACCESS_COARSE_LOCATION
                     ) { status ->
                         when (status) {
                             PermissionStatus.Granted -> {
-                                val res = locationService.requestCurrentLocation()
-                                showLocationDisabledAlert = res == StartMonitoringResult.GPSDisabled
+                                onLocationGranted()
                             }
 
                             PermissionStatus.Denied ->
@@ -138,8 +112,7 @@ class MainActivity : FragmentActivity() {
 
                     fun requestLocation() {
                         if (locationPermission.status.isGranted) {
-                            val res = locationService.requestCurrentLocation()
-                            showLocationDisabledAlert = res == StartMonitoringResult.GPSDisabled
+                            onLocationGranted()
                         } else {
                             locationPermission.launchPermissionRequest()
                         }
@@ -156,7 +129,8 @@ class MainActivity : FragmentActivity() {
                         PokemonNavGraph(
                             navController,
                             modifier =  Modifier.padding(contentPadding),
-                            startDestination = PokemonRoute.Loading.route
+                            startDestination = PokemonRoute.Loading.route,
+                            locationService = locationService
                         )
                         if (showLocationDisabledAlert) {
                             AlertDialog(
