@@ -53,13 +53,13 @@ fun SignUpScreen(
     val email = remember { mutableStateOf("prova@gmail.com") }
     var isErrorEmail by remember { mutableStateOf(false) }
 
-    val firstName = remember { mutableStateOf("Nome") }
+    val firstName = remember { mutableStateOf("Nicolas") }
     var isErrorFirstName by remember { mutableStateOf(false) }
 
-    val lastName = remember { mutableStateOf("Cognome") }
+    val lastName = remember { mutableStateOf("Amadori") }
     var isErrorLastName by remember { mutableStateOf(false) }
 
-    val phoneNumber = remember { mutableStateOf("12345") }
+    val phoneNumber = remember { mutableStateOf("3895370898") }
     var isErrorPhone by remember { mutableStateOf(false) }
 
     val password = remember { mutableStateOf("12345") }

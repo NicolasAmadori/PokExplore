@@ -57,10 +57,10 @@ fun SignInScreen(
 
     val context = LocalContext.current
 
-    val email = remember { mutableStateOf("") }
+    val email = remember { mutableStateOf("prova@gmail.com") }
     var isErrorEmail by remember { mutableStateOf(false) }
 
-    val password = remember { mutableStateOf("") }
+    val password = remember { mutableStateOf("12345") }
     var isErrorPassword by remember { mutableStateOf(false) }
     var isHiddenPassword by remember { mutableStateOf(true) }
 

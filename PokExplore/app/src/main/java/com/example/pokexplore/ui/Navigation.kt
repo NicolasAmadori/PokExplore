@@ -13,8 +13,6 @@ import androidx.navigation.navArgument
 import com.example.pokexplore.ui.screens.allpokemonlist.AllPokemonListScreen
 import com.example.pokexplore.ui.screens.allpokemonlist.AllPokemonListViewModel
 import com.example.pokexplore.ui.screens.catchPokemon.CatchPokemonScreen
-import com.example.pokexplore.ui.screens.caughtPokemons.CaughtPokemonsScreen
-import com.example.pokexplore.ui.screens.caughtPokemons.CaughtPokemonsViewModel
 import com.example.pokexplore.ui.screens.gpsMandatory.GpsMandatoryScreen
 import com.example.pokexplore.ui.screens.gpsMandatory.GpsMandatoryViewModelViewModel
 import com.example.pokexplore.ui.screens.loading.LoadingScreen
@@ -112,7 +110,9 @@ fun PokemonNavGraph(
         with(PokemonRoute.Profile) {
             composable(route) {
                 val profileVm = koinViewModel<ProfileViewModel>()
-                ProfileScreen(navController, profileVm.state, profileVm::logOut)
+                val pokemonState by profileVm.pokemonsState.collectAsStateWithLifecycle()
+                val userState = profileVm.userState
+                ProfileScreen(navController, userState, pokemonState, profileVm.actions)
             }
         }
         with(PokemonRoute.SignIn) {
@@ -139,14 +139,6 @@ fun PokemonNavGraph(
                 val gpsMandatoryVm = koinViewModel<GpsMandatoryViewModelViewModel>()
                 val state = gpsMandatoryVm.state
                 GpsMandatoryScreen(navController, state, gpsMandatoryVm::setCountryCode)
-            }
-        }
-        with(PokemonRoute.CaughtPokemons) {
-            composable(route) {
-                val caughtPokemonsVm = koinViewModel<CaughtPokemonsViewModel>()
-                val state by caughtPokemonsVm.state.collectAsStateWithLifecycle()
-                val userState = caughtPokemonsVm.userState
-                CaughtPokemonsScreen(navController, state, userState, caughtPokemonsVm.actions)
             }
         }
     }

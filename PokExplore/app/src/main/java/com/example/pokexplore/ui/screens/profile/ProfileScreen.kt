@@ -2,19 +2,23 @@ package com.example.pokexplore.ui.screens.profile
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Image
 import androidx.compose.material.icons.filled.Logout
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -33,14 +37,17 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.pokexplore.R
+import com.example.pokexplore.ui.PieChart
 import com.example.pokexplore.ui.PokemonRoute
+import com.example.pokexplore.ui.screens.allpokemonlist.PokemonCard
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen(
     navController: NavHostController,
-    state: ProfileState,
-    onLogOut: () -> Unit) {
+    state: UserState,
+    pokemonState: PokemonState,
+    actions: ProfileActions) {
 
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
@@ -60,7 +67,7 @@ fun ProfileScreen(
                 },
                 actions = {
                     IconButton(onClick = {
-                        onLogOut()
+                        actions.logOut()
                         navController.navigate(PokemonRoute.SignIn.route)
                     }) {
                         Icon(
@@ -124,10 +131,39 @@ fun ProfileScreen(
                                 )
                             }
                         }
-                        Button(
-                            onClick = {navController.navigate(PokemonRoute.CaughtPokemons.route)}
+                        Divider(modifier = Modifier.padding(vertical = 10.dp))
+                        PieChart(
+                            data = listOf(
+                                Triple(stringResource(R.string.not_catched), pokemonState.userWithPokemonsList.count { !it.isCaptured }, MaterialTheme.colorScheme.primaryContainer),
+                                Triple(stringResource(R.string.catched), pokemonState.userWithPokemonsList.count { it.isCaptured }, MaterialTheme.colorScheme.onPrimaryContainer)
+                            ),
+                            radiusOuter = 50.dp,
+                            chartBarWidth = 20.dp,
+                            animDuration = 300,
+                        )
+                        Divider(modifier = Modifier.padding(vertical = 10.dp))
+                        Text(
+                            text = stringResource(R.string.caught_pokemons_label),
+                            color = MaterialTheme.colorScheme.onBackground,
+                            style = MaterialTheme.typography.titleLarge
+                            )
+                        LazyVerticalGrid(
+                            columns = GridCells.Fixed(2),
+                            verticalArrangement = Arrangement.spacedBy(8.dp),
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            contentPadding = PaddingValues(8.dp, 8.dp, 8.dp, 80.dp),
                         ) {
-                            Text("Pokemon catturati")
+                            items(pokemonState.userWithPokemonsList.filter { it.user.email == state.user.email && it.isCaptured }) { userWithPokemon ->
+                                PokemonCard(
+                                    userWithPokemon,
+                                    onClick = {
+                                        navController.navigate(PokemonRoute.PokemonDetails.buildRoute(userWithPokemon.pokemon.pokemonId))
+                                    },
+                                    onToggleFavourite = {
+                                        actions.toggleFavourite(userWithPokemon.user.email, userWithPokemon.pokemon.pokemonId)
+                                    }
+                                )
+                            }
                         }
                     }
                 }

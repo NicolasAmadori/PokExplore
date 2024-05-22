@@ -9,7 +9,6 @@ import com.example.pokexplore.data.repositories.DataStoreRepository
 import com.example.pokexplore.data.repositories.PokExploreRepository
 import com.example.pokexplore.ui.PokExploreViewModel
 import com.example.pokexplore.ui.screens.allpokemonlist.AllPokemonListViewModel
-import com.example.pokexplore.ui.screens.caughtPokemons.CaughtPokemonsViewModel
 import com.example.pokexplore.ui.screens.gpsMandatory.GpsMandatoryViewModelViewModel
 import com.example.pokexplore.ui.screens.loading.LoadingViewModel
 import com.example.pokexplore.ui.screens.pokemonDetails.PokemonDetailsViewModel
@@ -68,6 +67,5 @@ val appModule = module {
     viewModel { SignUpViewModel(get(), get()) }
     viewModel { ThemeViewModel(get()) }
     viewModel { SignInViewModel(get(), get()) }
-    viewModel { ProfileViewModel(get()) }
-    viewModel { CaughtPokemonsViewModel(get(), get()) }
+    viewModel { ProfileViewModel(get(), get()) }
 }
