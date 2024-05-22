@@ -78,8 +78,8 @@ fun PokemonDetailsScreen(
                 }
                 WeightHeightSection(userWithPokemon)
                 Spacer(modifier = Modifier.height(4.dp))
-                DescriptionSection(userWithPokemon, userWithPokemon.pokemon.description, userWithPokemon.pokemon.abilities)
-                Spacer(modifier = Modifier.height(16.dp))
+                DescriptionSection(userWithPokemon, userWithPokemon.pokemon.description, userWithPokemon.pokemon.abilities, userWithPokemon.pokemon.generation)
+                Spacer(modifier = Modifier.height(10.dp))
                 BaseStatsSection(userWithPokemon.pokemon.stats)
                 Spacer(modifier = Modifier.height(16.dp))
                 EvolutionSection(
@@ -140,7 +140,14 @@ fun HeaderSection(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                IconButton(onClick = { navController.navigateUp() }) {
+                IconButton(onClick = {
+                    if(navController.previousBackStackEntry?.destination?.route == PokemonRoute.CatchPokemon.route){
+                        navController.navigate(PokemonRoute.AllPokemonList.route)
+                    }
+                    else {
+                        navController.popBackStack()
+                    }
+                }) {
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
                         contentDescription = stringResource(R.string.back_description),
@@ -203,7 +210,7 @@ fun HeaderSection(
 }
 
 @Composable
-fun DescriptionSection(userWithPokemon: UserWithPokemons, description: String, abilities:List<String>) {
+fun DescriptionSection(userWithPokemon: UserWithPokemons, description: String, abilities:List<String>, generation: String) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.Center,
@@ -243,6 +250,18 @@ fun DescriptionSection(userWithPokemon: UserWithPokemons, description: String, a
         }
         Text(
             text = ability,
+            fontSize = 16.sp,
+            modifier = Modifier.padding(horizontal = 16.dp)
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = stringResource(R.string.generation),
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(horizontal = 16.dp)
+        )
+        Text(
+            text = generation,
             fontSize = 16.sp,
             modifier = Modifier.padding(horizontal = 16.dp)
         )

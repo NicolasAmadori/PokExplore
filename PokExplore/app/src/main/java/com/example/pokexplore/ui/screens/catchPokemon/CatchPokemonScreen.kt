@@ -20,45 +20,59 @@ import java.security.MessageDigest
 
 
 @Composable
-fun CatchPokemonScreen(navController: NavHostController) {
+fun CatchPokemonScreen(
+    navController: NavHostController,
+    userState: UserState,
+    pokemonState: PokemonState,
+    countryCodeState: CountryCodeState,
+    actions: CatchPokemonActions
+) {
     val localContext = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
     val cameraProviderFuture = remember {
         ProcessCameraProvider.getInstance(localContext)
     }
-    AndroidView(
-        modifier = Modifier.fillMaxSize(),
-        factory = { context ->
-            val previewView = PreviewView(context)
-            val preview = Preview.Builder().build()
-            val selector = CameraSelector.Builder()
-                .requireLensFacing(CameraSelector.LENS_FACING_BACK)
-                .build()
+    if(countryCodeState.countryCode != null && pokemonState.userWithPokemonsList.isNotEmpty() && userState.user != null) {
+        AndroidView(
+            modifier = Modifier.fillMaxSize(),
+            factory = { context ->
+                val previewView = PreviewView(context)
+                val preview = Preview.Builder().build()
+                val selector = CameraSelector.Builder()
+                    .requireLensFacing(CameraSelector.LENS_FACING_BACK)
+                    .build()
 
-            preview.setSurfaceProvider(previewView.surfaceProvider)
+                preview.setSurfaceProvider(previewView.surfaceProvider)
 
-            val imageAnalysis = ImageAnalysis.Builder().build()
-            imageAnalysis.setAnalyzer(
-                ContextCompat.getMainExecutor(context),
-                CameraAnalyzer(context){
-                    val pokemonCode = generatePokemonCode(it)
-                    navController.navigate(PokemonRoute.PokemonDetails.buildRoute(pokemonCode)) //TODO: add qrcode conversion to pokemonId
-                }
-            )
-
-            runCatching {
-                cameraProviderFuture.get().bindToLifecycle(
-                    lifecycleOwner,
-                    selector,
-                    preview,
-                    imageAnalysis
+                val imageAnalysis = ImageAnalysis.Builder().build()
+                imageAnalysis.setAnalyzer(
+                    ContextCompat.getMainExecutor(context),
+                    CameraAnalyzer(context){ codeText ->
+                        val pokemonCode = generatePokemonCode(codeText)
+                        Log.d("CatchPokemonScreen", "$pokemonCode")
+                        if(pokemonState.userWithPokemonsList.any { it.pokemon.pokemonId == pokemonCode && (it.pokemon.countryCode == countryCodeState.countryCode || it.pokemon.countryCode == null) }){
+                            actions.capturePokemon(userState.user.email, pokemonCode)
+                            navController.navigate(PokemonRoute.PokemonDetails.buildRoute(pokemonCode)){
+                                launchSingleTop = true
+                            }
+                        }
+                    }
                 )
-            }.onFailure {
-                Log.e("CAMERA", "Camera bind error ${it.localizedMessage}", it)
+
+                runCatching {
+                    cameraProviderFuture.get().bindToLifecycle(
+                        lifecycleOwner,
+                        selector,
+                        preview,
+                        imageAnalysis
+                    )
+                }.onFailure {
+                    Log.e("CAMERA", "Camera bind error ${it.localizedMessage}", it)
+                }
+                previewView
             }
-            previewView
-        }
-    )
+        )
+    }
 }
 
 private fun generatePokemonCode(qrContent: String): Int {

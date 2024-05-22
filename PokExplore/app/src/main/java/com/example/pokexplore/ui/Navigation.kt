@@ -13,6 +13,7 @@ import androidx.navigation.navArgument
 import com.example.pokexplore.ui.screens.allpokemonlist.AllPokemonListScreen
 import com.example.pokexplore.ui.screens.allpokemonlist.AllPokemonListViewModel
 import com.example.pokexplore.ui.screens.catchPokemon.CatchPokemonScreen
+import com.example.pokexplore.ui.screens.catchPokemon.CatchPokemonViewModel
 import com.example.pokexplore.ui.screens.gpsMandatory.GpsMandatoryScreen
 import com.example.pokexplore.ui.screens.gpsMandatory.GpsMandatoryViewModelViewModel
 import com.example.pokexplore.ui.screens.loading.LoadingScreen
@@ -99,7 +100,11 @@ fun PokemonNavGraph(
         }
         with(PokemonRoute.CatchPokemon) {
             composable(route) {
-                CatchPokemonScreen(navController)
+                val catchPokemonVm = koinViewModel<CatchPokemonViewModel>()
+                val pokemonState by catchPokemonVm.state.collectAsStateWithLifecycle()
+                val userState = catchPokemonVm.userState
+                val countryCodeState by catchPokemonVm.countryCodeState.collectAsStateWithLifecycle()
+                CatchPokemonScreen(navController, userState, pokemonState, countryCodeState, catchPokemonVm.actions)
             }
         }
         with(PokemonRoute.Settings) {

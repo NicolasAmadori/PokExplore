@@ -55,4 +55,5 @@
     <string name="search_close_description">Icona di chiusura barra di ricerca</string>
     <string name="history_item_description">Elemento cronologia</string>
     <string name="delete_history_item">Elimina elemento cronologia</string>
+    <string name="generation">Generazione</string>
 </resources>
