@@ -1,6 +1,7 @@
 package com.example.pokexplore.ui.screens.catchPokemon
 
 import android.util.Log
+import android.widget.Toast
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
@@ -32,6 +33,7 @@ fun CatchPokemonScreen(
     val cameraProviderFuture = remember {
         ProcessCameraProvider.getInstance(localContext)
     }
+    var previousReading = ""
     if(countryCodeState.countryCode != null && pokemonState.userWithPokemonsList.isNotEmpty() && userState.user != null) {
         AndroidView(
             modifier = Modifier.fillMaxSize(),
@@ -48,12 +50,18 @@ fun CatchPokemonScreen(
                 imageAnalysis.setAnalyzer(
                     ContextCompat.getMainExecutor(context),
                     CameraAnalyzer(context){ codeText ->
-                        val pokemonCode = generatePokemonCode(codeText)
-                        Log.d("CatchPokemonScreen", "$pokemonCode")
-                        if(pokemonState.userWithPokemonsList.any { it.pokemon.pokemonId == pokemonCode && (it.pokemon.countryCode == countryCodeState.countryCode || it.pokemon.countryCode == null) }){
-                            actions.capturePokemon(userState.user.email, pokemonCode)
-                            navController.navigate(PokemonRoute.PokemonDetails.buildRoute(pokemonCode)){
-                                launchSingleTop = true
+                        if(codeText != previousReading){
+                            previousReading = codeText
+                            val pokemonCode = generatePokemonCode(codeText)
+                            Log.d("CatchPokemonScreen", "$pokemonCode")
+                            if(pokemonState.userWithPokemonsList.any { it.pokemon.pokemonId == pokemonCode && (it.pokemon.countryCode == countryCodeState.countryCode || it.pokemon.countryCode == null) }){
+                                actions.capturePokemon(userState.user.email, pokemonCode)
+                                navController.navigate(PokemonRoute.PokemonDetails.buildRoute(pokemonCode)){
+                                    launchSingleTop = true
+                                }
+                            }
+                            else {
+                                Toast.makeText(localContext, "Questo Pokemon non è catturabile nello stato nel quale ti trovi", Toast.LENGTH_LONG).show()
                             }
                         }
                     }
