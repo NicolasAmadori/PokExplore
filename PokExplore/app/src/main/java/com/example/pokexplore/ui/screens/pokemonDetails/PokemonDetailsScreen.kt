@@ -159,7 +159,7 @@ fun HeaderSection(
                 ) {
                     Image(
                         painter = painterResource(if (userWithPokemon.isCaptured) R.drawable.full_pokeball else R.drawable.empty_pokeball),
-                        contentDescription = stringResource(if (userWithPokemon.isCaptured) R.string.catched else R.string.not_catched),
+                        contentDescription = stringResource(if (userWithPokemon.isCaptured) R.string.caught else R.string.not_caught),
                         modifier = Modifier.size(24.dp)
                     )
                     Spacer(modifier = Modifier.width(8.dp))

@@ -16,6 +16,7 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavHostController
+import com.example.pokexplore.R
 import com.example.pokexplore.ui.PokemonRoute
 import java.security.MessageDigest
 
@@ -61,7 +62,7 @@ fun CatchPokemonScreen(
                                 }
                             }
                             else {
-                                Toast.makeText(localContext, "Questo Pokemon non è catturabile nello stato nel quale ti trovi", Toast.LENGTH_LONG).show()
+                                Toast.makeText(localContext, R.string.no_pokemon_found, Toast.LENGTH_LONG).show()
                             }
                         }
                     }

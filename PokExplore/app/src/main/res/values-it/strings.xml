@@ -43,8 +43,8 @@
     <string name="base_stats">Statistiche base</string>
     <string name="abilities">Abilità</string>
     <string name="evolutions">Linea Evolutiva</string>
-    <string name="catched">Cattura</string>
-    <string name="not_catched">Non Catturato</string>
+    <string name="caught">Cattura</string>
+    <string name="not_caught">Non Catturato</string>
     <string name="tab_all">Tutti</string>
     <string name="tab_near_me">Vicini</string>
     <string name="tab_favourites">Preferiti</string>
@@ -56,4 +56,5 @@
     <string name="history_item_description">Elemento cronologia</string>
     <string name="delete_history_item">Elimina elemento cronologia</string>
     <string name="generation">Generazione</string>
+    <string name="no_pokemon_found">Non ci sono pokemon nelle vicinanze</string>
 </resources>

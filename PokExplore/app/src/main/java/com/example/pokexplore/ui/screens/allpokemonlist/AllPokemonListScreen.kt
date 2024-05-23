@@ -157,13 +157,12 @@ fun AllPokemonListScreen(
     var isSearchActive by remember { mutableStateOf(false) } // Active state for SearchBar
     val searchHistory = remember { mutableStateListOf("") }
     val selectedTypes = remember { mutableStateListOf<String>() }
+    val selectedGenerations = remember { mutableStateListOf<String>() }
 
     fun isSearchCoherent(pokemon: Pokemon): Boolean{
-        return if(selectedTypes.isEmpty()){
-            pokemon.name.lowercase().contains(searchText.trim().lowercase()) || pokemon.pokemonId.toString().contains(searchText.trim())
-        } else {
-            (pokemon.name.lowercase().contains(searchText.trim().lowercase()) || pokemon.pokemonId.toString().contains(searchText.trim())) && pokemon.types.any{selectedTypes.contains(it)}
-        }
+        return (pokemon.name.lowercase().contains(searchText.trim().lowercase()) || pokemon.pokemonId.toString().contains(searchText.trim()))
+                && (pokemon.types.any{selectedTypes.contains(it)} || selectedTypes.isEmpty())
+                && (selectedGenerations.contains(pokemon.generation) || selectedGenerations.isEmpty())
     }
 
     Scaffold(
@@ -215,7 +214,7 @@ fun AllPokemonListScreen(
                 }
             ) {
                 Column{
-                    Text("Types",
+                    Text(stringResource(R.string.type),
                         fontSize = MaterialTheme.typography.titleLarge.fontSize,
                         modifier = Modifier.padding(8.dp))
                     FlowRow(
@@ -227,6 +226,21 @@ fun AllPokemonListScreen(
                             .flatMap { it.pokemon.types }
                             .distinct().forEach{
                                 ChipItem(it, selectedTypes)
+                            }
+                    }
+                    Divider()
+                    Text(stringResource(R.string.generation),
+                        fontSize = MaterialTheme.typography.titleLarge.fontSize,
+                        modifier = Modifier.padding(8.dp))
+                    FlowRow(
+                        modifier = Modifier.padding(8.dp),
+                        maxItemsInEachRow = 6,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        allPokemonListState.userWithPokemonsList
+                            .map { it.pokemon.generation }
+                            .distinct().forEach{
+                                ChipItem(it, selectedGenerations)
                             }
                     }
                     Divider()
@@ -400,7 +414,7 @@ fun PokemonCard(
                 if(userWithPokemon.isCaptured){
                     Image(
                         painter = painterResource(R.drawable.full_pokeball),
-                        contentDescription = stringResource(R.string.catched),
+                        contentDescription = stringResource(R.string.caught),
                         modifier = Modifier.size(24.dp)
                     )
                 }
