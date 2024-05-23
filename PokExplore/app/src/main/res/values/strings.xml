@@ -67,4 +67,7 @@
     <string name="no_pokemon_found">There are no pokemon in the nearby</string>
     <string name="caught_pokemons">Caught</string>
     <string name="not_caught_pokemons">Not Caught</string>
+    <string name="account" translatable="false">Account</string>
+    <string name="change_password">Change Password</string>
+    <string name="password_changed_message">The password has been successfully modified</string>
 </resources>

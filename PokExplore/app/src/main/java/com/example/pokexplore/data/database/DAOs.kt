@@ -57,6 +57,9 @@ interface UserDAO {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(user: User)
+
+    @Query("UPDATE User SET password = :password WHERE email = :email")
+    suspend fun setPassword(email: String, password: String)
 }
 
 @Dao
