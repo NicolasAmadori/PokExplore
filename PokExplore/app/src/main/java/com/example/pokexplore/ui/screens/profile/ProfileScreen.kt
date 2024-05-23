@@ -134,8 +134,8 @@ fun ProfileScreen(
                         Divider(modifier = Modifier.padding(vertical = 10.dp))
                         PieChart(
                             data = listOf(
-                                Triple(stringResource(R.string.not_caught_pokemons), pokemonState.userWithPokemonsList.count { !it.isCaptured }, MaterialTheme.colorScheme.primaryContainer),
-                                Triple(stringResource(R.string.caught_pokemons), pokemonState.userWithPokemonsList.count { it.isCaptured }, MaterialTheme.colorScheme.onPrimaryContainer)
+                                Triple(stringResource(R.string.not_caught_pokemons), pokemonState.userWithPokemonsList.count { !it.isCaptured && it.user.email == user.email }, MaterialTheme.colorScheme.primaryContainer),
+                                Triple(stringResource(R.string.caught_pokemons), pokemonState.userWithPokemonsList.count { it.isCaptured && it.user.email == user.email  }, MaterialTheme.colorScheme.onPrimaryContainer)
                             ),
                             radiusOuter = 50.dp,
                             chartBarWidth = 20.dp,
