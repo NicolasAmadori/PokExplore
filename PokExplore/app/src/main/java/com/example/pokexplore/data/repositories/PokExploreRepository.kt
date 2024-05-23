@@ -30,6 +30,8 @@ class PokExploreRepository(
 
     suspend fun login(email: String, password: String) = userDAO.login(email, password)
 
+    suspend fun setProfilePicUrl(email: String, profilePicUrl: String) = userDAO.setProfilePicUrl(email, profilePicUrl)
+
     /* User Pokemon */
     suspend fun insertUserPokemon(userPokemonList: List<UserPokemon>) = userPokemonDAO.insertUserPokemon(userPokemonList)
 

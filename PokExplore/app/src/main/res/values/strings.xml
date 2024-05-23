@@ -63,4 +63,5 @@
     <string name="search_close_description">Close search bar icon</string>
     <string name="history_item_description">History item</string>
     <string name="delete_history_item">Delete history item</string>
+    <string name="fileprovider" translatable="false">com.example.pokexplore.fileprovider</string>
 </resources>

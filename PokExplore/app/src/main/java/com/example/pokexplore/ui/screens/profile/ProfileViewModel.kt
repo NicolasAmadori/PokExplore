@@ -22,6 +22,7 @@ data class UserState(val user: User?)
 interface ProfileActions {
     fun logOut(): Job
     fun toggleFavourite(email: String, pokemonId: Int): Job
+    fun setProfilePicUrl(email: String, profilePicUrl: String): Job
 }
 
 
@@ -47,11 +48,16 @@ class ProfileViewModel(
         override fun toggleFavourite(email: String, pokemonId: Int) = viewModelScope.launch {
             databaseRepository.toggleFavorite(email, pokemonId)
         }
+
+        override fun setProfilePicUrl(email: String, profilePicUrl: String) = viewModelScope.launch {
+            databaseRepository.setProfilePicUrl(email, profilePicUrl)
+        }
     }
 
     init {
         viewModelScope.launch {
             userState = UserState(dataStoreRepository.user.firstOrNull())
+
         }
     }
 }

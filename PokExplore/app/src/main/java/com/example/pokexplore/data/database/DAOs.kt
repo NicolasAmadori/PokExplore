@@ -57,6 +57,9 @@ interface UserDAO {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(user: User)
+
+    @Query("UPDATE User SET profilePicUrl = :profilePicUrl WHERE email = :email")
+    suspend fun setProfilePicUrl(email: String, profilePicUrl: String)
 }
 
 @Dao
