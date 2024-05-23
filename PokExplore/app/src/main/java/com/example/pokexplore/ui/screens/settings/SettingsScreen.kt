@@ -17,6 +17,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Palette
+import androidx.compose.material.icons.filled.Password
 import androidx.compose.material.icons.rounded.KeyboardArrowRight
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -89,35 +90,14 @@ fun SettingsScreen(
                 ) {
                     navController.navigate(PokemonRoute.Theme.route)
                 }
-                SettingsClickableComp(
-                    name = stringResource(R.string.theme),
-                    icon = Icons.Filled.Palette,
-                    iconDesc = stringResource(R.string.theme),
-                ) {
-                    navController.navigate(PokemonRoute.Theme.route)
-                }
             }
-            SettingsGroup(name = R.string.appearance) {
+            SettingsGroup(name = R.string.account) {
                 SettingsClickableComp(
-                    name = stringResource(R.string.theme),
-                    icon = Icons.Filled.Palette,
-                    iconDesc = stringResource(R.string.theme),
+                    name = stringResource(R.string.change_password),
+                    icon = Icons.Filled.Password,
+                    iconDesc = stringResource(R.string.change_password),
                 ) {
-                    navController.navigate(PokemonRoute.Theme.route)
-                }
-                SettingsClickableComp(
-                    name = stringResource(R.string.theme),
-                    icon = Icons.Filled.Palette,
-                    iconDesc = stringResource(R.string.theme),
-                ) {
-                    navController.navigate(PokemonRoute.Theme.route)
-                }
-                SettingsClickableComp(
-                    name = stringResource(R.string.theme),
-                    icon = Icons.Filled.Palette,
-                    iconDesc = stringResource(R.string.theme),
-                ) {
-                    navController.navigate(PokemonRoute.Theme.route)
+                    navController.navigate(PokemonRoute.ChangePassword.route)
                 }
             }
         }
@@ -169,7 +149,6 @@ fun SettingsClickableComp(
                     contentDescription = stringResource(id = R.string.downloading_pokemon)
                 )
             }
-            //Divider()
         }
     }
 }

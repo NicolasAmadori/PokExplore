@@ -9,10 +9,11 @@ import com.example.pokexplore.data.repositories.DataStoreRepository
 import com.example.pokexplore.data.repositories.PokExploreRepository
 import com.example.pokexplore.ui.PokExploreViewModel
 import com.example.pokexplore.ui.screens.allpokemonlist.AllPokemonListViewModel
-import com.example.pokexplore.ui.screens.gpsMandatory.GpsMandatoryViewModelViewModel
+import com.example.pokexplore.ui.screens.catchPokemon.CatchPokemonViewModel
 import com.example.pokexplore.ui.screens.loading.LoadingViewModel
 import com.example.pokexplore.ui.screens.pokemonDetails.PokemonDetailsViewModel
 import com.example.pokexplore.ui.screens.profile.ProfileViewModel
+import com.example.pokexplore.ui.screens.settings.ChangePasswordViewModel
 import com.example.pokexplore.ui.screens.signin.SignInViewModel
 import com.example.pokexplore.ui.screens.signup.SignUpViewModel
 import com.example.pokexplore.ui.screens.theme.ThemeViewModel
@@ -59,13 +60,14 @@ val appModule = module {
 
     single { DataStoreRepository(get()) }
 
-    viewModel { GpsMandatoryViewModelViewModel(get()) }
     viewModel { PokExploreViewModel(get()) }
     viewModel { LoadingViewModel(get()) }
     viewModel { AllPokemonListViewModel(get(), get()) }
+    viewModel { CatchPokemonViewModel(get(), get()) }
     viewModel { PokemonDetailsViewModel(get(), get()) }
     viewModel { SignUpViewModel(get(), get()) }
     viewModel { ThemeViewModel(get()) }
     viewModel { SignInViewModel(get(), get()) }
     viewModel { ProfileViewModel(get(), get()) }
+    viewModel { ChangePasswordViewModel(get(), get()) }
 }

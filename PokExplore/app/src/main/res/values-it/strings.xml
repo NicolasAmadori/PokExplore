@@ -43,8 +43,8 @@
     <string name="base_stats">Statistiche base</string>
     <string name="abilities">Abilità</string>
     <string name="evolutions">Linea Evolutiva</string>
-    <string name="catched">Cattura</string>
-    <string name="not_catched">Non Catturato</string>
+    <string name="caught">Catturato</string>
+    <string name="not_caught">Non Catturato</string>
     <string name="tab_all">Tutti</string>
     <string name="tab_near_me">Vicini</string>
     <string name="tab_favourites">Preferiti</string>
@@ -55,4 +55,10 @@
     <string name="search_close_description">Icona di chiusura barra di ricerca</string>
     <string name="history_item_description">Elemento cronologia</string>
     <string name="delete_history_item">Elimina elemento cronologia</string>
+    <string name="generation">Generazione</string>
+    <string name="no_pokemon_found">Non ci sono pokemon nelle vicinanze</string>
+    <string name="caught_pokemons">Catturati</string>
+    <string name="not_caught_pokemons">Non Catturati</string>
+    <string name="change_password">Cambia password</string>
+    <string name="password_changed_message">La password è stata modificata con successo</string>
 </resources>

@@ -60,6 +60,9 @@ interface UserDAO {
 
     @Query("UPDATE User SET profilePicUrl = :profilePicUrl WHERE email = :email")
     suspend fun setProfilePicUrl(email: String, profilePicUrl: String)
+
+    @Query("UPDATE User SET password = :password WHERE email = :email")
+    suspend fun setPassword(email: String, password: String)
 }
 
 @Dao

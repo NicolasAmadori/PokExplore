@@ -13,14 +13,15 @@ import androidx.navigation.navArgument
 import com.example.pokexplore.ui.screens.allpokemonlist.AllPokemonListScreen
 import com.example.pokexplore.ui.screens.allpokemonlist.AllPokemonListViewModel
 import com.example.pokexplore.ui.screens.catchPokemon.CatchPokemonScreen
-import com.example.pokexplore.ui.screens.gpsMandatory.GpsMandatoryScreen
-import com.example.pokexplore.ui.screens.gpsMandatory.GpsMandatoryViewModelViewModel
+import com.example.pokexplore.ui.screens.catchPokemon.CatchPokemonViewModel
+import com.example.pokexplore.ui.screens.changePassword.ChangePasswordScreen
 import com.example.pokexplore.ui.screens.loading.LoadingScreen
 import com.example.pokexplore.ui.screens.loading.LoadingViewModel
 import com.example.pokexplore.ui.screens.pokemonDetails.PokemonDetailsScreen
 import com.example.pokexplore.ui.screens.pokemonDetails.PokemonDetailsViewModel
 import com.example.pokexplore.ui.screens.profile.ProfileScreen
 import com.example.pokexplore.ui.screens.profile.ProfileViewModel
+import com.example.pokexplore.ui.screens.settings.ChangePasswordViewModel
 import com.example.pokexplore.ui.screens.settings.SettingsScreen
 import com.example.pokexplore.ui.screens.signin.SignInScreen
 import com.example.pokexplore.ui.screens.signin.SignInViewModel
@@ -51,10 +52,10 @@ sealed class PokemonRoute(
     data object SignUp: PokemonRoute("signUp", "Sign Up")
     data object Loading: PokemonRoute("loading", "Loading")
     data object Theme: PokemonRoute("theme", "Theme")
-    data object GpsMandatory: PokemonRoute("gpsMandatory", "Gps Mandatory")
     data object CaughtPokemons: PokemonRoute("caughtPokemons", "Caught Pokemons")
+    data object ChangePassword: PokemonRoute("changePassword", "Change Password")
     companion object {
-        val routes = setOf(AllPokemonList, PokemonDetails, CatchPokemon, Settings, Profile, SignIn, SignUp, Loading, Theme, GpsMandatory, CaughtPokemons)
+        val routes = setOf(AllPokemonList, PokemonDetails, CatchPokemon, Settings, Profile, SignIn, SignUp, Loading, Theme, CaughtPokemons, ChangePassword)
     }
 }
 
@@ -99,7 +100,11 @@ fun PokemonNavGraph(
         }
         with(PokemonRoute.CatchPokemon) {
             composable(route) {
-                CatchPokemonScreen(navController)
+                val catchPokemonVm = koinViewModel<CatchPokemonViewModel>()
+                val pokemonState by catchPokemonVm.state.collectAsStateWithLifecycle()
+                val userState = catchPokemonVm.userState
+                val countryCodeState by catchPokemonVm.countryCodeState.collectAsStateWithLifecycle()
+                CatchPokemonScreen(navController, userState, pokemonState, countryCodeState, catchPokemonVm.actions)
             }
         }
         with(PokemonRoute.Settings) {
@@ -134,11 +139,11 @@ fun PokemonNavGraph(
                 LoadingScreen(navController, state, loadingVm.actions)
             }
         }
-        with(PokemonRoute.GpsMandatory) {
+        with(PokemonRoute.ChangePassword) {
             composable(route) {
-                val gpsMandatoryVm = koinViewModel<GpsMandatoryViewModelViewModel>()
-                val state = gpsMandatoryVm.state
-                GpsMandatoryScreen(navController, state, gpsMandatoryVm::setCountryCode)
+                val changePasswordVm = koinViewModel<ChangePasswordViewModel>()
+                val userState = changePasswordVm.userState
+                ChangePasswordScreen(navController, userState, changePasswordVm.actions)
             }
         }
     }
