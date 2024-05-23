@@ -65,4 +65,6 @@
     <string name="delete_history_item">Delete history item</string>
     <string name="generation">Generation</string>
     <string name="no_pokemon_found">There are no pokemon in the nearby</string>
+    <string name="caught_pokemons">Caught</string>
+    <string name="not_caught_pokemons">Not Caught</string>
 </resources>

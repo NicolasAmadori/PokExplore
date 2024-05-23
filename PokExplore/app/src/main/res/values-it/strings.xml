@@ -57,4 +57,6 @@
     <string name="delete_history_item">Elimina elemento cronologia</string>
     <string name="generation">Generazione</string>
     <string name="no_pokemon_found">Non ci sono pokemon nelle vicinanze</string>
+    <string name="caught_pokemons">Catturati</string>
+    <string name="not_caught_pokemons">Non Catturati</string>
 </resources>
