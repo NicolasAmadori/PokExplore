@@ -95,9 +95,10 @@ fun ProfileScreen(
         }
     }
 
-    // Carica l'immagine salvata dalle SharedPreferences all'avvio
-    LaunchedEffect(Unit) {
-        imageBitmap = loadImage()
+    LaunchedEffect(state.user) {
+        state.user?.let { user ->
+            actions.login(user.email)
+        }
     }
 
     val imagePickerLauncher = rememberLauncherForActivityResult(
@@ -265,8 +266,8 @@ fun ProfileScreen(
                         Divider(modifier = Modifier.padding(vertical = 10.dp))
                         PieChart(
                             data = listOf(
-                                Triple(stringResource(R.string.not_caught_pokemons), pokemonState.userWithPokemonsList.count { !it.isCaptured }, MaterialTheme.colorScheme.primaryContainer),
-                                Triple(stringResource(R.string.caught_pokemons), pokemonState.userWithPokemonsList.count { it.isCaptured }, MaterialTheme.colorScheme.onPrimaryContainer)
+                                Triple(stringResource(R.string.not_caught), pokemonState.userWithPokemonsList.count { !it.isCaptured }, MaterialTheme.colorScheme.primaryContainer),
+                                Triple(stringResource(R.string.caught), pokemonState.userWithPokemonsList.count { it.isCaptured }, MaterialTheme.colorScheme.onPrimaryContainer)
                             ),
                             radiusOuter = 50.dp,
                             chartBarWidth = 20.dp,
@@ -284,7 +285,7 @@ fun ProfileScreen(
                             horizontalArrangement = Arrangement.spacedBy(8.dp),
                             contentPadding = PaddingValues(8.dp, 8.dp, 8.dp, 80.dp),
                         ) {
-                            items(pokemonState.userWithPokemonsList.filter { it.user.email == state.user.email && it.isCaptured }) { userWithPokemon ->
+                            items(pokemonState.userWithPokemonsList.filter { it.user.email == user.email && it.isCaptured }) { userWithPokemon ->
                                 PokemonCard(
                                     userWithPokemon,
                                     onClick = {
