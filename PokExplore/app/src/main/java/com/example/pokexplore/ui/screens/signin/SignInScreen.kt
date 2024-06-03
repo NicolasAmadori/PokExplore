@@ -98,8 +98,8 @@ fun SignInScreen(
     }
 
     val promptInfo = BiometricPrompt.PromptInfo.Builder()
-        .setTitle("Biometric login for my app")
-        .setSubtitle("Log in using your biometric credential")
+        .setTitle(stringResource(R.string.title_login))
+        .setSubtitle(stringResource(R.string.description_login))
         .setAllowedAuthenticators(BIOMETRIC_STRONG or DEVICE_CREDENTIAL)
         .build()
 

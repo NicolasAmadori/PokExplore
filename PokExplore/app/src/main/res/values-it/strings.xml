@@ -61,4 +61,6 @@
     <string name="not_caught_pokemons">Non Catturati</string>
     <string name="change_password">Cambia password</string>
     <string name="password_changed_message">La password è stata modificata con successo</string>
+    <string name="title_login">Login Biometrico</string>
+    <string name="description_login">Usa le tue credenziali biometriche per il login</string>
 </resources>
