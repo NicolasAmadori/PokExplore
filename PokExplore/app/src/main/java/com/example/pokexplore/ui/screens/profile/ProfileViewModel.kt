@@ -20,7 +20,7 @@ data class PokemonState(val userWithPokemonsList: List<UserWithPokemons>)
 data class UserState(val user: User?)
 
 interface ProfileActions {
-    fun logOut(): Job
+    fun logOut(onLogOut: () -> Unit): Job
     fun toggleFavourite(email: String, pokemonId: Int): Job
     fun setProfilePicUrl(email: String, profilePicUrl: String): Job
 }
@@ -40,9 +40,10 @@ class ProfileViewModel(
     )
 
     val actions = object : ProfileActions {
-        override fun logOut(): Job {
+        override fun logOut(onLogOut: () -> Unit): Job = viewModelScope.launch {
             userState = UserState(null)
-            return viewModelScope.launch { dataStoreRepository.removeUser() }
+            dataStoreRepository.removeUser()
+            onLogOut()
         }
 
         override fun toggleFavourite(email: String, pokemonId: Int) = viewModelScope.launch {
@@ -51,6 +52,19 @@ class ProfileViewModel(
 
         override fun setProfilePicUrl(email: String, profilePicUrl: String) = viewModelScope.launch {
             databaseRepository.setProfilePicUrl(email, profilePicUrl)
+            if(userState.user != null) {
+                val copyUser = User(
+                    email = userState.user!!.email,
+                    firstName = userState.user!!.firstName,
+                    lastName = userState.user!!.lastName,
+                    phone = userState.user!!.phone,
+                    profilePicUrl = profilePicUrl,
+                    password = ""
+                )
+                dataStoreRepository.setUser(copyUser)
+                userState = UserState(copyUser)
+            }
+
         }
     }
 

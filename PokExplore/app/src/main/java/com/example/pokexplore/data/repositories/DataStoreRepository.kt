@@ -17,6 +17,7 @@ class DataStoreRepository(
         private val FIRST_NAME_KEY = stringPreferencesKey("first_name")
         private val LAST_NAME_KEY = stringPreferencesKey("last_name")
         private val PHONE_KEY = stringPreferencesKey("phone")
+        private val PROFILE_PIC_KEY = stringPreferencesKey("profile_pic")
         private val THEME_KEY = stringPreferencesKey("theme")
         private val COUNTRY_CODE_KEY = stringPreferencesKey("country_code")
     }
@@ -39,7 +40,7 @@ class DataStoreRepository(
                         firstName = preferences[FIRST_NAME_KEY] ?: "",
                         lastName = preferences[LAST_NAME_KEY] ?: "",
                         phone = preferences[PHONE_KEY]?.toIntOrNull(),
-                        profilePicUrl = null,
+                        profilePicUrl = preferences[PROFILE_PIC_KEY],
                         password = ""
                     )
                 }
@@ -66,12 +67,15 @@ class DataStoreRepository(
         it[FIRST_NAME_KEY] = user.firstName
         it[LAST_NAME_KEY] = user.lastName
         it[PHONE_KEY] = user.phone.toString()
+        it[PROFILE_PIC_KEY] = user.profilePicUrl.toString()
     }
+
     suspend fun removeUser() = dataStore.edit {
         it.remove(EMAIL_KEY)
         it.remove(FIRST_NAME_KEY)
         it.remove(LAST_NAME_KEY)
         it.remove(PHONE_KEY)
+        it.remove(PROFILE_PIC_KEY)
     }
 
     suspend fun setTheme(theme: Theme) = dataStore.edit { it[THEME_KEY] = theme.toString() }
