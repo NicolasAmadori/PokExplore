@@ -39,8 +39,8 @@ class DataStoreRepository(
                         email = preferences[EMAIL_KEY] ?: "",
                         firstName = preferences[FIRST_NAME_KEY] ?: "",
                         lastName = preferences[LAST_NAME_KEY] ?: "",
-                        phone = preferences[PHONE_KEY]?.toIntOrNull(),
-                        profilePicUrl = preferences[PROFILE_PIC_KEY],
+                        phone = preferences[PHONE_KEY]?.takeIf { it.isNotBlank() }?.toInt(),
+                        profilePicUrl = preferences[PROFILE_PIC_KEY]?.takeIf { it.isNotBlank() },
                         password = ""
                     )
                 }
@@ -66,8 +66,8 @@ class DataStoreRepository(
         it[EMAIL_KEY] = user.email
         it[FIRST_NAME_KEY] = user.firstName
         it[LAST_NAME_KEY] = user.lastName
-        it[PHONE_KEY] = user.phone.toString()
-        it[PROFILE_PIC_KEY] = user.profilePicUrl.toString()
+        it[PHONE_KEY] = user.phone?.toString() ?: ""
+        it[PROFILE_PIC_KEY] = user.profilePicUrl ?: ""
     }
 
     suspend fun removeUser() = dataStore.edit {
