@@ -71,4 +71,6 @@
     <string name="account" translatable="false">Account</string>
     <string name="change_password">Change Password</string>
     <string name="password_changed_message">The password has been successfully modified</string>
+    <string name="title_login">Biometric login for my app</string>
+    <string name="description_login">Log in using your biometric credential</string>
 </resources>

@@ -61,4 +61,6 @@
     <string name="not_caught_pokemons">No atrapados</string>
     <string name="change_password">Cambiar contraseña</string>
     <string name="password_changed_message">La contraseña se ha modificado con éxito</string>
+    <string name="title_login">Inicio de sesión biométrico para mi aplicación</string>
+    <string name="description_login">Accede utilizando tus credenciales biométricas</string>
 </resources>
