@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="downloading_pokemon">Descargando pokémon...</string>
+    <string name="downloading_pokemon">Cargando pokémon...</string>
     <string name="bottom_nav_catch">Capturar</string>
     <string name="bottom_nav_profile">Perfil</string>
     <string name="signin_title">Iniciar sesión</string>

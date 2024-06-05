@@ -50,23 +50,23 @@ fun SignUpScreen(
 ) {
     val context = LocalContext.current
 
-    val email = remember { mutableStateOf("prova@gmail.com") }
+    val email = remember { mutableStateOf("") }
     var isErrorEmail by remember { mutableStateOf(false) }
 
-    val firstName = remember { mutableStateOf("Nicolas") }
+    val firstName = remember { mutableStateOf("") }
     var isErrorFirstName by remember { mutableStateOf(false) }
 
-    val lastName = remember { mutableStateOf("Amadori") }
+    val lastName = remember { mutableStateOf("") }
     var isErrorLastName by remember { mutableStateOf(false) }
 
-    val phoneNumber = remember { mutableStateOf("3895370898") }
+    val phoneNumber = remember { mutableStateOf("") }
     var isErrorPhone by remember { mutableStateOf(false) }
 
-    val password = remember { mutableStateOf("12345") }
+    val password = remember { mutableStateOf("") }
     var isHiddenPassword by remember { mutableStateOf(true) }
     var isErrorPassword by remember { mutableStateOf(false) }
 
-    val password2 = remember { mutableStateOf("12345") }
+    val password2 = remember { mutableStateOf("") }
     var isHiddenPassword2 by remember { mutableStateOf(true) }
     var isErrorPassword2 by remember { mutableStateOf(false) }
 
